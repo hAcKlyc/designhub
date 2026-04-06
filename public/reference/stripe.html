@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignHub — Stripe Design System</title>
+<title>DesignHub — Stripe Design System Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -38,52 +38,113 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Sticky Header */
-  .sticky-header {
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Header ── */
+  .header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--bg);
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    height: 48px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    backdrop-filter: blur(12px);
+    padding: 0 32px;
   }
-  .sticky-header .brand {
+  .header-left { display: flex; align-items: center; gap: 32px; }
+  .header-logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--purple);
+    letter-spacing: -0.5px;
+  }
+  .header-nav { display: flex; gap: 24px; }
+  .header-nav a {
     font-size: 14px;
     font-weight: 400;
-    color: var(--navy);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    color: var(--label);
+    transition: color 0.15s;
   }
-  .stripe-logo { font-weight: 600; color: var(--purple); font-size: 18px; letter-spacing: -0.5px; }
+  .header-nav a:hover { color: var(--purple); }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .btn-header { font-family: var(--font); font-size: 14px; font-weight: 400; border: none; cursor: pointer; padding: 8px 14px; border-radius: 4px; }
+  .btn-header-ghost { background: transparent; color: var(--label); }
+  .btn-header-primary { background: var(--purple); color: #fff; }
+  .btn-header-primary:hover { background: var(--purple-hover); }
 
-  /* Hero */
+  /* ── Hero with Animated Gradient ── */
   .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 32px 140px;
     text-align: center;
-    padding: 100px 32px 80px;
-    max-width: 900px;
-    margin: 0 auto;
   }
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(83,58,253,0.08) 0%,
+      rgba(249,107,238,0.06) 25%,
+      rgba(234,34,97,0.04) 50%,
+      rgba(83,58,253,0.06) 75%,
+      rgba(249,107,238,0.08) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    z-index: 0;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .hero-gradient-orb {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  .hero-gradient-orb.orb1 {
+    background: var(--purple);
+    top: -100px;
+    right: -100px;
+  }
+  .hero-gradient-orb.orb2 {
+    background: var(--magenta);
+    bottom: -150px;
+    left: -100px;
+    animation-delay: -4s;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -20px); }
+  }
+  .hero-content { position: relative; z-index: 1; }
   .hero h1 {
-    font-size: 48px;
+    font-size: 56px;
     font-weight: 300;
-    line-height: 1.15;
-    letter-spacing: -0.96px;
+    line-height: 1.05;
+    letter-spacing: -1.4px;
     color: var(--navy);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero p {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
-    line-height: 1.40;
+    line-height: 1.5;
     color: var(--body);
-    max-width: 560px;
-    margin: 0 auto 32px;
+    max-width: 540px;
+    margin: 0 auto 36px;
   }
   .hero-buttons {
     display: flex;
@@ -93,534 +154,647 @@
   .btn-primary {
     background: var(--purple);
     color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 12px 24px;
+    border-radius: 6px;
     border: none;
     font-family: var(--font);
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: rgba(50,50,93,0.15) 0px 6px 12px -2px, rgba(0,0,0,0.08) 0px 3px 7px -3px;
   }
-  .btn-primary:hover { background: var(--purple-hover); }
+  .btn-primary:hover { background: var(--purple-hover); transform: translateY(-1px); box-shadow: rgba(50,50,93,0.2) 0px 10px 20px -4px, rgba(0,0,0,0.1) 0px 6px 12px -6px; }
   .btn-secondary {
     background: transparent;
     color: var(--purple);
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 12px 24px;
+    border-radius: 6px;
     border: 1px solid var(--border-purple);
     font-family: var(--font);
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.15s;
   }
+  .btn-secondary:hover { background: rgba(83,58,253,0.04); }
 
-  .section-label {
+  /* ── Payment Form Mockup ── */
+  .payment-demo {
+    max-width: 900px;
+    margin: -80px auto 80px;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 0 32px;
+  }
+  .payment-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 36px;
+    box-shadow: rgba(50,50,93,0.25) 0px 30px 60px -12px, rgba(0,0,0,0.1) 0px 18px 36px -18px;
+    border: 1px solid var(--border);
+  }
+  .payment-card h3 {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--navy);
+    margin-bottom: 24px;
+    letter-spacing: -0.2px;
+  }
+  .form-row { margin-bottom: 16px; }
+  .form-row label {
+    display: block;
     font-size: 13px;
     font-weight: 400;
-    color: var(--body);
-    text-align: center;
-    margin-bottom: 32px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: var(--label);
+    margin-bottom: 6px;
   }
+  .form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--navy);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    background: #fff;
+  }
+  .form-input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(83,58,253,0.1);
+  }
+  .form-input::placeholder { color: var(--body); }
+  .form-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .card-icon-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .card-icon {
+    height: 24px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    color: var(--label);
+  }
+  .btn-pay {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    background: var(--purple);
+    color: #fff;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.15s;
+  }
+  .btn-pay:hover { background: var(--purple-hover); }
 
-  /* Features */
-  .features {
+  /* ── Code Snippet ── */
+  .code-card {
+    background: #0a2540;
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: rgba(3,3,39,0.25) 0px 14px 21px -14px, rgba(0,0,0,0.1) 0px 8px 17px -8px;
+    overflow: hidden;
+  }
+  .code-card-header {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .code-tab {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+  }
+  .code-tab.active {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+  .code-body {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 2.0;
+    overflow-x: auto;
+  }
+  .code-line { white-space: nowrap; }
+  .code-comment { color: rgba(255,255,255,0.3); }
+  .code-keyword { color: #7dd3fc; }
+  .code-string { color: #a5f3fc; }
+  .code-func { color: #c4b5fd; }
+  .code-var { color: #e2e8f0; }
+  .code-number { color: #fbbf24; }
+  .code-prop { color: #93c5fd; }
+  .code-punct { color: rgba(255,255,255,0.4); }
+
+  /* ── Products Section ── */
+  .products {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 0 32px 80px;
+    padding: 100px 32px;
   }
-  .features-grid {
+  .products-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .products-header .eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+  }
+  .products-header h2 {
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: -0.96px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .products-header p {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--body);
+    line-height: 1.5;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 20px;
   }
-  .feature-card {
+  .product-card {
     background: #ffffff;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 32px;
-    box-shadow: rgba(23,23,23,0.08) 0px 15px 35px 0px;
+    border-radius: 8px;
+    padding: 36px 28px;
+    box-shadow: rgba(50,50,93,0.12) 0px 13px 27px -5px, rgba(0,0,0,0.06) 0px 8px 16px -8px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
   }
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: rgba(50,50,93,0.2) 0px 25px 50px -12px, rgba(0,0,0,0.1) 0px 12px 24px -12px;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+  .product-card.payments::before { background: linear-gradient(90deg, var(--purple), #7c6aff); }
+  .product-card.billing::before { background: linear-gradient(90deg, #00d4aa, var(--success)); }
+  .product-card.connect::before { background: linear-gradient(90deg, var(--ruby), var(--magenta)); }
+  .product-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
-    font-size: 18px;
-    background: rgba(83,58,253,0.08);
-    color: var(--purple);
+    margin-bottom: 20px;
+    font-size: 22px;
   }
-  .feature-card h3 {
+  .product-card h3 {
     font-size: 22px;
     font-weight: 300;
     letter-spacing: -0.22px;
-    line-height: 1.10;
-    margin-bottom: 10px;
     color: var(--navy);
+    margin-bottom: 10px;
   }
-  .feature-card p {
-    font-size: 16px;
+  .product-card p {
+    font-size: 15px;
     font-weight: 300;
-    line-height: 1.40;
+    line-height: 1.5;
+    color: var(--body);
+    margin-bottom: 16px;
+  }
+  .product-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--purple);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .product-link:hover { text-decoration: underline; }
+
+  /* ── Dark Brand Section ── */
+  .brand-section {
+    background: var(--brand-dark);
+    padding: 100px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .brand-section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(83,58,253,0.2), transparent 70%);
+    pointer-events: none;
+  }
+  .brand-section h2 {
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: -0.96px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .brand-section p {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    max-width: 500px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+    position: relative;
+  }
+  .brand-section .btn-primary {
+    background: #fff;
+    color: var(--brand-dark);
+  }
+  .brand-section .btn-primary:hover { background: rgba(255,255,255,0.9); }
+
+  /* ── Trust Logos ── */
+  .trust {
+    padding: 80px 32px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .trust-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--body);
+    margin-bottom: 32px;
+  }
+  .trust-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+  .trust-logo {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--body);
+    opacity: 0.4;
+    letter-spacing: -0.3px;
+  }
+
+  /* ── Stats ── */
+  .stats {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .stat-card {
+    text-align: center;
+    padding: 40px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: rgba(23,23,23,0.06) 0px 3px 6px;
+  }
+  .stat-number {
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: -0.96px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 15px;
+    font-weight: 300;
     color: var(--body);
   }
 
-  /* Form */
-  .form-section {
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 0 32px 80px;
-  }
-  .form-section h2 {
-    font-size: 32px;
-    font-weight: 300;
-    letter-spacing: -0.64px;
-    line-height: 1.10;
-    margin-bottom: 24px;
-    text-align: center;
-    color: var(--navy);
-  }
-  .form-group {
-    margin-bottom: 16px;
-  }
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 6px;
-    color: var(--label);
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--navy);
-    background: var(--bg);
-    outline: none;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: var(--purple);
-  }
-  .form-group textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--body); }
-  .form-submit { text-align: center; margin-top: 24px; }
-
-  /* Dark Brand Section */
-  .dark-section {
-    background: var(--brand-dark);
-    padding: 80px 32px;
-  }
-
-  /* Showcase */
-  .showcase {
+  /* ── Footer ── */
+  .footer {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 80px 32px;
+    padding: 64px 32px 48px;
+    border-top: 1px solid var(--border);
   }
-  .showcase h2 {
-    font-size: 32px;
-    font-weight: 300;
-    letter-spacing: -0.64px;
-    line-height: 1.10;
-    margin-bottom: 48px;
-    text-align: center;
-    color: var(--navy);
-  }
-  .showcase-section {
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 32px;
     margin-bottom: 48px;
   }
-  .showcase-section h3 {
-    font-size: 16px;
-    font-weight: 400;
+  .footer-brand { display: flex; flex-direction: column; gap: 12px; }
+  .footer-brand-name { font-size: 20px; font-weight: 700; color: var(--purple); letter-spacing: -0.5px; }
+  .footer-brand p { font-size: 13px; font-weight: 300; color: var(--body); line-height: 1.6; max-width: 220px; }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--body);
     margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
     color: var(--label);
+    margin-bottom: 10px;
+    transition: color 0.15s;
+  }
+  .footer-col a:hover { color: var(--purple); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-bottom span {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--body);
   }
 
-  /* Colors */
-  .color-grid {
+  /* ── DesignHub Badge ── */
+  .designhub-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--purple);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    z-index: 999;
+    box-shadow: rgba(50,50,93,0.25) 0px 6px 12px -2px, rgba(0,0,0,0.1) 0px 3px 7px -3px;
+    transition: transform 0.15s;
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .color-swatch {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 6px;
   }
-  .color-swatch .swatch {
-    width: 64px;
-    height: 64px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-  }
-  .color-swatch .label {
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--body);
-  }
-  .color-swatch .name {
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--navy);
-  }
+  .designhub-badge:hover { transform: translateY(-2px); }
+  .designhub-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #a5f3fc; }
 
-  /* Type */
-  .type-scale {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .type-row {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(229,237,245,0.5);
-  }
-  .type-row .meta {
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--body);
-    min-width: 120px;
-    flex-shrink: 0;
-  }
-
-  /* Buttons */
-  .button-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-  }
-  .btn-ghost {
-    background: transparent;
-    color: var(--purple);
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid var(--border-purple);
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  .btn-neutral {
-    background: transparent;
-    color: rgba(16,16,16,0.3);
-    padding: 8px 16px;
-    border-radius: 4px;
-    outline: 1px solid rgb(212,222,233);
-    border: none;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  .btn-danger {
-    background: var(--ruby);
-    color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  .btn-success-badge {
-    background: rgba(21,190,83,0.2);
-    color: var(--success-text);
-    padding: 1px 6px;
-    border-radius: 4px;
-    border: 1px solid rgba(21,190,83,0.4);
-    font-family: var(--font);
-    font-size: 10px;
-    font-weight: 300;
-    cursor: default;
-  }
-
-  /* Cards */
-  .card-variants {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .card-v {
-    padding: 24px;
-    background: #ffffff;
-    border: 1px solid var(--border);
-  }
-  .card-v.standard { border-radius: 5px; box-shadow: rgba(23,23,23,0.08) 0px 15px 35px 0px; }
-  .card-v.elevated { border-radius: 6px; box-shadow: rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px; }
-  .card-v.deep { border-radius: 8px; box-shadow: rgba(3,3,39,0.25) 0px 14px 21px -14px, rgba(0,0,0,0.1) 0px 8px 17px -8px; }
-  .card-v h4 {
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--navy);
-    margin-bottom: 4px;
-  }
-  .card-v p { font-size: 13px; color: var(--body); font-weight: 300; }
-
-  /* Input States */
-  .input-states {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .input-state label {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    font-family: var(--font-mono);
-    color: var(--body);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-  }
-  .input-state input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--navy);
-    background: var(--bg);
-    outline: none;
-  }
-  .input-state.focused input { border-color: var(--purple); }
-  .input-state.disabled input { color: var(--body); background: #f8fafc; }
-
-  /* Shadows */
-  .shadow-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-  .shadow-box {
-    height: 80px;
-    border-radius: 6px;
-    background: #ffffff;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--body);
-  }
-
-  /* Radius */
-  .radius-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: end;
-  }
-  .radius-item { text-align: center; }
-  .radius-box {
-    width: 64px;
-    height: 64px;
-    background: #f6f9fc;
-    border: 1px solid var(--border);
-    margin-bottom: 6px;
-  }
-  .radius-label {
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--body);
-  }
-
-  @media (max-width: 768px) {
-    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 32px; letter-spacing: -0.64px; }
+  @media (max-width: 900px) {
+    .hero h1 { font-size: 36px; letter-spacing: -0.72px; }
+    .payment-demo { grid-template-columns: 1fr; margin-top: -40px; }
+    .products-grid, .stats { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .header-nav { display: none; }
   }
 </style>
 </head>
 <body>
 
-<div class="sticky-header">
-  <div class="brand">
-    <span class="stripe-logo">stripe</span>
-    <span style="color:var(--body);font-size:13px;">Design System</span>
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <a href="#" class="header-logo">stripe</a>
+    <nav class="header-nav">
+      <a href="#">Products</a>
+      <a href="#">Solutions</a>
+      <a href="#">Developers</a>
+      <a href="#">Resources</a>
+      <a href="#">Pricing</a>
+    </nav>
   </div>
-</div>
+  <div class="header-right">
+    <button class="btn-header btn-header-ghost">Sign in</button>
+    <button class="btn-header btn-header-primary">Start now &rarr;</button>
+  </div>
+</header>
 
 <!-- Hero -->
 <section class="hero">
-  <h1>Build beautiful products faster</h1>
-  <p>Financial infrastructure meets world-class design. Every component engineered for precision, every shadow tinted with brand atmosphere.</p>
-  <div class="hero-buttons">
-    <button class="btn-primary">Start now</button>
-    <button class="btn-secondary">Contact sales</button>
-  </div>
-</section>
-
-<!-- Features -->
-<section class="features">
-  <div class="section-label">Features</div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3>Blue-Tinted Shadows</h3>
-      <p>Signature rgba(50,50,93,0.25) creates shadows with atmospheric depth, like elements floating in twilight.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
-      </div>
-      <h3>Whisper-Weight Type</h3>
-      <p>Weight 300 headlines — extraordinarily light, creating ethereal authority. The opposite of bold convention.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      </div>
-      <h3>Conservative Rounding</h3>
-      <p>4px-8px radius range throughout. Nothing pill-shaped, nothing harsh. Precise, financial-grade corners.</p>
+  <div class="hero-gradient"></div>
+  <div class="hero-gradient-orb orb1"></div>
+  <div class="hero-gradient-orb orb2"></div>
+  <div class="hero-content">
+    <h1>Financial infrastructure for the internet</h1>
+    <p>Millions of companies of all sizes use Stripe to accept payments, grow their revenue, and accelerate new business opportunities.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary">Start now &rarr;</button>
+      <button class="btn-secondary">Contact sales</button>
     </div>
   </div>
 </section>
 
-<!-- Form -->
-<section class="form-section">
-  <h2>Get in Touch</h2>
-  <div class="form-group">
-    <label>Name</label>
-    <input type="text" placeholder="Full name">
+<!-- Payment Form + Code -->
+<div class="payment-demo">
+  <div class="payment-card">
+    <h3>Pay with card</h3>
+    <div class="card-icon-row">
+      <div class="card-icon">VISA</div>
+      <div class="card-icon">MC</div>
+      <div class="card-icon">AMEX</div>
+      <div class="card-icon">CVC</div>
+    </div>
+    <div class="form-row">
+      <label>Email</label>
+      <input type="email" class="form-input" placeholder="jenny@example.com" value="jenny@example.com">
+    </div>
+    <div class="form-row">
+      <label>Card number</label>
+      <input type="text" class="form-input" placeholder="1234 1234 1234 1234" value="4242 4242 4242 4242">
+    </div>
+    <div class="form-row-split">
+      <div class="form-row">
+        <label>Expiration</label>
+        <input type="text" class="form-input" placeholder="MM / YY" value="12 / 28">
+      </div>
+      <div class="form-row">
+        <label>CVC</label>
+        <input type="text" class="form-input" placeholder="123" value="424">
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Country</label>
+      <input type="text" class="form-input" value="United States">
+    </div>
+    <button class="btn-pay">Pay $249.00</button>
   </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input type="email" placeholder="you@company.com">
+  <div class="code-card">
+    <div class="code-card-header">
+      <div class="code-tab active">Node.js</div>
+      <div class="code-tab">Python</div>
+      <div class="code-tab">Ruby</div>
+      <div class="code-tab">Go</div>
+    </div>
+    <div class="code-body">
+      <div class="code-line"><span class="code-comment">// Create a payment intent</span></div>
+      <div class="code-line"><span class="code-keyword">const</span> <span class="code-var">stripe</span> <span class="code-punct">=</span> <span class="code-func">require</span><span class="code-punct">(</span><span class="code-string">'stripe'</span><span class="code-punct">)(</span></div>
+      <div class="code-line">&nbsp;&nbsp;<span class="code-string">'sk_test_...'</span></div>
+      <div class="code-line"><span class="code-punct">);</span></div>
+      <div class="code-line"></div>
+      <div class="code-line"><span class="code-keyword">const</span> <span class="code-var">paymentIntent</span> <span class="code-punct">=</span></div>
+      <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">await</span> <span class="code-var">stripe</span><span class="code-punct">.</span><span class="code-var">paymentIntents</span></div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-punct">.</span><span class="code-func">create</span><span class="code-punct">({</span></div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-prop">amount</span><span class="code-punct">:</span> <span class="code-number">24900</span><span class="code-punct">,</span></div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-prop">currency</span><span class="code-punct">:</span> <span class="code-string">'usd'</span><span class="code-punct">,</span></div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-prop">automatic_payment_methods</span><span class="code-punct">: {</span></div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-prop">enabled</span><span class="code-punct">:</span> <span class="code-keyword">true</span><span class="code-punct">,</span></div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-punct">},</span></div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-punct">});</span></div>
+      <div class="code-line"></div>
+      <div class="code-line"><span class="code-comment">// Returns: pi_3Mq... status: succeeded</span></div>
+    </div>
   </div>
-  <div class="form-group">
-    <label>Message</label>
-    <textarea placeholder="How can we help?"></textarea>
+</div>
+
+<!-- Products -->
+<section class="products">
+  <div class="products-header">
+    <div class="eyebrow">Products</div>
+    <h2>A fully integrated suite of financial products</h2>
+    <p>Reduce complexity, move faster, and unlock new revenue streams.</p>
   </div>
-  <div class="form-submit">
-    <button class="btn-primary">Submit</button>
+  <div class="products-grid">
+    <div class="product-card payments">
+      <div class="product-icon" style="background: rgba(83,58,253,0.08); color: var(--purple);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <h3>Payments</h3>
+      <p>Accept payments online, in person, or through your platform with a complete payments solution.</p>
+      <span class="product-link">Learn more &rarr;</span>
+    </div>
+    <div class="product-card billing">
+      <div class="product-icon" style="background: rgba(21,190,83,0.08); color: var(--success);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <h3>Billing</h3>
+      <p>Build and scale your recurring business model with subscriptions, invoicing, and usage-based billing.</p>
+      <span class="product-link">Learn more &rarr;</span>
+    </div>
+    <div class="product-card connect">
+      <div class="product-icon" style="background: rgba(234,34,97,0.08); color: var(--ruby);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10"/></svg>
+      </div>
+      <h3>Connect</h3>
+      <p>Set up multi-party payments and payouts to build a platform or marketplace with Stripe as the backbone.</p>
+      <span class="product-link">Learn more &rarr;</span>
+    </div>
   </div>
 </section>
 
-<!-- Showcase -->
-<section class="showcase">
-  <h2>Component Showcase</h2>
-
-  <div class="showcase-section">
-    <h3>Color Palette</h3>
-    <div class="color-grid">
-      <div class="color-swatch"><div class="swatch" style="background:#533afd"></div><div class="name">Stripe Purple</div><div class="label">#533afd</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#061b31"></div><div class="name">Deep Navy</div><div class="label">#061b31</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">White</div><div class="label">#ffffff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#1c1e54"></div><div class="name">Brand Dark</div><div class="label">#1c1e54</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#64748d"></div><div class="name">Slate</div><div class="label">#64748d</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#273951"></div><div class="name">Label</div><div class="label">#273951</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#e5edf5"></div><div class="name">Border</div><div class="label">#e5edf5</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ea2261"></div><div class="name">Ruby</div><div class="label">#ea2261</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#f96bee"></div><div class="name">Magenta</div><div class="label">#f96bee</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#15be53"></div><div class="name">Success</div><div class="label">#15be53</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#b9b9f9"></div><div class="name">Purple Light</div><div class="label">#b9b9f9</div></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Typography Scale</h3>
-    <div class="type-scale">
-      <div class="type-row"><span class="meta">56px / 300</span><span style="font-size:48px;font-weight:300;letter-spacing:-0.96px;line-height:1.15;color:var(--navy);">Display Hero</span></div>
-      <div class="type-row"><span class="meta">48px / 300</span><span style="font-size:40px;font-weight:300;letter-spacing:-0.96px;line-height:1.15;color:var(--navy);">Display Large</span></div>
-      <div class="type-row"><span class="meta">32px / 300</span><span style="font-size:32px;font-weight:300;letter-spacing:-0.64px;line-height:1.10;color:var(--navy);">Section Heading</span></div>
-      <div class="type-row"><span class="meta">22px / 300</span><span style="font-size:22px;font-weight:300;letter-spacing:-0.22px;line-height:1.10;color:var(--navy);">Sub-heading</span></div>
-      <div class="type-row"><span class="meta">18px / 300</span><span style="font-size:18px;font-weight:300;line-height:1.40;color:var(--body);">Body Large — feature descriptions</span></div>
-      <div class="type-row"><span class="meta">16px / 300</span><span style="font-size:16px;font-weight:300;line-height:1.40;">Body — standard reading text</span></div>
-      <div class="type-row"><span class="meta">14px / 400</span><span style="font-size:14px;font-weight:400;line-height:1;">Navigation link</span></div>
-      <div class="type-row"><span class="meta">12px Code</span><span style="font-size:12px;font-family:var(--font-mono);font-weight:500;line-height:2;">const payment = stripe.create()</span></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Button Variants</h3>
-    <div class="button-row">
-      <button class="btn-primary">Primary Purple</button>
-      <button class="btn-ghost">Ghost Outlined</button>
-      <button class="btn-neutral">Neutral Ghost</button>
-      <button class="btn-danger">Ruby Accent</button>
-      <span class="btn-success-badge">Active</span>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Card Variants</h3>
-    <div class="card-variants">
-      <div class="card-v standard">
-        <h4>Standard</h4>
-        <p>Ambient shadow, 5px radius</p>
-      </div>
-      <div class="card-v elevated">
-        <h4>Elevated</h4>
-        <p>Blue-tinted dual-layer shadow</p>
-      </div>
-      <div class="card-v deep">
-        <h4>Deep</h4>
-        <p>Deep blue shadow, 8px radius</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Input States</h3>
-    <div class="input-states">
-      <div class="input-state">
-        <label>Default</label>
-        <input type="text" placeholder="Default">
-      </div>
-      <div class="input-state focused">
-        <label>Focused</label>
-        <input type="text" value="Purple focus ring">
-      </div>
-      <div class="input-state disabled">
-        <label>Disabled</label>
-        <input type="text" value="Disabled" disabled>
-      </div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Shadow Levels</h3>
-    <div class="shadow-grid">
-      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
-      <div class="shadow-box" style="box-shadow:rgba(23,23,23,0.06) 0px 3px 6px;">Level 1 — Ambient</div>
-      <div class="shadow-box" style="box-shadow:rgba(23,23,23,0.08) 0px 15px 35px;">Level 2 — Standard</div>
-      <div class="shadow-box" style="box-shadow:rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;">Level 3 — Elevated</div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Border Radius</h3>
-    <div class="radius-row">
-      <div class="radius-item"><div class="radius-box" style="border-radius:1px;"></div><div class="radius-label">1px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">4px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:5px;"></div><div class="radius-label">5px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
-    </div>
+<!-- Trust -->
+<section class="trust">
+  <div class="trust-label">Powering payments for leading businesses</div>
+  <div class="trust-logos">
+    <span class="trust-logo">Amazon</span>
+    <span class="trust-logo">Google</span>
+    <span class="trust-logo">Shopify</span>
+    <span class="trust-logo">Zoom</span>
+    <span class="trust-logo">Slack</span>
+    <span class="trust-logo">Instacart</span>
+    <span class="trust-logo">Notion</span>
   </div>
 </section>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat-card">
+    <div class="stat-number">250M+</div>
+    <div class="stat-label">API requests per day</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">99.999%</div>
+    <div class="stat-label">Historical uptime</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">135+</div>
+    <div class="stat-label">Currencies supported</div>
+  </div>
+</div>
+
+<!-- Dark Brand Section -->
+<section class="brand-section">
+  <h2>Ready to get started?</h2>
+  <p>Create an account instantly and start accepting payments. Contact us to design a custom package for your business.</p>
+  <button class="btn-primary">Start now &rarr;</button>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name">stripe</div>
+      <p>Financial infrastructure that powers the internet economy.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Payments</a>
+      <a href="#">Billing</a>
+      <a href="#">Connect</a>
+      <a href="#">Radar</a>
+      <a href="#">Issuing</a>
+    </div>
+    <div class="footer-col">
+      <h4>Developers</h4>
+      <a href="#">Documentation</a>
+      <a href="#">API Reference</a>
+      <a href="#">API Status</a>
+      <a href="#">API Changelog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#">Support Center</a>
+      <a href="#">Guides</a>
+      <a href="#">Blog</a>
+      <a href="#">Partners</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Stripe, Inc.</span>
+    <span style="font-size: 12px;">DesignHub Demo &mdash; Not affiliated with Stripe</span>
+  </div>
+</footer>
+
+<!-- DesignHub Badge -->
+<a href="/" class="designhub-badge"><span class="dot"></span> Built with DesignHub</a>
 
 </body>
 </html>

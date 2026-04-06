@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignHub — Linear Design System</title>
+<title>DesignHub — Linear Design System Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,12 +23,12 @@
     --accent: #7170ff;
     --accent-hover: #828fff;
     --green: #27a644;
-    --emerald: #10b981;
-    --border-primary: #23252a;
-    --border-secondary: #34343a;
+    --orange: #f59e0b;
+    --red: #ef4444;
     --border-subtle: rgba(255,255,255,0.05);
     --border-standard: rgba(255,255,255,0.08);
-    --font: 'Inter', 'SF Pro Display', -apple-system, system-ui, sans-serif;
+    --border-solid: #23252a;
+    --font: 'Inter', -apple-system, system-ui, sans-serif;
     --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
   }
 
@@ -40,57 +40,162 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Sticky Header */
-  .sticky-header {
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Header ── */
+  .header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--bg-panel);
+    background: rgba(8,9,10,0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 0 32px;
-    height: 48px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 24px;
   }
-  .sticky-header .brand {
-    font-size: 14px;
-    font-weight: 510;
-    color: var(--text-secondary);
+  .header-left { display: flex; align-items: center; gap: 32px; }
+  .header-logo {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
   }
-  .linear-mark {
+  .logo-mark {
     width: 20px;
     height: 20px;
+    border-radius: 4px;
     background: linear-gradient(135deg, #5e6ad2, #828fff);
+    position: relative;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 2px;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(-45deg);
+  }
+  .header-nav { display: flex; gap: 24px; }
+  .header-nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    transition: color 0.15s;
+  }
+  .header-nav a:hover { color: var(--text-primary); }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .btn-header {
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-feature-settings: "cv01", "ss03";
+  }
+  .btn-header-ghost {
+    background: transparent;
+    color: var(--text-tertiary);
+  }
+  .btn-header-ghost:hover { color: var(--text-primary); }
+  .btn-header-primary {
+    background: var(--brand);
+    color: #fff;
+  }
+  .btn-header-primary:hover { background: var(--accent-hover); }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 140px 24px 120px;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 500px;
+    transform: translate(-50%, -55%);
+    background: radial-gradient(ellipse, rgba(94,106,210,0.12) 0%, rgba(113,112,255,0.06) 40%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 50% 60% at 50% 40%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 50% 60% at 50% 40%, black 30%, transparent 80%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px 5px 6px;
+    border-radius: 9999px;
+    border: 1px solid var(--border-solid);
+    background: rgba(255,255,255,0.02);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .hero-badge:hover { border-color: rgba(255,255,255,0.15); }
+  .hero-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .hero-badge .badge-new {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(113,112,255,0.12);
+    padding: 2px 6px;
     border-radius: 4px;
   }
-
-  /* Hero */
-  .hero {
-    text-align: center;
-    padding: 120px 32px 80px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
   .hero h1 {
-    font-size: 48px;
-    font-weight: 510;
-    line-height: 1.00;
-    letter-spacing: -1.056px;
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 1.0;
+    letter-spacing: -1.23px;
     color: var(--text-primary);
-    margin-bottom: 16px;
-    font-feature-settings: "cv01", "ss03";
+    margin-bottom: 20px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--text-primary), var(--text-tertiary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .hero p {
     font-size: 18px;
     font-weight: 400;
-    line-height: 1.60;
+    line-height: 1.6;
     color: var(--text-tertiary);
-    max-width: 560px;
-    margin: 0 auto 32px;
+    max-width: 520px;
+    margin: 0 auto 36px;
     letter-spacing: -0.165px;
   }
   .hero-buttons {
@@ -101,43 +206,313 @@
   .btn-primary {
     background: var(--brand);
     color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
     border: none;
     font-family: var(--font);
-    font-size: 14px;
-    font-weight: 510;
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
     font-feature-settings: "cv01", "ss03";
+    transition: all 0.15s;
   }
   .btn-primary:hover { background: var(--accent-hover); }
-  .btn-secondary {
-    background: rgba(255,255,255,0.02);
-    color: #e2e4e7;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: 1px solid rgb(36, 40, 44);
+  .btn-ghost {
+    background: rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-solid);
     font-family: var(--font);
-    font-size: 14px;
-    font-weight: 510;
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
     font-feature-settings: "cv01", "ss03";
+    transition: all 0.15s;
   }
+  .btn-ghost:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); }
 
-  .section-label {
+  /* ── Issue Tracker Mockup ── */
+  .tracker-wrap {
+    max-width: 900px;
+    margin: -40px auto 100px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .tracker {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-standard);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: rgba(0,0,0,0.5) 0px 25px 50px -12px;
+  }
+  .tracker-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(255,255,255,0.02);
+  }
+  .tracker-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tracker-filter {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tracker-filter svg { opacity: 0.5; }
+  .tracker-views {
+    display: flex;
+    gap: 2px;
+  }
+  .tracker-view-btn {
+    padding: 4px 10px;
     font-size: 12px;
-    font-weight: 510;
+    font-weight: 500;
     color: var(--text-quaternary);
-    text-align: center;
-    margin-bottom: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .tracker-view-btn.active {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+  }
+  .tracker-group {
+    padding: 8px 16px 4px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tracker-group-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-quaternary);
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tracker-group-count {
+    font-size: 11px;
+    color: var(--text-quaternary);
+    background: rgba(255,255,255,0.04);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .issue-row {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .issue-row:hover { background: rgba(255,255,255,0.03); }
+  .issue-row:last-child { border-bottom: none; }
+  .issue-priority {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  .priority-bar {
+    width: 3px;
+    border-radius: 1px;
+  }
+  .issue-id {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-quaternary);
+    font-family: var(--font-mono);
+    width: 64px;
+    flex-shrink: 0;
+  }
+  .issue-status {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid;
+    margin-right: 10px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .issue-status.todo { border-color: var(--text-quaternary); }
+  .issue-status.in-progress { border-color: var(--orange); background: rgba(245,158,11,0.15); }
+  .issue-status.in-progress::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    border: 1.5px solid var(--orange);
+    border-top-color: transparent;
+    border-right-color: transparent;
+  }
+  .issue-status.done { border-color: var(--brand); background: var(--brand); }
+  .issue-status.done::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 1px;
+    width: 8px;
+    height: 5px;
+    border-left: 1.5px solid #fff;
+    border-bottom: 1.5px solid #fff;
+    transform: rotate(-45deg);
+  }
+  .issue-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-primary);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .issue-labels {
+    display: flex;
+    gap: 6px;
+    margin-left: 12px;
+    flex-shrink: 0;
+  }
+  .issue-label {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .issue-label.feature { color: var(--accent); border-color: rgba(113,112,255,0.3); background: rgba(113,112,255,0.08); }
+  .issue-label.bug { color: var(--red); border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.08); }
+  .issue-label.improvement { color: var(--green); border-color: rgba(39,166,68,0.3); background: rgba(39,166,68,0.08); }
+  .issue-assignee {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    margin-left: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-tertiary);
   }
 
-  /* Features */
-  .features {
-    max-width: 1200px;
+  /* ── Keyboard Shortcuts ── */
+  .shortcuts {
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 32px 80px;
+    padding: 100px 24px;
+    text-align: center;
+  }
+  .shortcuts h2 {
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: -1.056px;
+    line-height: 1.0;
+    margin-bottom: 16px;
+  }
+  .shortcuts p {
+    font-size: 17px;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 40px;
+    letter-spacing: -0.165px;
+  }
+  .shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    text-align: left;
+  }
+  .shortcut-item {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-standard);
+    border-radius: 8px;
+    padding: 20px;
+    transition: border-color 0.15s;
+  }
+  .shortcut-item:hover { border-color: rgba(255,255,255,0.15); }
+  .shortcut-keys {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .shortcut-item h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .shortcut-item p {
+    font-size: 13px;
+    color: var(--text-quaternary);
+    line-height: 1.4;
+    margin: 0;
+    max-width: 100%;
+    letter-spacing: 0;
+  }
+
+  /* ── Features ── */
+  .features {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 24px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .features-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .features-header .eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .features-header h2 {
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: -1.056px;
+    line-height: 1.0;
+    margin-bottom: 16px;
+  }
+  .features-header p {
+    font-size: 17px;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    letter-spacing: -0.165px;
   }
   .features-grid {
     display: grid;
@@ -147,403 +522,558 @@
   .feature-card {
     background: rgba(255,255,255,0.02);
     border: 1px solid var(--border-standard);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 28px;
+    transition: all 0.2s;
+  }
+  .feature-card:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
   }
   .feature-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
     color: var(--accent);
   }
   .feature-card h3 {
-    font-size: 20px;
-    font-weight: 590;
+    font-size: 17px;
+    font-weight: 600;
     letter-spacing: -0.24px;
-    line-height: 1.33;
     margin-bottom: 8px;
     color: var(--text-primary);
   }
   .feature-card p {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 1.60;
+    line-height: 1.6;
     color: var(--text-tertiary);
     letter-spacing: -0.165px;
   }
 
-  /* Form */
-  .form-section {
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 0 32px 80px;
-  }
-  .form-section h2 {
-    font-size: 32px;
-    font-weight: 510;
-    letter-spacing: -0.704px;
-    line-height: 1.13;
-    margin-bottom: 24px;
+  /* ── Integrations ── */
+  .integrations {
+    padding: 100px 24px;
     text-align: center;
-    color: var(--text-primary);
-  }
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
-    display: block;
-    font-size: 13px;
-    font-weight: 510;
-    margin-bottom: 6px;
-    color: var(--text-secondary);
-    letter-spacing: -0.13px;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--border-standard);
-    border-radius: 6px;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    background: rgba(255,255,255,0.02);
-    outline: none;
-    font-feature-settings: "cv01", "ss03";
-  }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: var(--accent);
-    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
-  }
-  .form-group textarea { min-height: 100px; resize: vertical; }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--text-quaternary); }
-  .form-submit { text-align: center; margin-top: 24px; }
-
-  /* Showcase */
-  .showcase {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 32px;
     border-top: 1px solid var(--border-subtle);
   }
-  .showcase h2 {
-    font-size: 32px;
-    font-weight: 510;
-    letter-spacing: -0.704px;
-    line-height: 1.13;
-    margin-bottom: 48px;
-    text-align: center;
-  }
-  .showcase-section { margin-bottom: 48px; }
-  .showcase-section h3 {
-    font-size: 14px;
-    font-weight: 510;
+  .integrations h2 {
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: -1.056px;
     margin-bottom: 16px;
-    color: var(--text-secondary);
-    letter-spacing: -0.182px;
   }
-
-  /* Colors */
-  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .color-swatch .swatch {
-    width: 64px;
-    height: 64px;
-    border-radius: 6px;
-    border: 1px solid var(--border-standard);
+  .integrations > p {
+    font-size: 17px;
+    color: var(--text-tertiary);
+    margin-bottom: 48px;
+    letter-spacing: -0.165px;
   }
-  .color-swatch .label { font-size: 11px; font-family: var(--font-mono); color: var(--text-quaternary); }
-  .color-swatch .name { font-size: 11px; font-weight: 510; color: var(--text-secondary); }
-
-  /* Type */
-  .type-scale { display: flex; flex-direction: column; gap: 8px; }
-  .type-row {
+  .integration-logos {
     display: flex;
-    align-items: baseline;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin: 0 auto;
   }
-  .type-row .meta {
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--text-quaternary);
-    min-width: 120px;
-    flex-shrink: 0;
-  }
-
-  /* Buttons */
-  .button-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .btn-ghost {
+  .integration-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
     background: rgba(255,255,255,0.02);
-    color: #e2e4e7;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: 1px solid rgb(36,40,44);
-    font-family: var(--font);
-    font-size: 12px;
-    font-weight: 510;
-    cursor: pointer;
-  }
-  .btn-subtle {
-    background: rgba(255,255,255,0.04);
-    color: var(--text-secondary);
-    padding: 4px 10px;
-    border-radius: 6px;
-    border: none;
-    font-family: var(--font);
-    font-size: 12px;
-    font-weight: 510;
-    cursor: pointer;
-  }
-  .btn-pill-linear {
-    background: transparent;
-    color: var(--text-secondary);
-    padding: 4px 10px;
-    border-radius: 9999px;
-    border: 1px solid rgb(35,37,42);
-    font-family: var(--font);
-    font-size: 12px;
-    font-weight: 510;
-    cursor: pointer;
-  }
-  .btn-danger {
-    background: #b91c1c;
-    color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    font-family: var(--font);
-    font-size: 12px;
-    font-weight: 510;
-    cursor: pointer;
-  }
-
-  /* Cards */
-  .card-variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .card-v {
-    padding: 24px;
-    border-radius: 8px;
-  }
-  .card-v.subtle {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-  }
-  .card-v.standard {
-    background: rgba(255,255,255,0.03);
     border: 1px solid var(--border-standard);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.15s;
   }
-  .card-v.elevated {
+  .integration-item:hover {
     background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border-standard);
-    box-shadow: rgba(0,0,0,0.4) 0px 2px 4px;
+    border-color: rgba(255,255,255,0.15);
   }
-  .card-v h4 { font-size: 14px; font-weight: 590; color: var(--text-primary); margin-bottom: 4px; }
-  .card-v p { font-size: 13px; color: var(--text-tertiary); font-weight: 400; }
-
-  /* Input States */
-  .input-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .input-state label {
-    display: block;
-    font-size: 11px;
-    font-weight: 510;
-    color: var(--text-quaternary);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-  }
-  .input-state input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--border-standard);
-    border-radius: 6px;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    background: rgba(255,255,255,0.02);
-    outline: none;
-  }
-  .input-state.focused input { border-color: var(--accent); box-shadow: rgba(0,0,0,0.1) 0px 4px 12px; }
-  .input-state.disabled input { color: var(--text-quaternary); background: rgba(255,255,255,0.01); }
-
-  /* Shadows */
-  .shadow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  .shadow-box {
-    height: 80px;
-    border-radius: 8px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-standard);
+  .integration-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
-    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    padding: 120px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(94,106,210,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta h2 {
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: -1.056px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cta p {
+    font-size: 17px;
+    color: var(--text-tertiary);
+    margin-bottom: 32px;
+    position: relative;
+    letter-spacing: -0.165px;
+  }
+  .cta .btn-primary { position: relative; }
+
+  /* ── Footer ── */
+  .footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 24px 48px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  .footer-brand p {
+    font-size: 13px;
+    color: var(--text-quaternary);
+    line-height: 1.6;
+    max-width: 200px;
+  }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-quaternary);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+    margin-bottom: 10px;
+    transition: color 0.15s;
+  }
+  .footer-col a:hover { color: var(--text-primary); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .footer-bottom span {
+    font-size: 13px;
     color: var(--text-quaternary);
   }
 
-  /* Radius */
-  .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
-  .radius-item { text-align: center; }
-  .radius-box {
-    width: 64px;
-    height: 64px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-standard);
-    margin-bottom: 6px;
+  /* ── DesignHub Badge ── */
+  .designhub-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--brand);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    z-index: 999;
+    box-shadow: rgba(0,0,0,0.4) 0px 4px 12px;
+    transition: transform 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .radius-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-quaternary); }
+  .designhub-badge:hover { transform: translateY(-2px); }
+  .designhub-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #a5f3fc; }
 
-  @media (max-width: 768px) {
-    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 32px; letter-spacing: -0.704px; }
+  @media (max-width: 900px) {
+    .hero h1 { font-size: 36px; letter-spacing: -0.8px; }
+    .features-grid, .shortcut-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .header-nav { display: none; }
+    .tracker-wrap { padding: 0 12px; }
   }
 </style>
 </head>
 <body>
 
-<div class="sticky-header">
-  <div class="brand">
-    <div class="linear-mark"></div>
-    Linear Design System
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <a href="#" class="header-logo">
+      <div class="logo-mark"></div>
+      Linear
+    </a>
+    <nav class="header-nav">
+      <a href="#">Features</a>
+      <a href="#">Method</a>
+      <a href="#">Customers</a>
+      <a href="#">Changelog</a>
+      <a href="#">Pricing</a>
+      <a href="#">Company</a>
+    </nav>
+  </div>
+  <div class="header-right">
+    <button class="btn-header btn-header-ghost">Log in</button>
+    <button class="btn-header btn-header-primary">Sign up</button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-new">New</span>
+      Introducing Linear Initiatives &rarr;
+    </div>
+    <h1><span>Linear is a purpose-built tool for planning and building products</span></h1>
+    <p>Streamline issues, projects, and product roadmaps. Built for speed with keyboard-first design and real-time sync.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary">Get started &rarr;</button>
+      <button class="btn-ghost">Watch demo</button>
+    </div>
+  </div>
+</section>
+
+<!-- Issue Tracker Mockup -->
+<div class="tracker-wrap">
+  <div class="tracker">
+    <div class="tracker-toolbar">
+      <div class="tracker-toolbar-left">
+        <div class="tracker-filter">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Filter
+        </div>
+        <div class="tracker-filter">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 10H3M21 6H3M21 14H3M17 18H3"/></svg>
+          Group
+        </div>
+      </div>
+      <div class="tracker-views">
+        <div class="tracker-view-btn active">Board</div>
+        <div class="tracker-view-btn">List</div>
+        <div class="tracker-view-btn">Timeline</div>
+      </div>
+    </div>
+
+    <div class="tracker-group">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><circle cx="12" cy="12" r="10"/></svg>
+      <span class="tracker-group-label">In Progress</span>
+      <span class="tracker-group-count">3</span>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 12px; background: var(--orange);"></div></div>
+      <span class="issue-id">LIN-142</span>
+      <div class="issue-status in-progress"></div>
+      <span class="issue-title">Implement real-time collaboration for document editing</span>
+      <div class="issue-labels"><span class="issue-label feature">Feature</span></div>
+      <div class="issue-assignee">JK</div>
+    </div>
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 8px; background: var(--text-quaternary);"></div></div>
+      <span class="issue-id">LIN-139</span>
+      <div class="issue-status in-progress"></div>
+      <span class="issue-title">Optimize search indexing for large workspaces</span>
+      <div class="issue-labels"><span class="issue-label improvement">Improvement</span></div>
+      <div class="issue-assignee">AS</div>
+    </div>
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 14px; background: var(--red);"></div></div>
+      <span class="issue-id">LIN-137</span>
+      <div class="issue-status in-progress"></div>
+      <span class="issue-title">Fix notification delivery delays on mobile clients</span>
+      <div class="issue-labels"><span class="issue-label bug">Bug</span></div>
+      <div class="issue-assignee">MR</div>
+    </div>
+
+    <div class="tracker-group">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#62666d" stroke-width="2.5"><circle cx="12" cy="12" r="10"/></svg>
+      <span class="tracker-group-label">Todo</span>
+      <span class="tracker-group-count">3</span>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 10px; background: var(--text-quaternary);"></div></div>
+      <span class="issue-id">LIN-148</span>
+      <div class="issue-status todo"></div>
+      <span class="issue-title">Add keyboard shortcut overlay for onboarding</span>
+      <div class="issue-labels"><span class="issue-label feature">Feature</span></div>
+      <div class="issue-assignee">LW</div>
+    </div>
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 6px; background: var(--text-quaternary);"></div></div>
+      <span class="issue-id">LIN-145</span>
+      <div class="issue-status todo"></div>
+      <span class="issue-title">Redesign project settings with grouped sections</span>
+      <div class="issue-labels"><span class="issue-label improvement">Improvement</span></div>
+      <div class="issue-assignee">KP</div>
+    </div>
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 12px; background: var(--orange);"></div></div>
+      <span class="issue-id">LIN-143</span>
+      <div class="issue-status todo"></div>
+      <span class="issue-title">Integrate Figma plugin for design handoff workflow</span>
+      <div class="issue-labels"><span class="issue-label feature">Feature</span></div>
+      <div class="issue-assignee">JK</div>
+    </div>
+
+    <div class="tracker-group">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9" stroke-width="2"/></svg>
+      <span class="tracker-group-label">Done</span>
+      <span class="tracker-group-count">2</span>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 8px; background: var(--text-quaternary);"></div></div>
+      <span class="issue-id">LIN-134</span>
+      <div class="issue-status done"></div>
+      <span class="issue-title" style="color: var(--text-tertiary);">Migrate auth to passkey-first flow</span>
+      <div class="issue-labels"></div>
+      <div class="issue-assignee">AS</div>
+    </div>
+    <div class="issue-row">
+      <div class="issue-priority"><div class="priority-bar" style="height: 6px; background: var(--text-quaternary);"></div></div>
+      <span class="issue-id">LIN-131</span>
+      <div class="issue-status done"></div>
+      <span class="issue-title" style="color: var(--text-tertiary);">Update API rate limiting for enterprise tier</span>
+      <div class="issue-labels"></div>
+      <div class="issue-assignee">MR</div>
+    </div>
   </div>
 </div>
 
-<section class="hero">
-  <h1>Build beautiful products faster</h1>
-  <p>Dark-mode-native product design where content emerges from darkness like starlight. Precision-engineered hierarchy through luminance.</p>
-  <div class="hero-buttons">
-    <button class="btn-primary">Start building</button>
-    <button class="btn-secondary">View changelog</button>
+<!-- Keyboard Shortcuts -->
+<section class="shortcuts">
+  <h2>Built for your keyboard</h2>
+  <p>Designed to be controlled entirely from the keyboard. Every action has a shortcut and every view is navigable without a mouse.</p>
+  <div class="shortcut-grid">
+    <div class="shortcut-item">
+      <div class="shortcut-keys"><span class="kbd">C</span></div>
+      <h4>Create issue</h4>
+      <p>Create a new issue from anywhere in the app</p>
+    </div>
+    <div class="shortcut-item">
+      <div class="shortcut-keys"><span class="kbd">G</span><span class="kbd">I</span></div>
+      <h4>Go to inbox</h4>
+      <p>Jump to your inbox and notifications</p>
+    </div>
+    <div class="shortcut-item">
+      <div class="shortcut-keys"><span class="kbd">G</span><span class="kbd">V</span></div>
+      <h4>Go to views</h4>
+      <p>Navigate to your custom views</p>
+    </div>
+    <div class="shortcut-item">
+      <div class="shortcut-keys"><span class="kbd">&#8984;</span><span class="kbd">K</span></div>
+      <h4>Command menu</h4>
+      <p>Search anything and run commands instantly</p>
+    </div>
+    <div class="shortcut-item">
+      <div class="shortcut-keys"><span class="kbd">X</span></div>
+      <h4>Select issue</h4>
+      <p>Toggle selection and bulk-edit multiple issues</p>
+    </div>
+    <div class="shortcut-item">
+      <div class="shortcut-keys"><span class="kbd">S</span></div>
+      <h4>Set status</h4>
+      <p>Quickly change the status of selected issues</p>
+    </div>
   </div>
 </section>
 
+<!-- Features -->
 <section class="features">
-  <div class="section-label">Features</div>
+  <div class="features-header">
+    <div class="eyebrow">Features</div>
+    <h2>Issue tracking you will enjoy using</h2>
+    <p>Optimized for speed and efficiency across your entire workflow</p>
+  </div>
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <h3>Luminance Stacking</h3>
-      <p>Elevation via background opacity stepping: rgba(255,255,255, 0.02 to 0.05). Never solid backgrounds on dark.</p>
+      <h3>Cycles</h3>
+      <p>Automatic sprint cycles with progress tracking, carry-over, and velocity analytics built in.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M3 12h18"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
       </div>
-      <h3>Weight 510 Signature</h3>
-      <p>The signature between-weight that sits between regular and medium. Subtle emphasis without the heaviness of semibold.</p>
+      <h3>Projects</h3>
+      <p>Group issues into projects with milestones, due dates, and real-time progress indicators.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       </div>
-      <h3>Transparent Borders</h3>
-      <p>Semi-transparent white borders — rgba(255,255,255,0.05) to 0.08 — creating structure without visual noise.</p>
+      <h3>Discussions</h3>
+      <p>Rich-text discussions with mentions, reactions, and threaded replies directly on issues.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+      </div>
+      <h3>Insights</h3>
+      <p>Track velocity, cycle time, and team workload with real-time dashboards and reports.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+      </div>
+      <h3>Roadmaps</h3>
+      <p>Visualize your product direction with timeline views and initiative-level planning.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </div>
+      <h3>Automations</h3>
+      <p>Set up rules to automate workflow transitions, assignments, and notifications.</p>
     </div>
   </div>
 </section>
 
-<section class="form-section">
-  <h2>Get in Touch</h2>
-  <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
-  <div class="form-group"><label>Email</label><input type="email" placeholder="you@team.com"></div>
-  <div class="form-group"><label>Message</label><textarea placeholder="Describe your issue..."></textarea></div>
-  <div class="form-submit"><button class="btn-primary">Submit</button></div>
-</section>
-
-<section class="showcase">
-  <h2>Component Showcase</h2>
-
-  <div class="showcase-section">
-    <h3>Color Palette</h3>
-    <div class="color-grid">
-      <div class="color-swatch"><div class="swatch" style="background:#08090a"></div><div class="name">Marketing Black</div><div class="label">#08090a</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#0f1011"></div><div class="name">Panel Dark</div><div class="label">#0f1011</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#191a1b"></div><div class="name">Surface</div><div class="label">#191a1b</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#f7f8f8"></div><div class="name">Primary Text</div><div class="label">#f7f8f8</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#d0d6e0"></div><div class="name">Secondary</div><div class="label">#d0d6e0</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#8a8f98"></div><div class="name">Tertiary</div><div class="label">#8a8f98</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#62666d"></div><div class="name">Quaternary</div><div class="label">#62666d</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#5e6ad2"></div><div class="name">Brand Indigo</div><div class="label">#5e6ad2</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#7170ff"></div><div class="name">Accent Violet</div><div class="label">#7170ff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#828fff"></div><div class="name">Accent Hover</div><div class="label">#828fff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#27a644"></div><div class="name">Green</div><div class="label">#27a644</div></div>
+<!-- Integrations -->
+<section class="integrations">
+  <h2>Works with your stack</h2>
+  <p>Deep integrations with the tools you already use every day.</p>
+  <div class="integration-logos">
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #24292e;">G</div>
+      GitHub
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Typography Scale</h3>
-    <div class="type-scale">
-      <div class="type-row"><span class="meta">48px / 510</span><span style="font-size:42px;font-weight:500;letter-spacing:-1.056px;line-height:1;">Display</span></div>
-      <div class="type-row"><span class="meta">32px / 400</span><span style="font-size:32px;font-weight:400;letter-spacing:-0.704px;line-height:1.13;">Heading 1</span></div>
-      <div class="type-row"><span class="meta">24px / 400</span><span style="font-size:24px;font-weight:400;letter-spacing:-0.288px;line-height:1.33;">Heading 2</span></div>
-      <div class="type-row"><span class="meta">20px / 590</span><span style="font-size:20px;font-weight:600;letter-spacing:-0.24px;line-height:1.33;">Feature Title</span></div>
-      <div class="type-row"><span class="meta">16px / 510</span><span style="font-size:16px;font-weight:500;line-height:1.50;color:var(--text-secondary);">Body Medium — navigation, labels</span></div>
-      <div class="type-row"><span class="meta">15px / 400</span><span style="font-size:15px;font-weight:400;line-height:1.60;color:var(--text-tertiary);letter-spacing:-0.165px;">Small body text</span></div>
-      <div class="type-row"><span class="meta">13px / 510</span><span style="font-size:13px;font-weight:500;line-height:1.50;color:var(--text-secondary);letter-spacing:-0.13px;">Caption</span></div>
-      <div class="type-row"><span class="meta">14px Mono</span><span style="font-size:14px;font-family:var(--font-mono);font-weight:400;line-height:1.50;color:var(--text-secondary);">const issue = linear.create()</span></div>
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #4A154B;">S</div>
+      Slack
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Button Variants</h3>
-    <div class="button-row">
-      <button class="btn-primary">Primary Brand</button>
-      <button class="btn-ghost">Ghost</button>
-      <button class="btn-subtle">Subtle</button>
-      <button class="btn-pill-linear">Pill Tag</button>
-      <button class="btn-danger">Danger</button>
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #F24E1E;">F</div>
+      Figma
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Card Variants</h3>
-    <div class="card-variants">
-      <div class="card-v subtle"><h4>Subtle</h4><p>0.02 bg, 0.05 border</p></div>
-      <div class="card-v standard"><h4>Standard</h4><p>0.03 bg, 0.08 border</p></div>
-      <div class="card-v elevated"><h4>Elevated</h4><p>0.05 bg + shadow</p></div>
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #0052CC;">J</div>
+      GitLab
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Input States</h3>
-    <div class="input-states">
-      <div class="input-state"><label>Default</label><input type="text" placeholder="Default"></div>
-      <div class="input-state focused"><label>Focused</label><input type="text" value="Violet focus"></div>
-      <div class="input-state disabled"><label>Disabled</label><input type="text" value="Disabled" disabled></div>
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #000000;">V</div>
+      Vercel
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Shadow Levels</h3>
-    <div class="shadow-grid">
-      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.03) 0px 1.2px 0px;">Level 1 — Subtle</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.2) 0px 0px 0px 1px;">Level 3 — Ring</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.4) 0px 2px 4px;">Level 4 — Elevated</div>
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #E34F26;">S</div>
+      Sentry
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Border Radius</h3>
-    <div class="radius-row">
-      <div class="radius-item"><div class="radius-box" style="border-radius:2px;"></div><div class="radius-label">2px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">4px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:12px;"></div><div class="radius-label">12px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:22px;"></div><div class="radius-label">22px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:9999px;"></div><div class="radius-label">9999px</div></div>
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #FF6C37;">P</div>
+      Postman
+    </div>
+    <div class="integration-item">
+      <div class="integration-icon" style="background: #635BFF;">Z</div>
+      Zapier
     </div>
   </div>
 </section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow"></div>
+  <h2>Built for the way you work</h2>
+  <p>Free for small teams. No credit card required.</p>
+  <button class="btn-primary">Get started for free &rarr;</button>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <div class="logo-mark" style="width: 16px; height: 16px;"></div>
+        Linear
+      </div>
+      <p>Purpose-built for modern product development.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#">Features</a>
+      <a href="#">Integrations</a>
+      <a href="#">Pricing</a>
+      <a href="#">Changelog</a>
+      <a href="#">Roadmap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#">Documentation</a>
+      <a href="#">API Reference</a>
+      <a href="#">Method</a>
+      <a href="#">Community</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Security</a>
+      <a href="#">DPA</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Linear Inc.</span>
+    <span style="font-size: 12px;">DesignHub Demo &mdash; Not affiliated with Linear</span>
+  </div>
+</footer>
+
+<!-- DesignHub Badge -->
+<a href="/" class="designhub-badge"><span class="dot"></span> Built with DesignHub</a>
 
 </body>
 </html>

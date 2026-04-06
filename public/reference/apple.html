@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignHub — Apple Design System</title>
+<title>DesignHub — Apple Design System Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -20,7 +20,6 @@
     --text-80: rgba(0, 0, 0, 0.8);
     --text-48: rgba(0, 0, 0, 0.48);
     --dark-surface: #272729;
-    --white-32: rgba(255, 255, 255, 0.32);
     --shadow-card: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
     --font-display: 'Inter', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-text: 'Inter', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -33,485 +32,985 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Nav Glass */
-  .sticky-header {
+  a { text-decoration: none; color: inherit; }
+
+  /* Glass Navigation */
+  .nav {
     position: sticky;
     top: 0;
     z-index: 100;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    padding: 0 32px;
-    height: 48px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 980px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .sticky-header .brand {
+  .apple-logo {
+    font-size: 17px;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+  }
+  .apple-logo:hover { color: #ffffff; }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links li {
     font-size: 12px;
     font-weight: 400;
-    color: #ffffff;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .nav-links li:hover { color: #ffffff; }
+  .nav-icons {
     display: flex;
+    gap: 16px;
     align-items: center;
-    gap: 10px;
   }
-  .apple-logo { font-size: 18px; }
+  .nav-icon {
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+  }
+  .nav-icon:hover { color: #ffffff; }
 
-  /* Hero - Dark */
-  .hero {
-    text-align: center;
-    padding: 120px 32px 100px;
-    max-width: 900px;
-    margin: 0 auto;
+  /* Hero - iPhone 16 Pro */
+  .hero-dark {
     background: var(--black);
+    text-align: center;
+    padding: 80px 24px 60px;
   }
-  .hero h1 {
+  .hero-dark h1 {
     font-family: var(--font-display);
     font-size: 56px;
     font-weight: 600;
     line-height: 1.07;
     letter-spacing: -0.28px;
     color: #ffffff;
+    margin-bottom: 8px;
+  }
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: 0.196px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 24px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+  .btn-blue {
+    background: var(--blue);
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-blue:hover { background: #0077ed; }
+  .link-pill {
+    color: var(--link-dark);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+  }
+  .link-pill:hover { text-decoration: underline; }
+
+  /* Phone Illustration */
+  .phone-visual {
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .phone-frame {
+    width: 220px;
+    height: 440px;
+    margin: 0 auto;
+    border-radius: 36px;
+    border: 3px solid #3a3a3c;
+    background: linear-gradient(180deg, #1a1a2e 0%, #0f0f23 30%, #1a0a2e 60%, #0d0d1a 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(100, 80, 200, 0.15), inset 0 0 40px rgba(100, 80, 200, 0.05);
+  }
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #000;
+    border-radius: 0 0 16px 16px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .phone-screen-content {
+    position: absolute;
+    top: 40px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .phone-time {
+    font-size: 54px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    color: rgba(255,255,255,0.9);
+  }
+  .phone-date {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+  .phone-home-bar {
+    width: 100px;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  /* Titanium color bands */
+  .phone-frame::before {
+    content: 'iPhone 16 Pro';
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  /* Light Section */
+  .section-light {
+    background: var(--light-gray);
+    color: var(--near-black);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .section-light h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+    color: var(--near-black);
+  }
+  .section-light .subtitle {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.19;
+    letter-spacing: 0.231px;
+    color: var(--text-80);
+    margin-bottom: 16px;
+  }
+  .learn-more {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--link-light);
+    letter-spacing: -0.224px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .learn-more:hover { text-decoration: underline; }
+  .learn-more-dark {
+    color: var(--link-dark);
+  }
+
+  /* Dark Section */
+  .section-dark {
+    background: var(--black);
+    color: #ffffff;
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .section-dark h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.3px;
     margin-bottom: 12px;
   }
-  .hero p {
+  .section-dark .subtitle {
     font-family: var(--font-display);
     font-size: 21px;
     font-weight: 400;
     line-height: 1.19;
     letter-spacing: 0.231px;
     color: rgba(255,255,255,0.8);
-    max-width: 500px;
-    margin: 0 auto 32px;
-  }
-  .hero-buttons { display: flex; gap: 16px; justify-content: center; }
-  .btn-primary {
-    background: var(--blue);
-    color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    font-family: var(--font-text);
-    font-size: 17px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  .btn-pill-link {
-    background: transparent;
-    color: var(--link-dark);
-    padding: 8px 20px;
-    border-radius: 980px;
-    border: 1px solid var(--link-dark);
-    font-family: var(--font-text);
-    font-size: 17px;
-    font-weight: 400;
-    cursor: pointer;
+    margin-bottom: 16px;
   }
 
-  /* Light Section */
-  .light-section {
-    background: var(--light-gray);
-    color: var(--near-black);
-    padding: 80px 32px;
+  /* Camera Section */
+  .camera-visual {
+    max-width: 300px;
+    margin: 40px auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
   }
-  .light-section .section-label {
+  .lens {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+  }
+  .lens-outer {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a2a2e 0%, #3a3a3e 50%, #1a1a1e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .lens-inner {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #4a4a6e 0%, #1a1a3e 40%, #0a0a1e 70%, #000 100%);
+    box-shadow: inset 0 1px 3px rgba(100,100,200,0.2);
+  }
+  .lens-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #3a3a3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lens-highlight {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    top: 14px;
+    left: 18px;
+  }
+
+  /* Chip Section */
+  .chip-visual {
+    max-width: 200px;
+    margin: 40px auto 0;
+  }
+  .chip-shape {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #2a2a2e, #1a1a1e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 40px rgba(41, 151, 255, 0.1);
+  }
+  .chip-die {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #3a3a4e 0%, #2a2a3e 50%, #1a1a2e 100%);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
+    padding: 6px;
+  }
+  .chip-cell {
+    border-radius: 1px;
+    background: rgba(41, 151, 255, 0.15);
+  }
+  .chip-cell:nth-child(odd) {
+    background: rgba(41, 151, 255, 0.25);
+  }
+  .chip-label {
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-80);
-    text-align: center;
-    margin-bottom: 32px;
-    letter-spacing: -0.224px;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
   }
 
-  /* Features */
-  .features {
+  /* Battery Section */
+  .battery-visual {
+    max-width: 200px;
+    margin: 40px auto 0;
+    display: flex;
+    justify-content: center;
+  }
+  .battery-icon {
+    width: 120px;
+    height: 60px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+  }
+  .battery-icon::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 20px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 0 4px 4px 0;
+  }
+  .battery-fill {
+    width: 80%;
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #30d158 0%, #34c759 100%);
+  }
+  .battery-label {
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+  }
+
+  /* Product Grid */
+  .product-grid {
     max-width: 980px;
     margin: 0 auto;
-  }
-  .features-grid {
+    padding-top: 48px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  .feature-card {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 28px;
-    box-shadow: var(--shadow-card);
+  .product-tile {
+    border-radius: 12px;
+    padding: 48px 32px 40px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .feature-icon {
-    width: 44px;
-    height: 44px;
+  .product-tile.dark-tile {
+    background: var(--near-black);
+    color: #ffffff;
+  }
+  .product-tile.light-tile {
+    background: #ffffff;
+    color: var(--near-black);
+  }
+  .product-tile h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: 0.196px;
+    margin-bottom: 6px;
+  }
+  .product-tile .tile-subtitle {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.374px;
+    opacity: 0.8;
+    margin-bottom: 10px;
+  }
+  .tile-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .tile-visual {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* MacBook visual */
+  .macbook-shape {
+    width: 200px;
+    height: 130px;
+    background: linear-gradient(180deg, #2a2a2e 0%, #1a1a1e 100%);
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .macbook-screen {
+    width: 176px;
+    height: 110px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #1a1a3e, #0d0d2a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    opacity: 0.3;
+  }
+  .macbook-base {
+    width: 224px;
+    height: 8px;
+    background: #3a3a3e;
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* Watch visual */
+  .watch-shape {
+    width: 80px;
+    height: 100px;
+    border-radius: 20px;
+    border: 3px solid #3a3a3e;
+    background: linear-gradient(180deg, #0a0a1a, #1a1a2e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .watch-crown {
+    position: absolute;
+    right: -6px;
+    top: 30px;
+    width: 4px;
+    height: 16px;
+    background: #3a3a3e;
+    border-radius: 2px;
+  }
+  .watch-face {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* iPad visual */
+  .ipad-shape {
+    width: 160px;
+    height: 120px;
+    border-radius: 12px;
+    border: 3px solid #d2d2d7;
+    background: linear-gradient(135deg, #f0f0f5, #e8e8ed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ipad-screen {
+    width: 140px;
+    height: 100px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    opacity: 0.6;
+  }
+
+  /* AirPods visual */
+  .airpods-shape {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+  }
+  .airpod {
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .airpod-head {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8e8ed, #d2d2d7);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .airpod-stem {
+    width: 6px;
+    height: 28px;
+    background: linear-gradient(180deg, #e8e8ed, #d2d2d7);
+    border-radius: 0 0 3px 3px;
+  }
+
+  /* Action features */
+  .features-strip {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 48px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .feature-item {
+    text-align: center;
+    max-width: 200px;
+  }
+  .feature-icon-wrap {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px;
-    background: var(--light-gray);
-    color: var(--blue);
   }
-  .feature-card h3 {
-    font-family: var(--font-display);
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: 0.231px;
-    line-height: 1.19;
-    margin-bottom: 8px;
-    color: var(--near-black);
+  .fi-camera {
+    background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+    box-shadow: 0 0 20px rgba(41,151,255,0.1);
   }
-  .feature-card p {
+  .fi-display {
+    background: linear-gradient(135deg, #1a3a2a, #0a2a1a);
+    box-shadow: 0 0 20px rgba(48,209,88,0.1);
+  }
+  .fi-battery {
+    background: linear-gradient(135deg, #3a2a1a, #2a1a0a);
+    box-shadow: 0 0 20px rgba(255,159,10,0.1);
+  }
+  .fi-titanium {
+    background: linear-gradient(135deg, #3a3a3e, #2a2a2e);
+    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+  }
+  .feature-item h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.374px;
+  }
+  .feature-item p {
     font-size: 14px;
     font-weight: 400;
+    color: rgba(255,255,255,0.6);
     line-height: 1.43;
     letter-spacing: -0.224px;
-    color: var(--text-80);
   }
 
-  /* Form - Dark */
-  .form-section {
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 80px 32px;
-    background: var(--black);
+  /* Footer */
+  .footer {
+    background: var(--light-gray);
+    padding: 24px;
+    border-top: 1px solid rgba(0,0,0,0.08);
   }
-  .form-section h2 {
-    font-family: var(--font-display);
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 1.10;
-    margin-bottom: 24px;
-    text-align: center;
-    color: #ffffff;
-  }
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: -0.224px;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
-    font-family: var(--font-text);
-    font-size: 17px;
-    font-weight: 400;
-    color: #ffffff;
-    background: var(--dark-surface);
-    outline: none;
-    letter-spacing: -0.374px;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
-  .form-group textarea { min-height: 100px; resize: vertical; }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(255,255,255,0.48); }
-  .form-submit { text-align: center; margin-top: 24px; }
-
-  /* Showcase - Light */
-  .showcase {
+  .footer-inner {
     max-width: 980px;
     margin: 0 auto;
-    padding: 80px 32px;
-    background: var(--light-gray);
-    color: var(--near-black);
   }
-  .showcase h2 {
-    font-family: var(--font-display);
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 1.10;
-    margin-bottom: 48px;
-    text-align: center;
-    color: var(--near-black);
-  }
-  .showcase-section { margin-bottom: 48px; }
-  .showcase-section h3 {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: var(--near-black);
-    letter-spacing: -0.224px;
-  }
-
-  /* Colors */
-  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .color-swatch .swatch { width: 64px; height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
-  .color-swatch .label { font-size: 10px; color: var(--text-48); letter-spacing: -0.08px; }
-  .color-swatch .name { font-size: 10px; font-weight: 600; color: var(--near-black); }
-
-  /* Type */
-  .type-scale { display: flex; flex-direction: column; gap: 8px; }
-  .type-row {
+  .footer-top {
     display: flex;
-    align-items: baseline;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 24px;
   }
-  .type-row .meta { font-size: 10px; color: var(--text-48); min-width: 130px; flex-shrink: 0; }
-
-  /* Buttons */
-  .button-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .btn-dark {
-    background: var(--near-black);
-    color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 8px;
-    border: none;
-    font-family: var(--font-text);
-    font-size: 17px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  .btn-pill-learn {
-    background: transparent;
-    color: var(--link-light);
-    padding: 6px 16px;
-    border-radius: 980px;
-    border: 1px solid var(--link-light);
-    font-family: var(--font-text);
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-    letter-spacing: -0.224px;
-  }
-  .btn-ghost-apple {
-    background: transparent;
-    color: var(--link-light);
-    padding: 6px 0;
-    border: none;
-    font-family: var(--font-text);
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-    text-decoration: none;
-    letter-spacing: -0.224px;
-  }
-  .btn-ghost-apple:hover { text-decoration: underline; }
-  .btn-danger {
-    background: #ff3b30;
-    color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 8px;
-    border: none;
-    font-family: var(--font-text);
-    font-size: 17px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-
-  /* Cards */
-  .card-variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .card-v { padding: 24px; border-radius: 8px; text-align: center; }
-  .card-v.light-card { background: #ffffff; box-shadow: var(--shadow-card); }
-  .card-v.dark-card { background: var(--dark-surface); color: #ffffff; }
-  .card-v.gray-card { background: var(--light-gray); }
-  .card-v h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-  .card-v p { font-size: 14px; color: var(--text-80); font-weight: 400; letter-spacing: -0.224px; }
-  .card-v.dark-card p { color: rgba(255,255,255,0.7); }
-
-  /* Input States */
-  .input-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .input-state label {
-    display: block;
-    font-size: 10px;
+  .footer-col h4 {
+    font-size: 12px;
     font-weight: 600;
-    color: var(--text-48);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: -0.08px;
-  }
-  .input-state input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 8px;
-    font-family: var(--font-text);
-    font-size: 17px;
-    font-weight: 400;
     color: var(--near-black);
-    background: #ffffff;
-    outline: none;
-    letter-spacing: -0.374px;
+    margin-bottom: 8px;
+    letter-spacing: -0.12px;
   }
-  .input-state.focused input { outline: 2px solid var(--blue); outline-offset: 1px; }
-  .input-state.disabled input { color: var(--text-48); background: var(--light-gray); }
+  .footer-col ul {
+    list-style: none;
+  }
+  .footer-col li {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-80);
+    padding: 3px 0;
+    cursor: pointer;
+    letter-spacing: -0.12px;
+  }
+  .footer-col li:hover { color: var(--link-light); }
+  .footer-bottom {
+    font-size: 12px;
+    color: var(--text-48);
+    letter-spacing: -0.12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-legal-links {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+  }
+  .footer-legal-links li {
+    font-size: 12px;
+    color: var(--text-80);
+    cursor: pointer;
+  }
+  .footer-legal-links li:hover { color: var(--link-light); }
 
-  /* Shadows */
-  .shadow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .shadow-box {
-    height: 80px;
+  /* DesignHub Badge */
+  .designhub-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(0,0,0,0.08);
     border-radius: 8px;
-    background: #ffffff;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-80);
+    box-shadow: var(--shadow-card);
+    z-index: 1000;
+    text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: var(--text-48);
+    gap: 6px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .designhub-badge:hover { background: #ffffff; }
+  .designhub-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
   }
 
-  /* Radius */
-  .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
-  .radius-item { text-align: center; }
-  .radius-box { width: 64px; height: 64px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); margin-bottom: 6px; }
-  .radius-label { font-size: 10px; color: var(--text-48); }
-
-  @media (max-width: 768px) {
-    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 40px; }
+  @media (max-width: 800px) {
+    .hero-dark h1 { font-size: 40px; }
+    .hero-subtitle { font-size: 21px; }
+    .product-grid { grid-template-columns: 1fr; }
+    .section-light h2, .section-dark h2 { font-size: 36px; }
+    .nav-links { display: none; }
+    .features-strip { gap: 24px; }
+    .feature-item { max-width: 140px; }
+  }
+  @media (max-width: 500px) {
+    .hero-dark h1 { font-size: 32px; }
+    .camera-visual { gap: 12px; }
+    .lens { width: 60px; height: 60px; }
+    .lens-inner { width: 38px; height: 38px; }
+    .lens-ring { width: 44px; height: 44px; }
   }
 </style>
 </head>
 <body>
 
-<div class="sticky-header">
-  <div class="brand">
+<!-- Glass Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
     <span class="apple-logo">&#63743;</span>
-    Apple Design System
+    <ul class="nav-links">
+      <li>Store</li>
+      <li>Mac</li>
+      <li>iPad</li>
+      <li>iPhone</li>
+      <li>Watch</li>
+      <li>AirPods</li>
+      <li>TV & Home</li>
+      <li>Entertainment</li>
+      <li>Accessories</li>
+      <li>Support</li>
+    </ul>
+    <div class="nav-icons">
+      <span class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <span class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+      </span>
+    </div>
   </div>
-</div>
+</nav>
 
-<!-- Hero (Dark) -->
-<section class="hero">
-  <h1>Build beautiful products faster</h1>
-  <p>Controlled drama. Cinematic pacing. Every pixel exists in service of the product.</p>
-  <div class="hero-buttons">
-    <button class="btn-primary">Buy</button>
-    <button class="btn-pill-link">Learn more</button>
+<!-- Hero: iPhone 16 Pro -->
+<section class="hero-dark">
+  <h1>iPhone 16 Pro</h1>
+  <div class="hero-subtitle">Titanium. So strong. So light. So Pro.</div>
+  <div class="hero-ctas">
+    <a class="link-pill learn-more-dark">Learn more &rsaquo;</a>
+    <button class="btn-blue">Buy</button>
+  </div>
+  <div class="phone-visual">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen-content">
+        <div class="phone-time">9:41</div>
+        <div class="phone-date">Sunday, April 6</div>
+      </div>
+      <div class="phone-home-bar"></div>
+    </div>
   </div>
 </section>
 
-<!-- Features (Light) -->
-<div class="light-section">
-  <div class="features">
-    <div class="section-label">Features</div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/></svg>
+<!-- Camera Section (Dark) -->
+<section class="section-dark">
+  <h2>Camera Control</h2>
+  <div class="subtitle">The new standard for smartphone photography.</div>
+  <a class="learn-more learn-more-dark">Learn more &rsaquo;</a>
+  <div class="camera-visual">
+    <div class="lens">
+      <div class="lens-outer">
+        <div class="lens-ring">
+          <div class="lens-inner"></div>
         </div>
-        <h3>Optical Sizing</h3>
-        <p>SF Pro Display above 20px, SF Pro Text below. Letterforms adapt their DNA based on context.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+      <div class="lens-highlight"></div>
+    </div>
+    <div class="lens">
+      <div class="lens-outer">
+        <div class="lens-ring">
+          <div class="lens-inner"></div>
         </div>
-        <h3>Binary Canvas</h3>
-        <p>Pure black and #f5f5f7 light gray alternate like scenes in a film. No gradients, no textures.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <div class="lens-highlight"></div>
+    </div>
+    <div class="lens" style="width:56px;height:56px;">
+      <div class="lens-outer">
+        <div class="lens-ring" style="width:42px;height:42px;">
+          <div class="lens-inner" style="width:32px;height:32px;"></div>
         </div>
-        <h3>Single Accent</h3>
-        <p>Apple Blue #0071e3 is the only chromatic color. Every interactive element shares this one hue.</p>
       </div>
     </div>
   </div>
-</div>
-
-<!-- Form (Dark) -->
-<section class="form-section">
-  <h2>Get in Touch</h2>
-  <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
-  <div class="form-group"><label>Email</label><input type="email" placeholder="you@icloud.com"></div>
-  <div class="form-group"><label>Message</label><textarea placeholder="What are you building?"></textarea></div>
-  <div class="form-submit"><button class="btn-primary">Submit</button></div>
-</section>
-
-<!-- Showcase (Light) -->
-<div class="light-section" style="padding:0;">
-<section class="showcase">
-  <h2>Component Showcase</h2>
-
-  <div class="showcase-section">
-    <h3>Color Palette</h3>
-    <div class="color-grid">
-      <div class="color-swatch"><div class="swatch" style="background:#000000"></div><div class="name">Pure Black</div><div class="label">#000000</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#f5f5f7"></div><div class="name">Light Gray</div><div class="label">#f5f5f7</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#1d1d1f"></div><div class="name">Near Black</div><div class="label">#1d1d1f</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">White</div><div class="label">#ffffff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#0071e3"></div><div class="name">Apple Blue</div><div class="label">#0071e3</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#0066cc"></div><div class="name">Link Blue</div><div class="label">#0066cc</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#2997ff"></div><div class="name">Bright Blue</div><div class="label">#2997ff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#272729"></div><div class="name">Dark Surface</div><div class="label">#272729</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:rgba(0,0,0,0.8)"></div><div class="name">Text 80%</div><div class="label">rgba(0,0,0,0.8)</div></div>
+  <div class="features-strip">
+    <div class="feature-item">
+      <div class="feature-icon-wrap fi-camera">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><circle cx="12" cy="13" r="4"/><path d="M5 7h2l2-3h6l2 3h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/></svg>
+      </div>
+      <h4>48MP Main</h4>
+      <p>Quad-pixel sensor with 2nd gen fusion</p>
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Typography Scale</h3>
-    <div class="type-scale">
-      <div class="type-row"><span class="meta">56px Display / 600</span><span style="font-size:46px;font-weight:600;line-height:1.07;letter-spacing:-0.28px;color:var(--near-black);">Display Hero</span></div>
-      <div class="type-row"><span class="meta">40px Display / 600</span><span style="font-size:36px;font-weight:600;line-height:1.10;color:var(--near-black);">Section Heading</span></div>
-      <div class="type-row"><span class="meta">28px Display / 400</span><span style="font-size:28px;font-weight:400;line-height:1.14;letter-spacing:0.196px;color:var(--near-black);">Tile Heading</span></div>
-      <div class="type-row"><span class="meta">21px Display / 700</span><span style="font-size:21px;font-weight:700;line-height:1.19;letter-spacing:0.231px;color:var(--near-black);">Card Title Bold</span></div>
-      <div class="type-row"><span class="meta">17px Text / 400</span><span style="font-size:17px;font-weight:400;line-height:1.47;letter-spacing:-0.374px;color:var(--text-80);">Body — standard reading text</span></div>
-      <div class="type-row"><span class="meta">14px Text / 400</span><span style="font-size:14px;font-weight:400;line-height:1.43;letter-spacing:-0.224px;color:var(--link-light);">Learn more &#8250;</span></div>
-      <div class="type-row"><span class="meta">12px Text / 400</span><span style="font-size:12px;font-weight:400;line-height:1.33;letter-spacing:-0.12px;color:var(--text-48);">Micro — fine print, footnotes</span></div>
+    <div class="feature-item">
+      <div class="feature-icon-wrap fi-display">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h4>Super Retina XDR</h4>
+      <p>2000 nits peak brightness outdoors</p>
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Button Variants</h3>
-    <div class="button-row">
-      <button class="btn-primary">Primary Blue</button>
-      <button class="btn-dark">Primary Dark</button>
-      <button class="btn-pill-learn">Learn more</button>
-      <button class="btn-ghost-apple">Shop &#8250;</button>
-      <button class="btn-danger">Danger</button>
+    <div class="feature-item">
+      <div class="feature-icon-wrap fi-battery">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>
+      </div>
+      <h4>A18 Pro</h4>
+      <p>Fastest chip ever in a smartphone</p>
     </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Card Variants</h3>
-    <div class="card-variants">
-      <div class="card-v light-card"><h4>Light Card</h4><p>White + shadow, 8px radius</p></div>
-      <div class="card-v dark-card"><h4>Dark Card</h4><p>#272729 surface</p></div>
-      <div class="card-v gray-card"><h4>Gray Card</h4><p>#f5f5f7 background, no shadow</p></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Input States</h3>
-    <div class="input-states">
-      <div class="input-state"><label>Default</label><input type="text" placeholder="Default"></div>
-      <div class="input-state focused"><label>Focused</label><input type="text" value="Blue focus ring"></div>
-      <div class="input-state disabled"><label>Disabled</label><input type="text" value="Disabled" disabled></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Shadow Levels</h3>
-    <div class="shadow-grid">
-      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.22) 3px 5px 30px 0px;">Level 1 — Subtle Lift</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.22) 3px 5px 30px 0px;outline:2px solid var(--blue);outline-offset:2px;">Focus Ring</div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Border Radius</h3>
-    <div class="radius-row">
-      <div class="radius-item"><div class="radius-box" style="border-radius:5px;"></div><div class="radius-label">5px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:11px;"></div><div class="radius-label">11px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:12px;"></div><div class="radius-label">12px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:980px;"></div><div class="radius-label">980px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-label">50%</div></div>
+    <div class="feature-item">
+      <div class="feature-icon-wrap fi-titanium">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h4>Titanium Design</h4>
+      <p>Grade 5 titanium, incredibly light</p>
     </div>
   </div>
 </section>
-</div>
+
+<!-- Performance Section (Light) -->
+<section class="section-light">
+  <h2>A18 Pro chip.</h2>
+  <div class="subtitle">A monster win for gaming. And everything else.</div>
+  <a class="learn-more">Learn more &rsaquo;</a>
+  <div class="chip-visual">
+    <div class="chip-shape">
+      <div class="chip-die">
+        <div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div>
+        <div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div>
+        <div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div>
+        <div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div><div class="chip-cell"></div>
+      </div>
+      <div class="chip-label" style="color:var(--text-48);">A18 Pro</div>
+    </div>
+  </div>
+</section>
+
+<!-- Battery Section (Dark) -->
+<section class="section-dark">
+  <h2>Battery life that goes and goes.</h2>
+  <div class="subtitle">Up to 33 hours video playback. The longest battery life ever in iPhone.</div>
+  <a class="learn-more learn-more-dark">Learn more &rsaquo;</a>
+  <div class="battery-visual">
+    <div class="battery-icon" style="position:relative;">
+      <div class="battery-fill"></div>
+      <div class="battery-label">33 hrs</div>
+    </div>
+  </div>
+</section>
+
+<!-- Product Grid (Light) -->
+<section class="section-light" style="padding-bottom: 48px;">
+  <h2>Explore the lineup.</h2>
+  <div class="product-grid">
+    <div class="product-tile dark-tile">
+      <h3>MacBook Pro</h3>
+      <div class="tile-subtitle">The most advanced Mac laptops ever.</div>
+      <div class="tile-ctas">
+        <a class="learn-more learn-more-dark">Learn more &rsaquo;</a>
+        <a class="link-pill" style="color:var(--link-dark);">Buy &rsaquo;</a>
+      </div>
+      <div class="tile-visual">
+        <div>
+          <div class="macbook-shape">
+            <div class="macbook-screen">&#63743;</div>
+          </div>
+          <div class="macbook-base"></div>
+        </div>
+      </div>
+    </div>
+    <div class="product-tile light-tile">
+      <h3>iPad Pro</h3>
+      <div class="tile-subtitle" style="color:var(--text-80);">Incredibly thin. Impossibly powerful.</div>
+      <div class="tile-ctas">
+        <a class="learn-more">Learn more &rsaquo;</a>
+        <a class="learn-more" style="color:var(--link-light);">Buy &rsaquo;</a>
+      </div>
+      <div class="tile-visual">
+        <div class="ipad-shape">
+          <div class="ipad-screen"></div>
+        </div>
+      </div>
+    </div>
+    <div class="product-tile dark-tile">
+      <h3>Apple Watch Ultra 2</h3>
+      <div class="tile-subtitle">Next-level adventure.</div>
+      <div class="tile-ctas">
+        <a class="learn-more learn-more-dark">Learn more &rsaquo;</a>
+        <a class="link-pill" style="color:var(--link-dark);">Buy &rsaquo;</a>
+      </div>
+      <div class="tile-visual">
+        <div class="watch-shape">
+          <div class="watch-crown"></div>
+          <div class="watch-face">10:09</div>
+        </div>
+      </div>
+    </div>
+    <div class="product-tile light-tile">
+      <h3>AirPods Pro 2</h3>
+      <div class="tile-subtitle" style="color:var(--text-80);">Adaptive Audio. Hearing Health.</div>
+      <div class="tile-ctas">
+        <a class="learn-more">Learn more &rsaquo;</a>
+        <a class="learn-more" style="color:var(--link-light);">Buy &rsaquo;</a>
+      </div>
+      <div class="tile-visual">
+        <div class="airpods-shape">
+          <div class="airpod">
+            <div class="airpod-head"></div>
+            <div class="airpod-stem"></div>
+          </div>
+          <div class="airpod">
+            <div class="airpod-head"></div>
+            <div class="airpod-stem"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Shop and Learn</h4>
+        <ul>
+          <li>Store</li>
+          <li>Mac</li>
+          <li>iPad</li>
+          <li>iPhone</li>
+          <li>Watch</li>
+          <li>AirPods</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li>Apple Music</li>
+          <li>Apple TV+</li>
+          <li>Apple Fitness+</li>
+          <li>iCloud</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Apple Store</h4>
+        <ul>
+          <li>Find a Store</li>
+          <li>Genius Bar</li>
+          <li>Today at Apple</li>
+          <li>Financing</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Apple Values</h4>
+        <ul>
+          <li>Accessibility</li>
+          <li>Environment</li>
+          <li>Privacy</li>
+          <li>Supply Chain</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Copyright &copy; 2026 Apple Inc. All rights reserved.</span>
+      <ul class="footer-legal-links">
+        <li>Privacy Policy</li>
+        <li>Terms of Use</li>
+        <li>Sales and Refunds</li>
+        <li>Legal</li>
+        <li>Site Map</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- DesignHub Badge -->
+<a href="/" class="designhub-badge">
+  <span class="designhub-badge-dot"></span>
+  Built with DesignHub
+</a>
 
 </body>
 </html>

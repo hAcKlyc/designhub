@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignHub — Spotify Design System</title>
+<title>DesignHub — Spotify Design System Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,17 +16,15 @@
     --surface-mid: #1f1f1f;
     --surface-elevated: #252525;
     --green: #1ed760;
-    --green-border: #1db954;
+    --green-dark: #1db954;
     --text: #ffffff;
     --text-silver: #b3b3b3;
     --text-near-white: #cbcbcb;
-    --text-light: #fdfdfd;
     --negative: #f3727f;
     --warning: #ffa42b;
     --announce: #539df5;
     --border: #4d4d4d;
     --border-light: #7c7c7c;
-    --light-surface: #eeeeee;
     --shadow-heavy: rgba(0,0,0,0.5) 0px 8px 24px;
     --shadow-medium: rgba(0,0,0,0.3) 0px 8px 8px;
     --font: 'Nunito Sans', 'Helvetica Neue', helvetica, arial, sans-serif;
@@ -37,65 +35,109 @@
     background: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
+    padding-bottom: 72px;
   }
 
-  /* Header */
-  .sticky-header {
+  a { text-decoration: none; color: inherit; }
+
+  /* Navigation */
+  .nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--bg);
+    background: rgba(18,18,18,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 0 32px;
-    height: 48px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .sticky-header .brand {
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .spotify-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .spotify-logo svg { flex-shrink: 0; }
+  .spotify-wordmark {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .nav-links li {
     font-size: 14px;
     font-weight: 700;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    color: var(--text-silver);
+    cursor: pointer;
+    transition: color 0.15s;
   }
-  .spotify-icon {
-    width: 24px;
-    height: 24px;
-    background: var(--green);
-    border-radius: 50%;
+  .nav-links li:hover { color: var(--text); }
+  .nav-right {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+  }
+  .nav-signup {
+    background: var(--text);
+    color: #000;
+    padding: 8px 28px;
+    border-radius: 9999px;
+    border: none;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .nav-login {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-silver);
+    cursor: pointer;
   }
 
   /* Hero */
   .hero {
     text-align: center;
     padding: 100px 32px 80px;
-    max-width: 900px;
-    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1a3a2a 0%, var(--bg) 100%);
   }
   .hero h1 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.00;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1px;
     color: var(--text);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .hero p {
-    font-size: 16px;
+  .hero-subtitle {
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.50;
     color: var(--text-silver);
-    max-width: 500px;
-    margin: 0 auto 32px;
+    max-width: 480px;
+    margin: 0 auto 36px;
   }
-  .hero-buttons { display: flex; gap: 12px; justify-content: center; }
-  .btn-primary {
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; }
+  .btn-green {
     background: var(--green);
     color: #000000;
-    padding: 8px 32px;
+    padding: 14px 40px;
     border-radius: 9999px;
     border: none;
     font-family: var(--font);
@@ -104,413 +146,843 @@
     text-transform: uppercase;
     letter-spacing: 1.4px;
     cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
   }
-  .btn-secondary {
-    background: var(--surface-mid);
-    color: var(--text);
-    padding: 8px 16px;
-    border-radius: 9999px;
-    border: none;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .section-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-silver);
-    text-align: center;
-    margin-bottom: 32px;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-  }
-
-  /* Features */
-  .features {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 32px 80px;
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .feature-card {
-    background: var(--surface);
-    border-radius: 8px;
-    padding: 24px;
-  }
-  .feature-card:hover {
-    background: var(--surface-mid);
-  }
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    background: var(--surface-mid);
-    color: var(--green);
-  }
-  .feature-card h3 {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.30;
-    margin-bottom: 8px;
-    color: var(--text);
-  }
-  .feature-card p {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.50;
-    color: var(--text-silver);
-  }
-
-  /* Form */
-  .form-section {
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 0 32px 80px;
-  }
-  .form-section h2 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.00;
-    margin-bottom: 24px;
-    text-align: center;
-    color: var(--text);
-  }
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: var(--text);
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 500px;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--text);
-    background: var(--surface-mid);
-    outline: none;
-    box-shadow: rgb(18,18,18) 0px 1px 0px, rgb(124,124,124) 0px 0px 0px 1px inset;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    box-shadow: #000000 0px 0px 0px 1px;
-    outline: 1px solid var(--text);
-  }
-  .form-group textarea {
-    min-height: 100px;
-    resize: vertical;
-    border-radius: 8px;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--text-silver); }
-  .form-submit { text-align: center; margin-top: 24px; }
-
-  /* Showcase */
-  .showcase {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 32px;
-  }
-  .showcase h2 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.00;
-    margin-bottom: 48px;
-    text-align: center;
-  }
-  .showcase-section { margin-bottom: 48px; }
-  .showcase-section h3 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--text);
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-  }
-
-  /* Colors */
-  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .color-swatch .swatch { width: 64px; height: 64px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
-  .color-swatch .label { font-size: 10px; color: var(--text-silver); }
-  .color-swatch .name { font-size: 10px; font-weight: 700; color: var(--text); }
-
-  /* Type */
-  .type-scale { display: flex; flex-direction: column; gap: 8px; }
-  .type-row {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .type-row .meta { font-size: 10px; color: var(--text-silver); min-width: 120px; flex-shrink: 0; }
-
-  /* Buttons */
-  .button-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .btn-dark-pill {
-    background: var(--surface-mid);
-    color: var(--text);
-    padding: 8px 16px;
-    border-radius: 9999px;
-    border: none;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-  .btn-outlined-pill {
+  .btn-green:hover { transform: scale(1.04); background: #1fdf64; }
+  .btn-outlined {
     background: transparent;
     color: var(--text);
-    padding: 4px 16px;
+    padding: 12px 32px;
     border-radius: 9999px;
     border: 1px solid var(--border-light);
     font-family: var(--font);
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+    transition: border-color 0.15s;
   }
-  .btn-circular {
-    background: var(--green);
-    color: #000000;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    font-size: 18px;
+  .btn-outlined:hover { border-color: var(--text); }
+
+  /* Album Grid */
+  .album-section {
+    padding: 60px 32px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 24px;
+  }
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .section-header a {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-silver);
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
     cursor: pointer;
+  }
+  .section-header a:hover { color: var(--text); }
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+  }
+  .album-card {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .album-card:hover { background: var(--surface-mid); }
+  .album-art {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .art-gradient {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+  }
+  .g1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+  .g2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+  .g3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+  .g4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+  .g5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+  .g6 { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+  .play-hover {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 48px;
+    height: 48px;
+    background: var(--green);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
   }
-  .btn-danger {
-    background: var(--negative);
-    color: #000000;
-    padding: 8px 16px;
+  .album-card:hover .play-hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .play-hover svg { margin-left: 2px; }
+  .album-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .album-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-silver);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Categories */
+  .categories {
+    padding: 0 32px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .categories h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .cat-card {
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .cat-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+  }
+  .cat-bubble {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    bottom: -10px;
+    right: -10px;
+    opacity: 0.3;
+  }
+  .cat-music { background: #e13300; }
+  .cat-music .cat-bubble { background: #ff6b3d; }
+  .cat-podcasts { background: #056952; }
+  .cat-podcasts .cat-bubble { background: #1ed760; }
+  .cat-audiobooks { background: #477d95; }
+  .cat-audiobooks .cat-bubble { background: #84c5e0; }
+  .cat-live { background: #8c1932; }
+  .cat-live .cat-bubble { background: #f3727f; }
+
+  /* Plans Comparison */
+  .plans {
+    padding: 80px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .plans h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .plans-subtitle {
+    font-size: 16px;
+    color: var(--text-silver);
+    margin-bottom: 48px;
+  }
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .plan-card {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 32px 24px;
+    text-align: left;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .plan-card:hover { border-color: var(--border); }
+  .plan-card.featured {
+    border-color: var(--green);
+    position: relative;
+  }
+  .plan-badge {
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    background: var(--green);
+    color: #000;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  .plan-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .plan-price {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .plan-price span {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-silver);
+  }
+  .plan-desc {
+    font-size: 14px;
+    color: var(--text-silver);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .plan-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .plan-features li {
+    font-size: 14px;
+    color: var(--text-near-white);
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .plan-features li::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .plan-btn {
+    width: 100%;
+    padding: 12px;
     border-radius: 9999px;
     border: none;
     font-family: var(--font);
     font-size: 14px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
     cursor: pointer;
-  }
-
-  /* Cards */
-  .card-variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .card-v { padding: 20px; border-radius: 8px; }
-  .card-v.dark { background: var(--surface); }
-  .card-v.mid { background: var(--surface-mid); }
-  .card-v.elevated { background: var(--surface-elevated); box-shadow: var(--shadow-medium); }
-  .card-v h4 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .card-v p { font-size: 14px; color: var(--text-silver); font-weight: 400; }
-
-  /* Input States */
-  .input-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .input-state label {
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text-silver);
-    margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 1.4px;
   }
-  .input-state input {
-    width: 100%;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 500px;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 400;
+  .plan-btn-green { background: var(--green); color: #000; }
+  .plan-btn-white { background: var(--text); color: #000; }
+  .plan-btn-outlined {
+    background: transparent;
     color: var(--text);
-    background: var(--surface-mid);
-    outline: none;
-    box-shadow: rgb(18,18,18) 0px 1px 0px, rgb(124,124,124) 0px 0px 0px 1px inset;
+    border: 1px solid var(--border-light);
   }
-  .input-state.focused input { outline: 1px solid var(--text); box-shadow: #000000 0px 0px 0px 1px; }
-  .input-state.disabled input { color: var(--border); background: var(--bg); }
 
-  /* Shadows */
-  .shadow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .shadow-box {
-    height: 80px;
+  /* Podcast Feature */
+  .podcast-feature {
+    padding: 80px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+  .podcast-visual {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .podcast-thumb {
+    aspect-ratio: 1;
     border-radius: 8px;
+  }
+  .pt1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+  .pt2 { background: linear-gradient(135deg, #2d1b69, #11998e); }
+  .pt3 { background: linear-gradient(135deg, #fc5c7d, #6a82fb); }
+  .pt4 { background: linear-gradient(135deg, #ee9ca7, #ffdde1); }
+  .pt5 { background: linear-gradient(135deg, #8360c3, #2ebf91); }
+  .pt6 { background: linear-gradient(135deg, #f12711, #f5af19); }
+  .podcast-text {
+    flex: 1;
+    max-width: 420px;
+  }
+  .podcast-text h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .podcast-text p {
+    font-size: 16px;
+    color: var(--text-silver);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #1a3a2a 0%, #0a2a1a 100%);
+    padding: 80px 32px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .cta-section p {
+    font-size: 16px;
+    color: var(--text-silver);
+    margin-bottom: 32px;
+  }
+
+  /* Player Bar */
+  .player-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
     background: var(--surface);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 200;
+  }
+  .player-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 180px;
+  }
+  .player-art {
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    flex-shrink: 0;
+  }
+  .player-info { overflow: hidden; }
+  .player-song {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .player-artist {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-silver);
+  }
+  .player-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 2;
+    max-width: 600px;
+  }
+  .player-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .ctrl-btn {
+    background: none;
+    border: none;
+    color: var(--text-silver);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .ctrl-btn:hover { color: var(--text); }
+  .play-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--text);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+  }
+  .progress-bar-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .progress-time {
+    font-size: 11px;
+    color: var(--text-silver);
+    min-width: 32px;
+    text-align: center;
+  }
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+  }
+  .progress-fill {
+    width: 38%;
+    height: 100%;
+    background: var(--text);
+    border-radius: 2px;
+    position: relative;
+  }
+  .progress-fill:hover { background: var(--green); }
+  .progress-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--text);
+    border-radius: 50%;
+    position: absolute;
+    right: -6px;
+    top: -4px;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .progress-track:hover .progress-dot { opacity: 1; }
+  .player-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-end;
+    min-width: 180px;
+  }
+  .vol-track {
+    width: 80px;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    position: relative;
+  }
+  .vol-fill {
+    width: 65%;
+    height: 100%;
+    background: var(--text);
+    border-radius: 2px;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--bg);
+    padding: 64px 32px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-silver);
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin-bottom: 16px;
+  }
+  .footer-col ul {
+    list-style: none;
+  }
+  .footer-col li {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-silver);
+    padding: 6px 0;
+    cursor: pointer;
+  }
+  .footer-col li:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 24px 32px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 12px;
     color: var(--text-silver);
   }
 
-  /* Radius */
-  .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
-  .radius-item { text-align: center; }
-  .radius-box { width: 64px; height: 64px; background: var(--surface-mid); margin-bottom: 6px; }
-  .radius-label { font-size: 10px; color: var(--text-silver); }
+  /* DesignHub Badge */
+  .designhub-badge {
+    position: fixed;
+    bottom: 84px;
+    right: 20px;
+    background: var(--surface-elevated);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 9999px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-silver);
+    box-shadow: var(--shadow-medium);
+    z-index: 300;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s;
+  }
+  .designhub-badge:hover { background: var(--surface-mid); color: var(--text); }
+  .designhub-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+  }
 
-  @media (max-width: 768px) {
-    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
+  @media (max-width: 1000px) {
+    .album-grid { grid-template-columns: repeat(3, 1fr); }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .podcast-feature { flex-direction: column; }
+    .plans-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  }
+  @media (max-width: 600px) {
+    .album-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 40px; }
+    .nav-links { display: none; }
+    .player-right { display: none; }
   }
 </style>
 </head>
 <body>
 
-<div class="sticky-header">
-  <div class="brand">
-    <div class="spotify-icon">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-left">
+    <div class="spotify-logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#1ed760"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      <span class="spotify-wordmark">Spotify</span>
     </div>
-    Spotify Design System
+    <ul class="nav-links">
+      <li>Premium</li>
+      <li>Support</li>
+      <li>Download</li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <span class="nav-login">Log in</span>
+    <button class="nav-signup">Sign up</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Music for everyone.</h1>
+  <p class="hero-subtitle">Millions of songs. No credit card needed.</p>
+  <div class="hero-buttons">
+    <button class="btn-green">Get Spotify Free</button>
+  </div>
+</section>
+
+<!-- Popular Playlists -->
+<section class="album-section">
+  <div class="section-header">
+    <h2>Popular playlists</h2>
+    <a>Show all</a>
+  </div>
+  <div class="album-grid">
+    <div class="album-card">
+      <div class="album-art">
+        <div class="art-gradient g1"></div>
+        <div class="play-hover">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21"/></svg>
+        </div>
+      </div>
+      <div class="album-title">Today's Top Hits</div>
+      <div class="album-desc">The biggest hits right now</div>
+    </div>
+    <div class="album-card">
+      <div class="album-art">
+        <div class="art-gradient g2"></div>
+        <div class="play-hover">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21"/></svg>
+        </div>
+      </div>
+      <div class="album-title">Chill Vibes</div>
+      <div class="album-desc">Kick back with these mellow tunes</div>
+    </div>
+    <div class="album-card">
+      <div class="album-art">
+        <div class="art-gradient g3"></div>
+        <div class="play-hover">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21"/></svg>
+        </div>
+      </div>
+      <div class="album-title">Deep Focus</div>
+      <div class="album-desc">Keep calm and focus</div>
+    </div>
+    <div class="album-card">
+      <div class="album-art">
+        <div class="art-gradient g4"></div>
+        <div class="play-hover">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21"/></svg>
+        </div>
+      </div>
+      <div class="album-title">Workout Beats</div>
+      <div class="album-desc">Push harder with these tracks</div>
+    </div>
+    <div class="album-card">
+      <div class="album-art">
+        <div class="art-gradient g5"></div>
+        <div class="play-hover">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21"/></svg>
+        </div>
+      </div>
+      <div class="album-title">Feel Good Friday</div>
+      <div class="album-desc">Upbeat tracks for a great mood</div>
+    </div>
+    <div class="album-card">
+      <div class="album-art">
+        <div class="art-gradient g6"></div>
+        <div class="play-hover">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21"/></svg>
+        </div>
+      </div>
+      <div class="album-title">Late Night Jazz</div>
+      <div class="album-desc">Smooth jazz for the night owl</div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="categories">
+  <h2>Browse all</h2>
+  <div class="cat-grid">
+    <div class="cat-card cat-music">
+      <h3>Music</h3>
+      <div class="cat-bubble"></div>
+    </div>
+    <div class="cat-card cat-podcasts">
+      <h3>Podcasts</h3>
+      <div class="cat-bubble"></div>
+    </div>
+    <div class="cat-card cat-audiobooks">
+      <h3>Audiobooks</h3>
+      <div class="cat-bubble"></div>
+    </div>
+    <div class="cat-card cat-live">
+      <h3>Live Events</h3>
+      <div class="cat-bubble"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Plans -->
+<section class="plans">
+  <h2>Pick your Premium</h2>
+  <p class="plans-subtitle">Listen without limits. Cancel anytime.</p>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">$0 <span>/ month</span></div>
+      <div class="plan-desc">Music with occasional ads. No commitment.</div>
+      <ul class="plan-features">
+        <li>Ad-supported listening</li>
+        <li>Shuffle play on mobile</li>
+        <li>Discover new music</li>
+      </ul>
+      <button class="plan-btn plan-btn-outlined">GET STARTED</button>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">Premium</div>
+      <div class="plan-price">$11.99 <span>/ month</span></div>
+      <div class="plan-desc">Ad-free music. Download. Unlimited skips.</div>
+      <ul class="plan-features">
+        <li>Ad-free music listening</li>
+        <li>Download to listen offline</li>
+        <li>Play songs in any order</li>
+        <li>High quality audio</li>
+      </ul>
+      <button class="plan-btn plan-btn-green">GET PREMIUM</button>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Duo</div>
+      <div class="plan-price">$16.99 <span>/ month</span></div>
+      <div class="plan-desc">Two Premium accounts for a couple.</div>
+      <ul class="plan-features">
+        <li>2 Premium accounts</li>
+        <li>Duo Mix shared playlist</li>
+        <li>Ad-free music listening</li>
+        <li>Download offline</li>
+      </ul>
+      <button class="plan-btn plan-btn-white">GET DUO</button>
+    </div>
+  </div>
+</section>
+
+<!-- Podcast Feature -->
+<section class="podcast-feature">
+  <div class="podcast-visual">
+    <div class="podcast-thumb pt1"></div>
+    <div class="podcast-thumb pt2"></div>
+    <div class="podcast-thumb pt3"></div>
+    <div class="podcast-thumb pt4"></div>
+    <div class="podcast-thumb pt5"></div>
+    <div class="podcast-thumb pt6"></div>
+  </div>
+  <div class="podcast-text">
+    <h2>Podcasts for every mood and moment</h2>
+    <p>From true crime to comedy, news to storytelling. Over 5 million podcasts including Spotify exclusives you won't find anywhere else.</p>
+    <button class="btn-green">Explore Podcasts</button>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Listening is everything</h2>
+  <p>Millions of songs and podcasts. No credit card needed.</p>
+  <button class="btn-green">Get Spotify Free</button>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
+      <li>About</li>
+      <li>Jobs</li>
+      <li>For the Record</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Communities</h4>
+    <ul>
+      <li>For Artists</li>
+      <li>Developers</li>
+      <li>Advertising</li>
+      <li>Investors</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Useful Links</h4>
+    <ul>
+      <li>Support</li>
+      <li>Free Mobile App</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Spotify Plans</h4>
+    <ul>
+      <li>Premium Individual</li>
+      <li>Premium Duo</li>
+      <li>Premium Family</li>
+      <li>Free</li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">&copy; 2026 Spotify AB</div>
+
+<!-- Player Bar -->
+<div class="player-bar">
+  <div class="player-left">
+    <div class="player-art"></div>
+    <div class="player-info">
+      <div class="player-song">Moonlight Sonata</div>
+      <div class="player-artist">Ludwig van Beethoven</div>
+    </div>
+  </div>
+  <div class="player-center">
+    <div class="player-controls">
+      <button class="ctrl-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+      <button class="ctrl-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4"/><line x1="5" y1="4" x2="5" y2="20" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <button class="play-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21"/></svg>
+      </button>
+      <button class="ctrl-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20"/><line x1="19" y1="4" x2="19" y2="20" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <button class="ctrl-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </button>
+    </div>
+    <div class="progress-bar-wrap">
+      <span class="progress-time">1:42</span>
+      <div class="progress-track">
+        <div class="progress-fill">
+          <div class="progress-dot"></div>
+        </div>
+      </div>
+      <span class="progress-time">4:28</span>
+    </div>
+  </div>
+  <div class="player-right">
+    <button class="ctrl-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    </button>
+    <div class="vol-track">
+      <div class="vol-fill"></div>
+    </div>
   </div>
 </div>
 
-<section class="hero">
-  <h1>Build beautiful products faster</h1>
-  <p>Dark, immersive, content-first. The UI recedes into shadow so that music and art can glow.</p>
-  <div class="hero-buttons">
-    <button class="btn-primary">Get Started</button>
-    <button class="btn-secondary">Explore</button>
-  </div>
-</section>
-
-<section class="features">
-  <div class="section-label">Features</div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </div>
-      <h3>Pill & Circle Geometry</h3>
-      <p>500-9999px pill buttons, 50% circles for play controls. Rounded, touch-optimized, device-like.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-      </div>
-      <h3>Content-First Dark</h3>
-      <p>Near-black cocoon where album art provides the color. The UI itself is achromatic by design.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
-      </div>
-      <h3>Uppercase System</h3>
-      <p>Button labels in uppercase + 1.4-2px letter-spacing. A systematic label voice distinct from content.</p>
-    </div>
-  </div>
-</section>
-
-<section class="form-section">
-  <h2>Get in Touch</h2>
-  <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
-  <div class="form-group"><label>Email</label><input type="email" placeholder="you@music.com"></div>
-  <div class="form-group"><label>Message</label><textarea placeholder="What song describes your mood?"></textarea></div>
-  <div class="form-submit"><button class="btn-primary">Submit</button></div>
-</section>
-
-<section class="showcase">
-  <h2>Component Showcase</h2>
-
-  <div class="showcase-section">
-    <h3>Color Palette</h3>
-    <div class="color-grid">
-      <div class="color-swatch"><div class="swatch" style="background:#121212"></div><div class="name">Near Black</div><div class="label">#121212</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#181818"></div><div class="name">Dark Surface</div><div class="label">#181818</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#1f1f1f"></div><div class="name">Mid Dark</div><div class="label">#1f1f1f</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#252525"></div><div class="name">Elevated</div><div class="label">#252525</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">White</div><div class="label">#ffffff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#b3b3b3"></div><div class="name">Silver</div><div class="label">#b3b3b3</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#1ed760"></div><div class="name">Spotify Green</div><div class="label">#1ed760</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#f3727f"></div><div class="name">Negative Red</div><div class="label">#f3727f</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ffa42b"></div><div class="name">Warning</div><div class="label">#ffa42b</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#539df5"></div><div class="name">Announce Blue</div><div class="label">#539df5</div></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Typography Scale</h3>
-    <div class="type-scale">
-      <div class="type-row"><span class="meta">24px / 700</span><span style="font-size:24px;font-weight:700;">Section Title</span></div>
-      <div class="type-row"><span class="meta">18px / 600</span><span style="font-size:18px;font-weight:600;line-height:1.3;">Feature Heading</span></div>
-      <div class="type-row"><span class="meta">16px / 700</span><span style="font-size:16px;font-weight:700;">Body Bold</span></div>
-      <div class="type-row"><span class="meta">16px / 400</span><span style="font-size:16px;font-weight:400;color:var(--text-silver);">Body — standard text</span></div>
-      <div class="type-row"><span class="meta">14px / 700 ↑</span><span style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;">Button Uppercase</span></div>
-      <div class="type-row"><span class="meta">14px / 400</span><span style="font-size:14px;font-weight:400;color:var(--text-silver);">Caption</span></div>
-      <div class="type-row"><span class="meta">12px / 700</span><span style="font-size:12px;font-weight:700;line-height:1.5;">Small Bold</span></div>
-      <div class="type-row"><span class="meta">10.5px / 600</span><span style="font-size:10.5px;font-weight:600;line-height:1.33;text-transform:capitalize;">Badge Text</span></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Button Variants</h3>
-    <div class="button-row">
-      <button class="btn-primary">Primary Green</button>
-      <button class="btn-dark-pill">Dark Pill</button>
-      <button class="btn-outlined-pill">Outlined</button>
-      <button class="btn-circular">&#9654;</button>
-      <button class="btn-danger">Error</button>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Card Variants</h3>
-    <div class="card-variants">
-      <div class="card-v dark"><h4>Dark Card</h4><p>#181818 surface</p></div>
-      <div class="card-v mid"><h4>Mid Card</h4><p>#1f1f1f interactive</p></div>
-      <div class="card-v elevated"><h4>Elevated Card</h4><p>Shadow + #252525</p></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Input States</h3>
-    <div class="input-states">
-      <div class="input-state"><label>Default</label><input type="text" placeholder="Search"></div>
-      <div class="input-state focused"><label>Focused</label><input type="text" value="Active"></div>
-      <div class="input-state disabled"><label>Disabled</label><input type="text" value="Disabled" disabled></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Shadow Levels</h3>
-    <div class="shadow-grid">
-      <div class="shadow-box" style="box-shadow:none;">Level 0 — Base</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.3) 0px 8px 8px;">Level 2 — Medium</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.5) 0px 8px 24px;">Level 3 — Heavy</div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Border Radius</h3>
-    <div class="radius-row">
-      <div class="radius-item"><div class="radius-box" style="border-radius:2px;"></div><div class="radius-label">2px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:500px;"></div><div class="radius-label">500px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:9999px;"></div><div class="radius-label">9999px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-label">50%</div></div>
-    </div>
-  </div>
-</section>
+<!-- DesignHub Badge -->
+<a href="/" class="designhub-badge">
+  <span class="designhub-badge-dot"></span>
+  Built with DesignHub
+</a>
 
 </body>
 </html>
