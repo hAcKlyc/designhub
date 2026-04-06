@@ -11,28 +11,26 @@ export function ControlPanel({ params, onChange }: Props) {
   const [showAdvanced, setShowAdvanced] = useState(false);
 
   return (
-    <div className="p-4 space-y-5">
-      <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-semibold">
+    <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{ fontSize: '10px', textTransform: 'uppercase' as const, letterSpacing: '0.1em', color: '#A0A0A0', fontWeight: 600 }}>
         Core
       </div>
 
       {/* Primary Hue */}
       <ControlGroup label="Primary Color">
-        <div className="flex items-center gap-3">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <input
             type="range"
             min={0} max={360} step={1}
             value={params.primaryHue}
             onChange={e => onChange('primaryHue', Number(e.target.value))}
-            className="flex-1 accent-brand"
             style={{
+              flex: 1, accentColor: '#2D6A4F',
               background: `linear-gradient(to right, hsl(0,70%,50%), hsl(60,70%,50%), hsl(120,70%,50%), hsl(180,70%,50%), hsl(240,70%,50%), hsl(300,70%,50%), hsl(360,70%,50%))`,
-              height: '6px',
-              borderRadius: '3px',
-              WebkitAppearance: 'none',
+              height: '6px', borderRadius: '3px', WebkitAppearance: 'none',
             }}
           />
-          <span className="text-neutral-400 text-xs font-mono w-8 text-right">{params.primaryHue}°</span>
+          <span style={{ color: '#7A7A7A', fontSize: '12px', fontFamily: 'monospace', width: '32px', textAlign: 'right' as const }}>{params.primaryHue}°</span>
         </div>
       </ControlGroup>
 
@@ -41,7 +39,7 @@ export function ControlPanel({ params, onChange }: Props) {
         <select
           value={params.fontPair}
           onChange={e => onChange('fontPair', e.target.value)}
-          className="w-full bg-neutral-800 border border-neutral-700 rounded-md px-3 py-1.5 text-sm text-neutral-200 outline-none focus:border-neutral-500"
+          style={{ width: '100%', background: '#FFFFFF', border: '1px solid #E8E8E5', borderRadius: '8px', padding: '6px 10px', fontSize: '13px', color: '#1A1A1A', outline: 'none' }}
         >
           {FONT_PAIRS.map(fp => (
             <option key={fp.id} value={fp.id}>{fp.name}</option>
@@ -51,15 +49,15 @@ export function ControlPanel({ params, onChange }: Props) {
 
       {/* Border Radius */}
       <ControlGroup label="Border Radius">
-        <div className="flex items-center gap-3">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <input
             type="range"
             min={0} max={24} step={1}
             value={params.borderRadius > 24 ? 24 : params.borderRadius}
             onChange={e => onChange('borderRadius', Number(e.target.value))}
-            className="flex-1 accent-brand"
+            style={{ flex: 1, accentColor: '#2D6A4F' }}
           />
-          <span className="text-neutral-400 text-xs font-mono w-8 text-right">{params.borderRadius}px</span>
+          <span style={{ color: '#7A7A7A', fontSize: '12px', fontFamily: 'monospace', width: '32px', textAlign: 'right' as const }}>{params.borderRadius}px</span>
         </div>
       </ControlGroup>
 
@@ -93,7 +91,7 @@ export function ControlPanel({ params, onChange }: Props) {
       {/* Advanced Toggle */}
       <button
         onClick={() => setShowAdvanced(!showAdvanced)}
-        className="w-full text-left text-neutral-500 hover:text-neutral-300 text-xs flex items-center gap-1.5 py-1"
+        style={{ width: '100%', textAlign: 'left', color: '#7A7A7A', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 0', background: 'none', border: 'none', cursor: 'pointer' }}
       >
         <span style={{ transform: showAdvanced ? 'rotate(90deg)' : undefined, transition: 'transform 150ms', display: 'inline-block' }}>
           ▶
@@ -102,7 +100,7 @@ export function ControlPanel({ params, onChange }: Props) {
       </button>
 
       {showAdvanced && (
-        <div className="space-y-5 pl-2 border-l border-neutral-800">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', paddingLeft: '12px', borderLeft: '1px solid #F0F0ED' }}>
           {/* Saturation */}
           <ControlGroup label="Saturation">
             <SegmentControl<SaturationLevel>
@@ -130,15 +128,15 @@ export function ControlPanel({ params, onChange }: Props) {
 
           {/* Type Scale Ratio */}
           <ControlGroup label="Type Scale">
-            <div className="flex items-center gap-3">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <input
                 type="range"
                 min={1.125} max={1.618} step={0.001}
                 value={params.typeScaleRatio}
                 onChange={e => onChange('typeScaleRatio', Number(e.target.value))}
-                className="flex-1 accent-brand"
+                style={{ flex: 1, accentColor: '#2D6A4F' }}
               />
-              <span className="text-neutral-400 text-xs font-mono w-10 text-right">
+              <span style={{ color: '#7A7A7A', fontSize: '12px', fontFamily: 'monospace', width: '40px', textAlign: 'right' as const }}>
                 {params.typeScaleRatio.toFixed(3)}
               </span>
             </div>
@@ -146,15 +144,15 @@ export function ControlPanel({ params, onChange }: Props) {
 
           {/* Heading Letter Spacing */}
           <ControlGroup label="Heading Spacing">
-            <div className="flex items-center gap-3">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <input
                 type="range"
                 min={-0.05} max={0.2} step={0.005}
                 value={params.headingLetterSpacing}
                 onChange={e => onChange('headingLetterSpacing', Number(e.target.value))}
-                className="flex-1 accent-brand"
+                style={{ flex: 1, accentColor: '#2D6A4F' }}
               />
-              <span className="text-neutral-400 text-xs font-mono w-12 text-right">
+              <span style={{ color: '#7A7A7A', fontSize: '12px', fontFamily: 'monospace', width: '48px', textAlign: 'right' as const }}>
                 {params.headingLetterSpacing.toFixed(3)}em
               </span>
             </div>
@@ -162,21 +160,19 @@ export function ControlPanel({ params, onChange }: Props) {
 
           {/* Accent Hue */}
           <ControlGroup label="Accent Color">
-            <div className="flex items-center gap-3">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <input
                 type="range"
                 min={0} max={360} step={1}
                 value={params.accentHue}
                 onChange={e => onChange('accentHue', Number(e.target.value))}
-                className="flex-1 accent-brand"
                 style={{
+                  flex: 1, accentColor: '#2D6A4F',
                   background: `linear-gradient(to right, hsl(0,70%,50%), hsl(60,70%,50%), hsl(120,70%,50%), hsl(180,70%,50%), hsl(240,70%,50%), hsl(300,70%,50%), hsl(360,70%,50%))`,
-                  height: '6px',
-                  borderRadius: '3px',
-                  WebkitAppearance: 'none',
+                  height: '6px', borderRadius: '3px', WebkitAppearance: 'none',
                 }}
               />
-              <span className="text-neutral-400 text-xs font-mono w-8 text-right">{params.accentHue}°</span>
+              <span style={{ color: '#7A7A7A', fontSize: '12px', fontFamily: 'monospace', width: '32px', textAlign: 'right' as const }}>{params.accentHue}°</span>
             </div>
           </ControlGroup>
         </div>
@@ -188,7 +184,7 @@ export function ControlPanel({ params, onChange }: Props) {
 function ControlGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="text-neutral-400 text-xs font-medium mb-1.5 block">{label}</label>
+      <label style={{ color: '#7A7A7A', fontSize: '12px', fontWeight: 500, marginBottom: '6px', display: 'block' }}>{label}</label>
       {children}
     </div>
   );
@@ -204,16 +200,18 @@ function SegmentControl<T extends string>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div className="flex bg-neutral-800 rounded-md p-0.5 gap-0.5">
+    <div style={{ display: 'flex', background: '#F4F4F1', borderRadius: '8px', padding: '3px', gap: '2px' }}>
       {options.map(opt => (
         <button
           key={opt.value}
           onClick={() => onChange(opt.value)}
-          className={`flex-1 py-1 px-2 text-xs font-medium rounded transition-all ${
-            value === opt.value
-              ? 'bg-neutral-700 text-neutral-100 shadow-sm'
-              : 'text-neutral-500 hover:text-neutral-300'
-          }`}
+          style={{
+            flex: 1, padding: '5px 8px', fontSize: '12px', fontWeight: 500,
+            borderRadius: '6px', border: 'none', cursor: 'pointer', transition: 'all 200ms',
+            background: value === opt.value ? '#FFFFFF' : 'transparent',
+            color: value === opt.value ? '#1A1A1A' : '#7A7A7A',
+            boxShadow: value === opt.value ? '0 1px 3px rgba(0,0,0,0.06)' : 'none',
+          }}
         >
           {opt.label}
         </button>

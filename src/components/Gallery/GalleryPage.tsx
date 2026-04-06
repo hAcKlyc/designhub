@@ -25,116 +25,108 @@ export function GalleryPage() {
       const q = searchQuery.toLowerCase();
       styles = styles.filter(s =>
         s.name.toLowerCase().includes(q) ||
-        s.description.toLowerCase().includes(q) ||
-        s.category.toLowerCase().includes(q)
+        s.description.toLowerCase().includes(q)
       );
     }
     return styles;
   }, [activeCategory, searchQuery]);
 
-  const shuffle = () => {
-    setActiveCategory('all');
-    setSearchQuery('');
-    const el = document.querySelector('.gallery-grid');
-    if (el) {
-      const children = Array.from(el.children);
-      children.sort(() => Math.random() - 0.5);
-      children.forEach(c => el.appendChild(c));
-    }
-  };
-
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
+    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 32px' }}>
       {/* Hero */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-neutral-50 mb-3">
-          Design System Explorer
+      <div style={{ textAlign: 'center', padding: '80px 0 60px' }}>
+        <h1 className="font-serif" style={{
+          fontSize: '56px', fontWeight: 400, color: '#1A1A1A',
+          letterSpacing: '-0.02em', lineHeight: 1.05, margin: '0 0 16px',
+        }}>
+          Design Systems,{' '}
+          <em style={{ fontStyle: 'italic' }}>curated</em>
         </h1>
-        <p className="text-neutral-400 text-lg max-w-xl mx-auto">
-          Browse 50+ professional design styles. Customize parameters. Export AI-ready DESIGN.md files.
+        <p style={{
+          fontSize: '18px', color: '#7A7A7A', maxWidth: '480px',
+          margin: '0 auto', lineHeight: 1.6,
+        }}>
+          Explore design systems from the world's best products. Customize parameters. Export AI-ready DESIGN.md files.
         </p>
       </div>
 
-      {/* Featured Reference Designs */}
-      <section className="mb-16">
-        <div className="flex items-center gap-3 mb-6">
-          <h2 className="text-neutral-200 font-semibold text-lg">Featured</h2>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-600/20 text-green-400 uppercase tracking-widest font-medium">
+      {/* Featured */}
+      <section style={{ marginBottom: '80px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+          <h2 className="font-serif" style={{ fontSize: '24px', fontWeight: 400, color: '#1A1A1A', margin: 0 }}>
+            Featured
+          </h2>
+          <span style={{
+            fontSize: '11px', fontWeight: 600, textTransform: 'uppercase' as const,
+            letterSpacing: '0.05em', padding: '3px 8px', borderRadius: '6px',
+            background: '#F0F7F4', color: '#2D6A4F',
+          }}>
             Real-world
           </span>
-          <span className="text-neutral-600 text-sm">
-            High-fidelity demos from iconic products
-          </span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
+          gap: '24px',
+        }}>
           {REFERENCE_DESIGNS.map(ref => (
             <div
               key={ref.id}
               onClick={() => navigate(`/style/${ref.id}`)}
-              className="group cursor-pointer rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-600 transition-all hover:scale-[1.01] hover:shadow-lg hover:shadow-black/30"
+              style={{
+                cursor: 'pointer',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                background: '#FFFFFF',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)',
+                transition: 'transform 300ms ease, box-shadow 300ms ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.06), 0 12px 28px rgba(0,0,0,0.06)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)';
+              }}
             >
-              {/* Color preview band */}
-              <div
-                className="h-40 relative overflow-hidden"
-                style={{ background: ref.bgColor }}
-              >
-                {/* Simulated page content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                  <div
-                    style={{
-                      fontFamily: ref.fontPreview + ', Inter, sans-serif',
-                      fontSize: '28px',
-                      fontWeight: 700,
-                      color: ref.textColor,
-                      letterSpacing: '-0.02em',
-                      lineHeight: 1.1,
-                      marginBottom: '12px',
-                      textAlign: 'center',
-                    }}
-                  >
+              {/* Preview */}
+              <div style={{ height: '180px', background: ref.bgColor, position: 'relative', overflow: 'hidden' }}>
+                <div style={{
+                  position: 'absolute', inset: 0, display: 'flex',
+                  flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                  padding: '24px',
+                }}>
+                  <div style={{
+                    fontFamily: ref.fontPreview + ", 'Inter', sans-serif",
+                    fontSize: '32px', fontWeight: 600, color: ref.textColor,
+                    letterSpacing: '-0.02em', marginBottom: '8px',
+                  }}>
                     {ref.name}
                   </div>
-                  <div
-                    style={{
-                      fontSize: '12px',
-                      color: ref.textColor,
-                      opacity: 0.5,
-                      textAlign: 'center',
-                      marginBottom: '16px',
-                    }}
-                  >
+                  <div style={{ fontSize: '13px', color: ref.textColor, opacity: 0.5 }}>
                     {ref.description.split('.')[0]}
                   </div>
-                  <div
-                    style={{
-                      background: ref.accentColor,
-                      color: ref.bgColor === '#000000' || ref.bgColor === '#08090a' || ref.bgColor === '#121212' ? '#ffffff' : ref.bgColor,
-                      padding: '6px 20px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 600,
-                    }}
-                  >
-                    View Demo
-                  </div>
                 </div>
-
-                {/* Accent strip */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-1"
-                  style={{ background: ref.accentColor }}
-                />
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0, height: '3px',
+                  background: ref.accentColor,
+                }} />
               </div>
 
               {/* Info */}
-              <div className="p-4 bg-neutral-800/50">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-neutral-100 font-semibold text-[15px]">{ref.name}</span>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-green-600/20 text-green-400 uppercase tracking-wider font-medium">
-                    Demo
-                  </span>
+              <div style={{ padding: '16px 20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '15px', fontWeight: 600, color: '#1A1A1A' }}>{ref.name}</span>
+                  <span style={{
+                    fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const,
+                    letterSpacing: '0.05em', padding: '2px 6px', borderRadius: '4px',
+                    background: '#F0F7F4', color: '#2D6A4F',
+                  }}>Demo</span>
                 </div>
-                <span className="text-neutral-500 text-xs">{ref.description}</span>
+                <p style={{ fontSize: '13px', color: '#7A7A7A', marginTop: '4px', lineHeight: 1.4 }}>
+                  {ref.description}
+                </p>
               </div>
             </div>
           ))}
@@ -142,74 +134,95 @@ export function GalleryPage() {
       </section>
 
       {/* Divider */}
-      <div className="border-t border-neutral-800 mb-10" />
+      <div style={{ height: '1px', background: '#F0F0ED', margin: '0 0 48px' }} />
 
       {/* All Styles */}
-      <section>
-        <div className="flex items-center gap-3 mb-6">
-          <h2 className="text-neutral-200 font-semibold text-lg">All Styles</h2>
-          <span className="text-neutral-600 text-sm">
+      <section style={{ paddingBottom: '80px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+          <h2 className="font-serif" style={{ fontSize: '24px', fontWeight: 400, color: '#1A1A1A', margin: 0 }}>
+            All Styles
+          </h2>
+          <span style={{ fontSize: '13px', color: '#A0A0A0' }}>
             {DESIGN_STYLES.length} customizable design systems
           </span>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <div className="flex flex-wrap gap-1.5">
+        <div style={{ display: 'flex', flexWrap: 'wrap' as const, alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '6px' }}>
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === cat
-                    ? 'bg-brand text-white'
-                    : 'bg-neutral-800 text-neutral-400 hover:text-neutral-200 hover:bg-neutral-700'
-                }`}
+                style={{
+                  padding: '6px 14px', borderRadius: '8px', border: 'none',
+                  fontSize: '13px', fontWeight: 500, cursor: 'pointer',
+                  transition: 'all 200ms',
+                  background: activeCategory === cat ? '#2D6A4F' : '#F4F4F1',
+                  color: activeCategory === cat ? '#FFFFFF' : '#7A7A7A',
+                }}
               >
                 {cat === 'all' ? 'All' : CATEGORY_LABELS[cat]}
               </button>
             ))}
           </div>
-          <div className="flex-1" />
+          <div style={{ flex: 1 }} />
           <input
             type="text"
             placeholder="Search styles..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-sm text-neutral-200 placeholder-neutral-500 outline-none focus:border-neutral-500 w-52"
+            style={{
+              background: '#FFFFFF', border: '1px solid #E8E8E5', borderRadius: '10px',
+              padding: '8px 14px', fontSize: '13px', color: '#1A1A1A', outline: 'none',
+              width: '200px',
+            }}
+            onFocus={e => { e.currentTarget.style.borderColor = '#2D6A4F'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(45,106,79,0.1)'; }}
+            onBlur={e => { e.currentTarget.style.borderColor = '#E8E8E5'; e.currentTarget.style.boxShadow = 'none'; }}
           />
-          <button
-            onClick={shuffle}
-            className="bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-sm text-neutral-400 hover:text-neutral-200 hover:bg-neutral-700 transition-colors"
-          >
-            Shuffle
-          </button>
-        </div>
-
-        <div className="text-neutral-500 text-sm mb-4">
-          {filtered.length} style{filtered.length !== 1 ? 's' : ''}
         </div>
 
         {/* Grid */}
-        <div className="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+          gap: '24px',
+        }}>
           {filtered.map(style => (
             <div
               key={style.id}
               onClick={() => navigate(`/style/${style.id}`)}
-              className="group cursor-pointer rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-600 transition-all hover:scale-[1.01] hover:shadow-lg hover:shadow-black/30"
+              style={{
+                cursor: 'pointer', borderRadius: '16px', overflow: 'hidden',
+                background: '#FFFFFF',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)',
+                transition: 'transform 300ms ease, box-shadow 300ms ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.06), 0 12px 28px rgba(0,0,0,0.06)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03)';
+              }}
             >
-              <div className="overflow-hidden">
+              <div style={{ overflow: 'hidden' }}>
                 <PreviewFrame params={style.params} compact />
               </div>
-              <div className="p-4 bg-neutral-800/50">
-                <div className="text-neutral-100 font-semibold text-[15px] mb-1 truncate">
+              <div style={{ padding: '16px 20px' }}>
+                <div style={{ fontSize: '15px', fontWeight: 600, color: '#1A1A1A', marginBottom: '4px' }}>
                   {style.name}
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-neutral-700/80 text-neutral-400 uppercase tracking-widest font-medium">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{
+                    fontSize: '10px', fontWeight: 600, textTransform: 'uppercase' as const,
+                    letterSpacing: '0.05em', padding: '2px 8px', borderRadius: '4px',
+                    background: '#F4F4F1', color: '#7A7A7A',
+                  }}>
                     {style.category}
                   </span>
-                  <span className="text-neutral-500 text-xs truncate">
+                  <span style={{ fontSize: '13px', color: '#A0A0A0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>
                     {style.description}
                   </span>
                 </div>
@@ -219,7 +232,7 @@ export function GalleryPage() {
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-neutral-500">
+          <div style={{ textAlign: 'center', padding: '80px 0', color: '#A0A0A0' }}>
             No styles match your search.
           </div>
         )}

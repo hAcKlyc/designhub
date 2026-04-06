@@ -75,33 +75,45 @@ export function PlaygroundPage() {
 
   // Tab switcher + theme toggle for header center
   const tabSwitcher = (
-    <div className="flex items-center gap-3">
-      <div className="flex items-center gap-1 bg-neutral-800 rounded-lg p-0.5">
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '2px', background: '#F4F4F1', borderRadius: '10px', padding: '3px' }}>
         {hasDemo && (
           <button
             onClick={() => setViewMode('demo')}
-            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
-              viewMode === 'demo' ? 'bg-neutral-700 text-neutral-100 shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
-            }`}
+            style={{
+              padding: '6px 16px', borderRadius: '8px', border: 'none', fontSize: '13px',
+              fontWeight: 500, cursor: 'pointer', transition: 'all 200ms',
+              background: viewMode === 'demo' ? '#FFFFFF' : 'transparent',
+              color: viewMode === 'demo' ? '#1A1A1A' : '#7A7A7A',
+              boxShadow: viewMode === 'demo' ? '0 1px 3px rgba(0,0,0,0.06)' : 'none',
+            }}
           >
-            Demo Preview
+            Demo
           </button>
         )}
         <button
           onClick={() => setViewMode('system')}
-          className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
-            viewMode === 'system' ? 'bg-neutral-700 text-neutral-100 shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
-          }`}
+          style={{
+            padding: '6px 16px', borderRadius: '8px', border: 'none', fontSize: '13px',
+            fontWeight: 500, cursor: 'pointer', transition: 'all 200ms',
+            background: viewMode === 'system' ? '#FFFFFF' : 'transparent',
+            color: viewMode === 'system' ? '#1A1A1A' : '#7A7A7A',
+            boxShadow: viewMode === 'system' ? '0 1px 3px rgba(0,0,0,0.06)' : 'none',
+          }}
         >
           Design System
         </button>
       </div>
 
-      {/* Theme toggle */}
       <button
         onClick={toggleTheme}
-        className="w-8 h-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-100 hover:bg-neutral-700 transition-all"
-        title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        style={{
+          width: '32px', height: '32px', borderRadius: '8px', border: 'none',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', fontSize: '14px', transition: 'all 200ms',
+          background: 'transparent', color: '#7A7A7A',
+        }}
+        title={isDark ? 'Light Mode' : 'Dark Mode'}
       >
         {isDark ? '☀️' : '🌙'}
       </button>
@@ -135,20 +147,20 @@ export function PlaygroundPage() {
         </div>
 
         {/* Control Panel — fixed, scrolls independently */}
-        <div style={{ width: '320px', flexShrink: 0, overflowY: 'auto', borderLeft: '1px solid #2a2a2a', background: '#0a0a0a' }}>
-          <div className="p-4 border-b border-neutral-800">
+        <div style={{ width: '320px', flexShrink: 0, overflowY: 'auto', borderLeft: '1px solid #E8E8E5', background: '#FFFFFF' }}>
+          <div style={{ padding: '16px', borderBottom: '1px solid #F0F0ED' }}>
             <button
               onClick={() => navigate('/')}
-              className="text-neutral-500 hover:text-neutral-300 text-sm mb-2 flex items-center gap-1"
+              style={{ color: '#7A7A7A', fontSize: '13px', background: 'none', border: 'none', cursor: 'pointer', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}
             >
               ← Gallery
             </button>
-            <h2 className="text-neutral-100 font-semibold text-lg">{styleName}</h2>
-            <p className="text-neutral-500 text-xs mt-1">{styleDesc}</p>
+            <h2 className="font-serif" style={{ fontSize: '20px', fontWeight: 400, color: '#1A1A1A', margin: 0 }}>{styleName}</h2>
+            <p style={{ color: '#7A7A7A', fontSize: '12px', marginTop: '4px' }}>{styleDesc}</p>
             {hasDemo && (
-              <div className="mt-2 flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-green-400" />
-                <span className="text-green-400 text-[10px] uppercase tracking-wider font-medium">Featured Demo</span>
+              <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#2D6A4F' }} />
+                <span style={{ color: '#2D6A4F', fontSize: '10px', textTransform: 'uppercase' as const, letterSpacing: '0.05em', fontWeight: 600 }}>Featured</span>
               </div>
             )}
           </div>
@@ -156,11 +168,19 @@ export function PlaygroundPage() {
           {baseStyle && (
             <>
               <ControlPanel params={params} onChange={updateParam} />
-              <div className="p-4 border-t border-neutral-800">
-                <button onClick={() => setShowExport(true)} className="w-full bg-brand hover:bg-brand-hover text-white py-2.5 rounded-lg font-medium text-sm transition-colors">
+              <div style={{ padding: '16px', borderTop: '1px solid #F0F0ED' }}>
+                <button
+                  onClick={() => setShowExport(true)}
+                  style={{ width: '100%', padding: '10px', borderRadius: '10px', border: 'none', background: '#2D6A4F', color: '#fff', fontSize: '14px', fontWeight: 500, cursor: 'pointer', transition: 'background 200ms' }}
+                  onMouseEnter={e => (e.currentTarget.style.background = '#245A42')}
+                  onMouseLeave={e => (e.currentTarget.style.background = '#2D6A4F')}
+                >
                   Export DESIGN.md
                 </button>
-                <button onClick={() => setParams(baseStyle.params)} className="w-full mt-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-400 py-2 rounded-lg text-sm transition-colors">
+                <button
+                  onClick={() => setParams(baseStyle.params)}
+                  style={{ width: '100%', marginTop: '8px', padding: '8px', borderRadius: '10px', border: '1px solid #E8E8E5', background: 'transparent', color: '#7A7A7A', fontSize: '13px', cursor: 'pointer', transition: 'all 200ms' }}
+                >
                   Reset to Default
                 </button>
               </div>
@@ -168,9 +188,10 @@ export function PlaygroundPage() {
           )}
 
           {!baseStyle && referenceDesign && (
-            <div className="p-4 text-neutral-500 text-sm">
-              <p className="mb-3">Featured reference design based on the real {referenceDesign.name} website.</p>
-              <a href={referenceDesign.demoUrl} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-neutral-800 hover:bg-neutral-700 text-neutral-300 py-2 rounded-lg text-sm transition-colors">
+            <div style={{ padding: '16px', color: '#7A7A7A', fontSize: '13px' }}>
+              <p style={{ marginBottom: '12px' }}>Featured reference design based on {referenceDesign.name}.</p>
+              <a href={referenceDesign.demoUrl} target="_blank" rel="noopener noreferrer"
+                style={{ display: 'block', textAlign: 'center', border: '1px solid #E8E8E5', color: '#4A4A4A', padding: '8px', borderRadius: '10px', fontSize: '13px', textDecoration: 'none', transition: 'all 200ms' }}>
                 Open Full Page ↗
               </a>
             </div>
