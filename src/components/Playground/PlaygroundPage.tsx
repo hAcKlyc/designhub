@@ -123,7 +123,15 @@ export function PlaygroundPage() {
               title={`${styleName} Demo`}
             />
           ) : (
-            <PreviewFrame params={params} cssOverrides={baseStyle?.cssOverrides} />
+            <PreviewFrame
+              params={params}
+              cssOverrides={
+                // Only apply real-site overrides when mode matches the design's default
+                baseStyle?.cssOverrides && params.mode === baseStyle.params.mode
+                  ? baseStyle.cssOverrides
+                  : undefined
+              }
+            />
           )}
         </div>
 
