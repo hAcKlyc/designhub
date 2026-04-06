@@ -109,13 +109,13 @@ export function ComponentShowcase() {
             }}>
               Core Principles
             </h3>
-            <ul style={{ fontSize: 'var(--text-base)', lineHeight: 1.8, color: 'var(--text-secondary)', paddingLeft: '20px', marginBottom: '16px' }}>
+            <ul style={{ fontSize: 'var(--text-base)', lineHeight: 1.8, color: 'var(--text-secondary)', paddingLeft: '24px', marginBottom: '16px', listStyleType: 'disc' }}>
               <li style={{ marginBottom: '4px' }}>Tokens define the visual language — colors, spacing, typography</li>
               <li style={{ marginBottom: '4px' }}>Components encode interaction patterns and accessibility</li>
               <li style={{ marginBottom: '4px' }}>Documentation bridges the gap between design and engineering</li>
             </ul>
 
-            <ol style={{ fontSize: 'var(--text-base)', lineHeight: 1.8, color: 'var(--text-secondary)', paddingLeft: '20px', marginBottom: '16px' }}>
+            <ol style={{ fontSize: 'var(--text-base)', lineHeight: 1.8, color: 'var(--text-secondary)', paddingLeft: '24px', marginBottom: '16px', listStyleType: 'decimal' }}>
               <li style={{ marginBottom: '4px' }}>Start with a color palette and type scale</li>
               <li style={{ marginBottom: '4px' }}>Build atomic components (buttons, inputs, badges)</li>
               <li style={{ marginBottom: '4px' }}>Compose into patterns (forms, cards, navigation)</li>
