@@ -1,6 +1,5 @@
 import type { DesignParams, CSSVariableSet } from '../../types';
 import { generateCSSVariables } from '../../lib/cssVariables';
-import { MockWebsite } from './MockWebsite';
 import { ComponentShowcase } from './ComponentShowcase';
 
 interface Props {
@@ -26,9 +25,7 @@ export function PreviewFrame({ params, compact = false, cssOverrides }: Props) {
   }
 
   return (
-    <div className="preview-frame overflow-auto" style={style}>
-      <MockWebsite />
-      <div style={{ borderTop: '1px solid var(--border)', margin: 'var(--space-12) 0' }} />
+    <div className="preview-frame" style={{ ...style, background: 'var(--bg)', minHeight: '100%' }}>
       <ComponentShowcase />
     </div>
   );

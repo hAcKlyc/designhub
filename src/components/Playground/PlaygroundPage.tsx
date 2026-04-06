@@ -106,7 +106,7 @@ export function PlaygroundPage() {
         </div>
 
         {/* Control Panel */}
-        <div className="w-80 flex-shrink-0 border-l border-neutral-800 bg-neutral-900 overflow-auto">
+        <div className="w-80 flex-shrink-0 border-l border-neutral-800 bg-neutral-900 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 56px)' }}>
           <div className="p-4 border-b border-neutral-800">
             <button
               onClick={() => navigate('/')}
