@@ -31,19 +31,20 @@ export function Header({ centerContent }: Props) {
         }}
       >
         <span style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: '16px',
-          fontWeight: 500,
+          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontSize: '22px',
+          fontWeight: 400,
           color: '#1A1A1A',
-          letterSpacing: '0.01em',
+          letterSpacing: '0.02em',
         }}>
           design-system
         </span>
         <span style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: '15px',
-          fontWeight: 500,
+          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontSize: '22px',
+          fontWeight: 400,
           color: '#2D6A4F',
+          letterSpacing: '0.02em',
         }}>
           .md
         </span>
