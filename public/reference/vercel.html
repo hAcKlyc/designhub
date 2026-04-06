@@ -3,21 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignHub — Vercel Design System</title>
+<title>DesignHub — Vercel Design System Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --bg: #ffffff;
-    --text: #171717;
-    --text-secondary: #4d4d4d;
-    --text-tertiary: #666666;
-    --text-placeholder: #808080;
+    --black: #171717;
+    --gray-600: #4d4d4d;
+    --gray-500: #666666;
+    --gray-400: #808080;
     --gray-100: #ebebeb;
     --gray-50: #fafafa;
     --link: #0072f5;
@@ -27,117 +26,327 @@
     --develop-blue: #0a72ef;
     --badge-bg: #ebf5ff;
     --badge-text: #0068d6;
-    --shadow-border: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    --shadow-border: rgba(0,0,0,0.08) 0px 0px 0px 1px;
     --shadow-card: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, rgba(0,0,0,0.04) 0px 8px 8px -8px, #fafafa 0px 0px 0px 1px;
-    --shadow-ring: rgb(235, 235, 235) 0px 0px 0px 1px;
-    --font: 'Geist', 'Inter', Arial, sans-serif;
+    --shadow-ring: rgb(235,235,235) 0px 0px 0px 1px;
+    --font: 'Inter', Arial, sans-serif;
     --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   body {
     font-family: var(--font);
     background: var(--bg);
-    color: var(--text);
-    font-feature-settings: "liga";
+    color: var(--black);
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: "liga";
   }
 
-  /* Sticky Header */
-  .sticky-header {
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Sticky Header ── */
+  .header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--bg);
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     box-shadow: var(--shadow-border);
-    padding: 0 32px;
-    height: 48px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 24px;
+    max-width: 100%;
   }
-  .sticky-header .brand {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.32px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .sticky-header .brand svg { width: 20px; height: 20px; }
+  .header-left { display: flex; align-items: center; gap: 24px; }
+  .header-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; letter-spacing: -0.32px; }
+  .header-logo svg { width: 22px; height: 22px; }
+  .header-nav { display: flex; gap: 20px; }
+  .header-nav a { font-size: 14px; font-weight: 400; color: var(--gray-500); transition: color 0.15s; }
+  .header-nav a:hover { color: var(--black); }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .btn-sm { padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; border: none; cursor: pointer; font-family: var(--font); }
+  .btn-sm-ghost { background: transparent; color: var(--gray-500); }
+  .btn-sm-ghost:hover { color: var(--black); }
+  .btn-sm-dark { background: var(--black); color: #fff; }
 
-  /* Hero */
+  /* ── Dark Hero ── */
   .hero {
+    background: linear-gradient(180deg, #000000 0%, #171717 40%, #333333 70%, #ffffff 100%);
+    padding: 120px 24px 200px;
     text-align: center;
-    padding: 100px 32px 80px;
-    max-width: 900px;
-    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(10,114,239,0.08) 0%, rgba(222,29,141,0.05) 40%, transparent 70%);
+    pointer-events: none;
   }
   .hero h1 {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 1.00;
-    letter-spacing: -2.4px;
-    color: var(--text);
-    margin-bottom: 16px;
-    font-feature-settings: "liga";
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -2.88px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero p {
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.80;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto 32px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    position: relative;
+    z-index: 1;
   }
   .hero-buttons {
     display: flex;
     gap: 12px;
     justify-content: center;
+    position: relative;
+    z-index: 1;
   }
-  .btn-primary {
-    background: #171717;
-    color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    font-feature-settings: "liga";
-  }
-  .btn-secondary {
+  .btn-hero-primary {
     background: #ffffff;
-    color: #171717;
-    padding: 8px 16px;
-    border-radius: 6px;
+    color: #000000;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
     border: none;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 500;
     cursor: pointer;
-    box-shadow: var(--shadow-ring);
-    font-feature-settings: "liga";
+    font-family: var(--font);
+    transition: opacity 0.15s;
   }
-
-  /* Section titles */
-  .section-title {
-    font-size: 12px;
+  .btn-hero-primary:hover { opacity: 0.9; }
+  .btn-hero-secondary {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    font-family: var(--font);
+    transition: all 0.15s;
+  }
+  .btn-hero-secondary:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  /* ── Terminal Snippet ── */
+  .terminal-wrap {
+    max-width: 600px;
+    margin: -120px auto 80px;
+    position: relative;
+    z-index: 2;
+  }
+  .terminal {
+    background: #0a0a0a;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4), rgba(255,255,255,0.05) 0px 0px 0px 1px;
+    overflow: hidden;
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .terminal-dot.r { background: #ff5f57; }
+  .terminal-dot.y { background: #febc2e; }
+  .terminal-dot.g { background: #28c840; }
+  .terminal-bar span {
+    font-size: 13px;
     font-family: var(--font-mono);
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    letter-spacing: 0;
-    margin-bottom: 32px;
+    color: rgba(255,255,255,0.35);
+    margin-left: 8px;
+  }
+  .terminal-body {
+    padding: 20px 20px 28px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .terminal-line { color: rgba(255,255,255,0.5); }
+  .terminal-line .prompt { color: #28c840; }
+  .terminal-line .cmd { color: #ffffff; }
+  .terminal-line .flag { color: #0a72ef; }
+  .terminal-line .comment { color: rgba(255,255,255,0.25); }
+  .terminal-line .success { color: #28c840; }
+  .terminal-line .pink { color: #de1d8d; }
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: rgba(255,255,255,0.6);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* ── Framework Logos ── */
+  .frameworks {
+    padding: 0 24px 80px;
     text-align: center;
-    font-feature-settings: "liga";
+  }
+  .frameworks-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray-400);
+    margin-bottom: 28px;
+  }
+  .frameworks-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .fw-item {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .fw-item:hover { opacity: 1; }
+  .fw-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
   }
 
-  /* Feature Cards */
-  .features {
-    max-width: 1200px;
+  /* ── Workflow Pipeline ── */
+  .workflow {
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 32px 80px;
+    padding: 80px 24px;
+    border-top: 1px solid var(--black);
+  }
+  .workflow-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .workflow-header h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -2.4px;
+    line-height: 1.0;
+    margin-bottom: 16px;
+  }
+  .workflow-header p {
+    font-size: 20px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    position: relative;
+  }
+  .pipeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 16.5%;
+    right: 16.5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--develop-blue), var(--preview-pink), var(--ship-red));
+    z-index: 0;
+    transform: translateY(-24px);
+  }
+  .pipeline-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 32px 24px;
+  }
+  .pipeline-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 20px;
+    color: #fff;
+  }
+  .pipeline-step .step-label {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .pipeline-step h3 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.96px;
+    margin-bottom: 8px;
+  }
+  .pipeline-step p {
+    font-size: 16px;
+    color: var(--gray-600);
+    line-height: 1.5;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* ── Feature Cards ── */
+  .features {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .features-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .features-header h2 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -2.4px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .features-header p {
+    font-size: 18px;
+    color: var(--gray-600);
+    line-height: 1.6;
   }
   .features-grid {
     display: grid;
@@ -145,500 +354,486 @@
     gap: 16px;
   }
   .feature-card {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 32px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
     box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s;
   }
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+  .feature-card:hover {
+    box-shadow: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.06) 0px 4px 8px, rgba(0,0,0,0.06) 0px 16px 24px -8px, #fafafa 0px 0px 0px 1px;
+  }
+  .feature-card-visual {
+    height: 180px;
+    background: #0a0a0a;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
-    font-size: 18px;
+    overflow: hidden;
   }
-  .feature-card h3 {
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: -0.96px;
-    line-height: 1.33;
-    margin-bottom: 8px;
-  }
-  .feature-card p {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.50;
-    color: var(--text-secondary);
-  }
-
-  /* Form Section */
-  .form-section {
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 0 32px 80px;
-  }
-  .form-section h2 {
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: -1.28px;
-    line-height: 1.25;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-  .form-group {
-    margin-bottom: 16px;
-  }
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: var(--text);
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    box-shadow: var(--shadow-border);
-    font-family: var(--font);
-    font-size: 14px;
-    color: var(--text);
-    background: var(--bg);
-    outline: none;
-    font-feature-settings: "liga";
-  }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: 2px solid var(--focus);
-    outline-offset: 1px;
-  }
-  .form-group textarea {
-    min-height: 100px;
-    resize: vertical;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: var(--text-placeholder);
-  }
-  .form-submit {
-    text-align: center;
-    margin-top: 24px;
-  }
-
-  /* Component Showcase */
-  .showcase {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 32px 80px;
-    border-top: 1px solid #171717;
-    padding-top: 80px;
-  }
-  .showcase h2 {
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: -1.28px;
-    line-height: 1.25;
-    margin-bottom: 48px;
-    text-align: center;
-  }
-  .showcase-section {
-    margin-bottom: 48px;
-  }
-  .showcase-section h3 {
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.32px;
-    margin-bottom: 16px;
-    color: var(--text);
-  }
-
-  /* Color Palette */
-  .color-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .color-swatch {
+  .feature-card-visual .mock-ui {
+    width: 85%;
+    height: 70%;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 12px;
     gap: 6px;
   }
-  .color-swatch .swatch {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
-    box-shadow: var(--shadow-border);
+  .mock-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
   }
-  .color-swatch .label {
-    font-size: 12px;
-    font-family: var(--font-mono);
-    color: var(--text-tertiary);
-  }
-  .color-swatch .name {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text);
-  }
-
-  /* Typography Scale */
-  .type-scale {
+  .mock-bar.short { width: 40%; }
+  .mock-bar.medium { width: 65%; }
+  .mock-bar.long { width: 85%; }
+  .mock-bar.accent-blue { background: rgba(10,114,239,0.4); }
+  .mock-bar.accent-pink { background: rgba(222,29,141,0.3); }
+  .mock-bar.accent-red { background: rgba(255,91,79,0.3); }
+  .mock-row {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .type-row {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-  }
-  .type-row .meta {
-    font-size: 12px;
-    font-family: var(--font-mono);
-    color: var(--text-tertiary);
-    min-width: 120px;
-    flex-shrink: 0;
-  }
-
-  /* Buttons */
-  .button-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    gap: 6px;
     align-items: center;
   }
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    box-shadow: var(--shadow-border);
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
+  .mock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
-  .btn-pill {
-    background: var(--badge-bg);
-    color: var(--badge-text);
-    padding: 0px 10px;
-    border-radius: 9999px;
-    border: none;
-    font-family: var(--font);
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    line-height: 24px;
-  }
-  .btn-danger {
-    background: var(--ship-red);
-    color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  /* Card Variants */
-  .card-variants {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .card-v {
+  .feature-card-body {
     padding: 24px;
-    border-radius: 8px;
   }
-  .card-v.shadow-border { box-shadow: var(--shadow-border); }
-  .card-v.shadow-card { box-shadow: var(--shadow-card); }
-  .card-v.shadow-ring { box-shadow: var(--shadow-ring); }
-  .card-v h4 {
-    font-size: 16px;
+  .feature-card-body h3 {
+    font-size: 20px;
     font-weight: 600;
-    letter-spacing: -0.32px;
-    margin-bottom: 4px;
+    letter-spacing: -0.96px;
+    margin-bottom: 8px;
   }
-  .card-v p {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  /* Input States */
-  .input-states {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .input-state label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: 6px;
-  }
-  .input-state input {
-    width: 100%;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    box-shadow: var(--shadow-border);
-    font-family: var(--font);
-    font-size: 14px;
-    color: var(--text);
-    background: var(--bg);
-    outline: none;
-  }
-  .input-state.focused input {
-    outline: 2px solid var(--focus);
-    outline-offset: 1px;
-  }
-  .input-state.disabled input {
-    color: var(--text-placeholder);
-    background: var(--gray-50);
+  .feature-card-body p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.5;
   }
 
-  /* Shadows */
-  .shadow-grid {
+  /* ── Trust Bar ── */
+  .trust {
+    padding: 80px 24px;
+    text-align: center;
+    border-top: 1px solid var(--gray-100);
+  }
+  .trust-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray-400);
+    margin-bottom: 32px;
+  }
+  .trust-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .trust-logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-400);
+    letter-spacing: -0.5px;
+    opacity: 0.5;
+  }
+
+  /* ── Metrics ── */
+  .metrics {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+  .metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
-  .shadow-box {
-    height: 80px;
+  .metric-card {
+    padding: 32px 24px;
     border-radius: 8px;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-family: var(--font-mono);
-    color: var(--text-tertiary);
-  }
-
-  /* Radius */
-  .radius-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: end;
-  }
-  .radius-item {
+    box-shadow: var(--shadow-card);
     text-align: center;
   }
-  .radius-box {
-    width: 64px;
-    height: 64px;
-    background: var(--gray-50);
-    box-shadow: var(--shadow-border);
-    margin-bottom: 6px;
+  .metric-card .number {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -2.4px;
+    line-height: 1.0;
+    margin-bottom: 8px;
   }
-  .radius-label {
-    font-size: 11px;
-    font-family: var(--font-mono);
-    color: var(--text-tertiary);
+  .metric-card .label {
+    font-size: 14px;
+    color: var(--gray-500);
+    font-weight: 400;
   }
 
-  @media (max-width: 768px) {
-    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 32px; letter-spacing: -1.28px; }
+  /* ── CTA Section ── */
+  .cta-section {
+    background: var(--black);
+    padding: 100px 24px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -2.4px;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .cta-section .btn-hero-primary { background: #fff; color: #000; }
+
+  /* ── Footer ── */
+  .footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 24px 48px;
+    border-top: 1px solid var(--gray-100);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-brand svg { width: 22px; height: 22px; }
+  .footer-brand p { font-size: 13px; color: var(--gray-500); line-height: 1.5; max-width: 200px; }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: 10px;
+    transition: color 0.15s;
+  }
+  .footer-col a:hover { color: var(--black); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-100);
+  }
+  .footer-bottom span {
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  /* ── DesignHub Badge ── */
+  .designhub-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--black);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .designhub-badge:hover { transform: translateY(-2px); }
+  .designhub-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #28c840; }
+
+  @media (max-width: 900px) {
+    .hero h1 { font-size: 40px; letter-spacing: -1.6px; }
+    .features-grid, .pipeline, .metrics-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .header-nav { display: none; }
+    .trust-logos { gap: 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Sticky Header -->
-<div class="sticky-header">
-  <div class="brand">
-    <svg viewBox="0 0 76 65" fill="currentColor"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
-    Vercel Design System
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <a href="#" class="header-logo">
+      <svg viewBox="0 0 76 65" fill="currentColor"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+      Vercel
+    </a>
+    <nav class="header-nav">
+      <a href="#">Products</a>
+      <a href="#">Solutions</a>
+      <a href="#">Resources</a>
+      <a href="#">Enterprise</a>
+      <a href="#">Docs</a>
+      <a href="#">Pricing</a>
+    </nav>
   </div>
-</div>
+  <div class="header-right">
+    <button class="btn-sm btn-sm-ghost">Log In</button>
+    <button class="btn-sm btn-sm-ghost">Contact</button>
+    <button class="btn-sm btn-sm-dark">Sign Up</button>
+  </div>
+</header>
 
 <!-- Hero Section -->
 <section class="hero">
-  <h1>Build beautiful products faster</h1>
-  <p>Ship with confidence using a design system built for precision. Every component, every token, every shadow — engineered for production.</p>
+  <h1>Your complete platform for the web</h1>
+  <p>Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster, more personalized web.</p>
   <div class="hero-buttons">
-    <button class="btn-primary">Start Deploying</button>
-    <button class="btn-secondary">View Documentation</button>
+    <button class="btn-hero-primary">Start Deploying</button>
+    <button class="btn-hero-secondary">Get a Demo</button>
+  </div>
+</section>
+
+<!-- Terminal Snippet -->
+<div class="terminal-wrap">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot r"></div>
+      <div class="terminal-dot y"></div>
+      <div class="terminal-dot g"></div>
+      <span>~/projects</span>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">npx create-next-app</span><span class="flag">@latest</span> <span class="cmd">my-app</span></div>
+      <div class="terminal-line"><span class="comment"># Creating a new Next.js app in ./my-app</span></div>
+      <div class="terminal-line"><span class="success">&#10003;</span> <span class="cmd">Installing dependencies...</span></div>
+      <div class="terminal-line"><span class="success">&#10003;</span> <span class="cmd">Initialized git repository</span></div>
+      <div class="terminal-line"></div>
+      <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">cd my-app && vercel</span></div>
+      <div class="terminal-line"><span class="pink">Vercel CLI 39.1.0</span></div>
+      <div class="terminal-line"><span class="success">&#10003;</span> <span class="cmd">Deployed to</span> <span class="flag">https://my-app.vercel.app</span> <span class="comment">[2s]</span></div>
+      <div class="terminal-line"><span class="prompt">$</span> <span class="terminal-cursor"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Frameworks -->
+<section class="frameworks">
+  <div class="frameworks-label">Works with your favorite frameworks</div>
+  <div class="frameworks-row">
+    <div class="fw-item"><div class="fw-icon" style="background:#000"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2L2 19.5h20L12 2z"/></svg></div> Next.js</div>
+    <div class="fw-item"><div class="fw-icon" style="background:#ff3e00">S</div> SvelteKit</div>
+    <div class="fw-item"><div class="fw-icon" style="background:#00dc82">N</div> Nuxt</div>
+    <div class="fw-item"><div class="fw-icon" style="background:#0ED7B5">V</div> Vite</div>
+    <div class="fw-item"><div class="fw-icon" style="background:#dd0031">A</div> Angular</div>
+    <div class="fw-item"><div class="fw-icon" style="background:#e34c26">G</div> Gatsby</div>
+    <div class="fw-item"><div class="fw-icon" style="background:#0e7fcf">R</div> Remix</div>
+  </div>
+</section>
+
+<!-- Workflow Pipeline -->
+<section class="workflow">
+  <div class="workflow-header">
+    <h2>Develop. Preview. Ship.</h2>
+    <p>The complete workflow for building and deploying web applications with confidence.</p>
+  </div>
+  <div class="pipeline">
+    <div class="pipeline-step">
+      <div class="pipeline-icon" style="background: var(--develop-blue);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <div class="step-label" style="color: var(--develop-blue);">Develop</div>
+      <h3>Build locally</h3>
+      <p>Start with Next.js and your favorite tools. Hot reload, TypeScript, and zero-config.</p>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon" style="background: var(--preview-pink);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <div class="step-label" style="color: var(--preview-pink);">Preview</div>
+      <h3>Collaborate on every push</h3>
+      <p>Every Git branch gets a live preview URL. Share, review, and iterate before merging.</p>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon" style="background: var(--ship-red);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+      </div>
+      <div class="step-label" style="color: var(--ship-red);">Ship</div>
+      <h3>Go global instantly</h3>
+      <p>Deploy to the edge. Automatic HTTPS, global CDN, and instant rollbacks.</p>
+    </div>
   </div>
 </section>
 
 <!-- Feature Cards -->
 <section class="features">
-  <div class="section-title">Features</div>
+  <div class="features-header">
+    <h2>Everything you need to ship</h2>
+    <p>Built-in infrastructure for the modern web</p>
+  </div>
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(10,114,239,0.08); color:var(--develop-blue);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <div class="feature-card-visual">
+        <div class="mock-ui">
+          <div class="mock-row"><div class="mock-dot" style="background: var(--develop-blue);"></div><div class="mock-bar medium accent-blue"></div></div>
+          <div class="mock-bar long"></div>
+          <div class="mock-bar medium"></div>
+          <div class="mock-row"><div class="mock-dot" style="background: #28c840;"></div><div class="mock-bar short" style="background: rgba(40,200,64,0.3);"></div></div>
+          <div class="mock-bar long"></div>
+        </div>
       </div>
-      <h3>Develop</h3>
-      <p>Shadow-as-border technique replaces traditional CSS borders with zero-offset box-shadows for smoother transitions.</p>
+      <div class="feature-card-body">
+        <h3>Edge Functions</h3>
+        <p>Run server-side code at the edge, close to your users. Zero cold starts, global by default.</p>
+      </div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(222,29,141,0.08); color:var(--preview-pink);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <div class="feature-card-visual">
+        <div class="mock-ui">
+          <div class="mock-bar long accent-pink"></div>
+          <div class="mock-bar short"></div>
+          <div class="mock-row"><div class="mock-dot" style="background: var(--preview-pink);"></div><div class="mock-bar medium accent-pink"></div></div>
+          <div class="mock-bar long"></div>
+          <div class="mock-bar medium"></div>
+        </div>
       </div>
-      <h3>Preview</h3>
-      <p>Multi-layer shadow stacks where each layer serves a specific purpose: border, elevation, ambient, and inner highlight.</p>
+      <div class="feature-card-body">
+        <h3>Analytics</h3>
+        <p>Real-time performance insights with Web Vitals tracking. Understand your visitors without compromising privacy.</p>
+      </div>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="background:rgba(255,91,79,0.08); color:var(--ship-red);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+      <div class="feature-card-visual">
+        <div class="mock-ui">
+          <div class="mock-row"><div class="mock-dot" style="background: var(--ship-red);"></div><div class="mock-bar short accent-red"></div></div>
+          <div class="mock-bar long"></div>
+          <div class="mock-bar medium"></div>
+          <div class="mock-bar long"></div>
+          <div class="mock-row"><div class="mock-dot" style="background: #fff; opacity: 0.2;"></div><div class="mock-bar short"></div></div>
+        </div>
       </div>
-      <h3>Ship</h3>
-      <p>Geist font with aggressive negative letter-spacing creates text that feels minified, like code optimized for production.</p>
+      <div class="feature-card-body">
+        <h3>Speed Insights</h3>
+        <p>Track Core Web Vitals from real user data. Optimize the metrics that matter most to your visitors.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Form Section -->
-<section class="form-section">
-  <h2>Get in Touch</h2>
-  <div class="form-group">
-    <label>Name</label>
-    <input type="text" placeholder="Enter your name">
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input type="email" placeholder="you@example.com">
-  </div>
-  <div class="form-group">
-    <label>Message</label>
-    <textarea placeholder="Tell us about your project..."></textarea>
-  </div>
-  <div class="form-submit">
-    <button class="btn-primary">Submit</button>
+<!-- Trust Bar -->
+<section class="trust">
+  <div class="trust-label">Trusted by the best frontend teams</div>
+  <div class="trust-logos">
+    <span class="trust-logo">OpenAI</span>
+    <span class="trust-logo">Perplexity</span>
+    <span class="trust-logo">Cursor</span>
+    <span class="trust-logo">Notion</span>
+    <span class="trust-logo">HashiCorp</span>
+    <span class="trust-logo">Washington Post</span>
+    <span class="trust-logo">Under Armour</span>
   </div>
 </section>
 
-<!-- Component Showcase -->
-<section class="showcase">
-  <h2>Component Showcase</h2>
-
-  <!-- Color Palette -->
-  <div class="showcase-section">
-    <h3>Color Palette</h3>
-    <div class="color-grid">
-      <div class="color-swatch"><div class="swatch" style="background:#171717"></div><div class="name">Vercel Black</div><div class="label">#171717</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">Pure White</div><div class="label">#ffffff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#4d4d4d"></div><div class="name">Gray 600</div><div class="label">#4d4d4d</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#666666"></div><div class="name">Gray 500</div><div class="label">#666666</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ebebeb"></div><div class="name">Gray 100</div><div class="label">#ebebeb</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#fafafa"></div><div class="name">Gray 50</div><div class="label">#fafafa</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#0072f5"></div><div class="name">Link Blue</div><div class="label">#0072f5</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ff5b4f"></div><div class="name">Ship Red</div><div class="label">#ff5b4f</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#de1d8d"></div><div class="name">Preview Pink</div><div class="label">#de1d8d</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#0a72ef"></div><div class="name">Develop Blue</div><div class="label">#0a72ef</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ebf5ff"></div><div class="name">Badge Blue</div><div class="label">#ebf5ff</div></div>
+<!-- Metrics -->
+<section class="metrics">
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="number">~10B</div>
+      <div class="label">Requests per week</div>
     </div>
-  </div>
-
-  <!-- Typography Scale -->
-  <div class="showcase-section">
-    <h3>Typography Scale</h3>
-    <div class="type-scale">
-      <div class="type-row"><span class="meta">48px / 600</span><span style="font-size:48px;font-weight:600;letter-spacing:-2.4px;line-height:1;">Display Hero</span></div>
-      <div class="type-row"><span class="meta">40px / 600</span><span style="font-size:40px;font-weight:600;letter-spacing:-2.4px;line-height:1.2;">Section Heading</span></div>
-      <div class="type-row"><span class="meta">32px / 600</span><span style="font-size:32px;font-weight:600;letter-spacing:-1.28px;line-height:1.25;">Sub-heading Large</span></div>
-      <div class="type-row"><span class="meta">24px / 600</span><span style="font-size:24px;font-weight:600;letter-spacing:-0.96px;line-height:1.33;">Card Title</span></div>
-      <div class="type-row"><span class="meta">20px / 400</span><span style="font-size:20px;font-weight:400;line-height:1.8;color:var(--text-secondary);">Body Large — introductions and descriptions</span></div>
-      <div class="type-row"><span class="meta">16px / 400</span><span style="font-size:16px;font-weight:400;line-height:1.5;">Body — standard reading text</span></div>
-      <div class="type-row"><span class="meta">14px / 500</span><span style="font-size:14px;font-weight:500;line-height:1.43;">Button / Link text</span></div>
-      <div class="type-row"><span class="meta">12px / 500</span><span style="font-size:12px;font-weight:500;color:var(--text-tertiary);line-height:1.33;">Caption — metadata, tags</span></div>
-      <div class="type-row"><span class="meta">16px Mono</span><span style="font-size:16px;font-family:var(--font-mono);font-weight:400;line-height:1.5;">const deploy = await vercel.ship()</span></div>
-      <div class="type-row"><span class="meta">12px Mono ↑</span><span style="font-size:12px;font-family:var(--font-mono);font-weight:500;text-transform:uppercase;line-height:1;">TECHNICAL LABEL</span></div>
+    <div class="metric-card">
+      <div class="number" style="color: var(--develop-blue);">99.99%</div>
+      <div class="label">Guaranteed uptime</div>
     </div>
-  </div>
-
-  <!-- Button Variants -->
-  <div class="showcase-section">
-    <h3>Button Variants</h3>
-    <div class="button-row">
-      <button class="btn-primary">Primary Dark</button>
-      <button class="btn-secondary">Secondary White</button>
-      <button class="btn-ghost">Ghost</button>
-      <button class="btn-pill">New Feature</button>
-      <button class="btn-danger">Ship Red</button>
+    <div class="metric-card">
+      <div class="number" style="color: var(--preview-pink);">18</div>
+      <div class="label">Global edge regions</div>
     </div>
-  </div>
-
-  <!-- Card Variants -->
-  <div class="showcase-section">
-    <h3>Card Variants</h3>
-    <div class="card-variants">
-      <div class="card-v shadow-border">
-        <h4>Shadow Border</h4>
-        <p>rgba(0,0,0,0.08) 0px 0px 0px 1px</p>
-      </div>
-      <div class="card-v shadow-card">
-        <h4>Full Card Stack</h4>
-        <p>Border + elevation + ambient + inner #fafafa ring</p>
-      </div>
-      <div class="card-v shadow-ring">
-        <h4>Light Ring</h4>
-        <p>rgb(235,235,235) 0px 0px 0px 1px</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Input States -->
-  <div class="showcase-section">
-    <h3>Input States</h3>
-    <div class="input-states">
-      <div class="input-state">
-        <label>Default</label>
-        <input type="text" placeholder="Default state">
-      </div>
-      <div class="input-state focused">
-        <label>Focused</label>
-        <input type="text" value="Focus ring active">
-      </div>
-      <div class="input-state disabled">
-        <label>Disabled</label>
-        <input type="text" value="Disabled" disabled>
-      </div>
-    </div>
-  </div>
-
-  <!-- Shadow Levels -->
-  <div class="showcase-section">
-    <h3>Shadow Levels</h3>
-    <div class="shadow-grid">
-      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.08) 0px 0px 0px 1px;">Level 1 — Ring</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px;">Level 2 — Subtle</div>
-      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, rgba(0,0,0,0.04) 0px 8px 8px -8px, #fafafa 0px 0px 0px 1px;">Level 3 — Full</div>
-    </div>
-  </div>
-
-  <!-- Border Radius -->
-  <div class="showcase-section">
-    <h3>Border Radius</h3>
-    <div class="radius-row">
-      <div class="radius-item"><div class="radius-box" style="border-radius:2px;"></div><div class="radius-label">2px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">4px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:12px;"></div><div class="radius-label">12px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:9999px;"></div><div class="radius-label">9999px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-label">50%</div></div>
+    <div class="metric-card">
+      <div class="number" style="color: var(--ship-red);">~2s</div>
+      <div class="label">Average deploy time</div>
     </div>
   </div>
 </section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Start building today</h2>
+  <p>Deploy your project in seconds. No credit card required.</p>
+  <button class="btn-hero-primary">Start Deploying</button>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg viewBox="0 0 76 65" fill="#171717" width="22" height="22"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+      <p>Vercel provides the developer tools and cloud infrastructure to build, scale, and secure a faster web.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Previews</a>
+      <a href="#">AI</a>
+      <a href="#">Edge Functions</a>
+      <a href="#">Analytics</a>
+      <a href="#">Next.js</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#">Documentation</a>
+      <a href="#">Guides</a>
+      <a href="#">Blog</a>
+      <a href="#">Changelog</a>
+      <a href="#">Templates</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+      <a href="#">Partners</a>
+      <a href="#">Privacy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">DPA</a>
+      <a href="#">SLA</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Vercel, Inc.</span>
+    <span style="font-size: 12px; color: var(--gray-400);">DesignHub Demo &mdash; Not affiliated with Vercel</span>
+  </div>
+</footer>
+
+<!-- DesignHub Badge -->
+<a href="/" class="designhub-badge"><span class="dot"></span> Built with DesignHub</a>
 
 </body>
 </html>

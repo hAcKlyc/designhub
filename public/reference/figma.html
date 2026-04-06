@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignHub — Figma Design System</title>
+<title>DesignHub — Figma Design System Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,8 +16,14 @@
     --white: #ffffff;
     --glass-dark: rgba(0, 0, 0, 0.08);
     --glass-light: rgba(255, 255, 255, 0.16);
-    --font: 'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
-    --font-mono: 'Space Mono', 'SF Mono', menlo, monospace;
+    --green: #0acf83;
+    --purple: #a259ff;
+    --red: #f24e1e;
+    --coral: #ff7262;
+    --blue: #1abcfe;
+    --yellow: #ffbe0b;
+    --font: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Space Mono', 'SF Mono', monospace;
   }
 
   body {
@@ -28,501 +34,659 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Header */
-  .sticky-header {
+  /* Sticky Header */
+  .header {
     position: sticky;
     top: 0;
     z-index: 100;
     background: var(--white);
     border-bottom: 1px solid rgba(0,0,0,0.08);
-    padding: 0 32px;
-    height: 48px;
+    padding: 0 40px;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .sticky-header .brand {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--black);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: -0.14px;
-  }
-  .figma-icon {
-    width: 20px;
-    height: 20px;
-    display: flex;
+  .header-left { display: flex; align-items: center; gap: 32px; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 16px; letter-spacing: -0.14px; }
+  .figma-logo {
+    width: 24px; height: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     gap: 2px;
-    flex-wrap: wrap;
   }
-  .figma-icon span {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-  }
-  .figma-icon span:nth-child(1) { background: #f24e1e; border-radius: 50% 0 0 50%; }
-  .figma-icon span:nth-child(2) { background: #ff7262; border-radius: 0 50% 50% 0; }
-  .figma-icon span:nth-child(3) { background: #a259ff; border-radius: 50% 0 0 50%; }
-  .figma-icon span:nth-child(4) { background: #1abcfe; border-radius: 0 50% 50% 0; }
+  .figma-logo span { border-radius: 50%; }
+  .figma-logo span:nth-child(1) { background: #f24e1e; border-radius: 50% 0 0 50%; }
+  .figma-logo span:nth-child(2) { background: #ff7262; border-radius: 0 50% 50% 0; }
+  .figma-logo span:nth-child(3) { background: #a259ff; border-radius: 50% 0 0 50%; }
+  .figma-logo span:nth-child(4) { background: #1abcfe; border-radius: 0 50% 50% 0; }
+  .figma-logo span:nth-child(5) { background: #0acf83; border-radius: 50% 0 0 50%; }
+  .figma-logo span:nth-child(6) { background: #0acf83; border-radius: 0 50% 50% 0; }
 
-  /* Hero - Gradient */
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    font-size: 14px; font-weight: 400; color: var(--black);
+    text-decoration: none; letter-spacing: -0.14px;
+  }
+  .nav-links a:hover { opacity: 0.7; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .btn-black {
+    background: var(--black); color: var(--white);
+    padding: 8px 18px 10px; border-radius: 50px; border: none;
+    font-family: var(--font); font-size: 14px; font-weight: 400;
+    cursor: pointer; letter-spacing: -0.14px;
+  }
+  .btn-ghost-nav {
+    background: transparent; color: var(--black); border: none;
+    font-family: var(--font); font-size: 14px; font-weight: 400;
+    cursor: pointer; letter-spacing: -0.14px;
+  }
+
+  /* Hero Section */
   .hero {
+    position: relative;
     text-align: center;
-    padding: 100px 32px 80px;
-    background: linear-gradient(135deg, #0acf83 0%, #a259ff 35%, #f24e1e 65%, #ff7262 100%);
+    padding: 100px 40px 80px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(10, 207, 131, 0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(162, 89, 255, 0.5) 0%, transparent 45%),
+      radial-gradient(ellipse at 60% 80%, rgba(242, 78, 30, 0.5) 0%, transparent 45%),
+      radial-gradient(ellipse at 30% 20%, rgba(26, 188, 254, 0.4) 0%, transparent 40%),
+      radial-gradient(ellipse at 70% 60%, rgba(255, 190, 11, 0.4) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 114, 98, 0.3) 0%, transparent 60%),
+      linear-gradient(135deg, #0acf83 0%, #a259ff 30%, #f24e1e 60%, #1abcfe 100%);
     color: var(--white);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 15% 85%, rgba(10, 207, 131, 0.8) 0%, transparent 30%),
+      radial-gradient(circle at 85% 15%, rgba(255, 190, 11, 0.6) 0%, transparent 25%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
   }
   .hero h1 {
-    font-size: 64px;
-    font-weight: 400;
-    line-height: 1.00;
-    letter-spacing: -0.96px;
-    margin-bottom: 16px;
-    font-feature-settings: "kern";
+    font-size: 72px; font-weight: 400; line-height: 1.0;
+    letter-spacing: -1.5px; margin-bottom: 20px;
+    position: relative; z-index: 1;
   }
   .hero p {
-    font-size: 20px;
-    font-weight: 330;
-    line-height: 1.40;
-    letter-spacing: -0.14px;
-    max-width: 560px;
-    margin: 0 auto 32px;
-    opacity: 0.9;
+    font-size: 20px; font-weight: 300; line-height: 1.4;
+    letter-spacing: -0.14px; max-width: 560px;
+    margin: 0 auto 36px; opacity: 0.92;
+    position: relative; z-index: 1;
   }
-  .hero-buttons { display: flex; gap: 12px; justify-content: center; }
+  .hero-buttons {
+    display: flex; gap: 12px; justify-content: center;
+    position: relative; z-index: 1;
+  }
   .btn-white {
-    background: var(--white);
-    color: var(--black);
-    padding: 8px 18px 10px;
-    border-radius: 50px;
-    border: none;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-    letter-spacing: -0.14px;
+    background: var(--white); color: var(--black);
+    padding: 10px 24px 12px; border-radius: 50px; border: none;
+    font-family: var(--font); font-size: 16px; font-weight: 400;
+    cursor: pointer; letter-spacing: -0.14px;
   }
-  .btn-white:focus { outline: dashed 2px var(--black); outline-offset: 2px; }
   .btn-glass {
-    background: var(--glass-light);
-    color: var(--white);
-    padding: 8px 18px 10px;
-    border-radius: 50px;
-    border: none;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 400;
+    background: var(--glass-light); color: var(--white);
+    padding: 10px 24px 12px; border-radius: 50px; border: none;
+    font-family: var(--font); font-size: 16px; font-weight: 400;
+    cursor: pointer; letter-spacing: -0.14px;
+    backdrop-filter: blur(8px);
+  }
+
+  /* Figma Canvas Mockup */
+  .canvas-section {
+    max-width: 1100px; margin: 0 auto;
+    padding: 80px 40px 60px;
+  }
+  .canvas-section .section-label {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    text-align: center; margin-bottom: 40px; color: rgba(0,0,0,0.4);
+  }
+  .figma-canvas {
+    background: #1e1e1e;
+    border-radius: 12px;
+    height: 480px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.15);
+  }
+  /* Top bar */
+  .canvas-topbar {
+    height: 40px; background: #2c2c2c;
+    display: flex; align-items: center;
+    padding: 0 12px; gap: 8px;
+    border-bottom: 1px solid #3c3c3c;
+  }
+  .canvas-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .canvas-dot.red { background: #ff5f57; }
+  .canvas-dot.yellow { background: #febc2e; }
+  .canvas-dot.green { background: #28c840; }
+  .canvas-filename {
+    font-size: 12px; color: #999; margin-left: 12px;
+    font-family: var(--font); letter-spacing: -0.14px;
+  }
+  /* Left toolbar */
+  .canvas-toolbar {
+    position: absolute; top: 52px; left: 12px;
+    width: 36px; display: flex; flex-direction: column;
+    gap: 4px; align-items: center;
+  }
+  .tool-btn {
+    width: 32px; height: 32px; border-radius: 6px;
+    background: #3c3c3c; display: flex;
+    align-items: center; justify-content: center;
     cursor: pointer;
-    letter-spacing: -0.14px;
   }
-  .btn-glass:focus { outline: dashed 2px var(--white); outline-offset: 2px; }
+  .tool-btn.active { background: #0c8ce9; }
+  .tool-btn svg { width: 16px; height: 16px; }
+  /* Left panel - layers */
+  .canvas-layers {
+    position: absolute; top: 52px; left: 56px;
+    width: 200px; height: calc(100% - 52px);
+    background: #2c2c2c; border-right: 1px solid #3c3c3c;
+    padding: 12px 0;
+  }
+  .layers-title {
+    font-size: 11px; color: #666; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 0 12px; margin-bottom: 8px;
+    font-family: var(--font);
+  }
+  .layer-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 12px; font-size: 12px; color: #ccc;
+    font-family: var(--font); cursor: pointer;
+  }
+  .layer-item:hover { background: #3c3c3c; }
+  .layer-item.selected { background: rgba(12, 140, 233, 0.2); color: #fff; }
+  .layer-icon {
+    width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0;
+  }
+  /* Canvas area */
+  .canvas-area {
+    position: absolute; top: 52px; left: 256px;
+    right: 0; bottom: 0;
+    background: #1e1e1e;
+    background-image:
+      radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  /* Design elements on canvas */
+  .canvas-el {
+    position: absolute; border-radius: 4px;
+  }
+  .canvas-el.rect1 {
+    width: 180px; height: 120px; background: var(--purple);
+    top: 40px; left: 60px; border-radius: 16px;
+  }
+  .canvas-el.rect2 {
+    width: 140px; height: 90px; background: var(--green);
+    top: 180px; left: 280px; border-radius: 8px;
+  }
+  .canvas-el.circle1 {
+    width: 100px; height: 100px; background: var(--red);
+    top: 60px; left: 320px; border-radius: 50%;
+  }
+  .canvas-el.rect3 {
+    width: 200px; height: 60px; background: var(--blue);
+    top: 200px; left: 80px; border-radius: 50px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; font-weight: 500;
+  }
+  .canvas-el.circle2 {
+    width: 70px; height: 70px;
+    background: linear-gradient(135deg, var(--yellow), var(--coral));
+    top: 100px; left: 520px; border-radius: 50%;
+  }
+  .canvas-el.rect4 {
+    width: 160px; height: 180px; background: #1a1a2e;
+    top: 30px; left: 440px; border-radius: 12px;
+    border: 2px dashed rgba(255,255,255,0.2);
+  }
+  .canvas-el.text-el {
+    top: 310px; left: 60px; color: #fff;
+    font-size: 28px; font-weight: 300; letter-spacing: -0.5px;
+  }
+  /* Selection handles */
+  .selected-handle {
+    position: absolute; width: 8px; height: 8px;
+    background: white; border: 2px solid #0c8ce9;
+    border-radius: 1px;
+  }
+  .canvas-el.rect1 .selected-handle.tl { top: -4px; left: -4px; }
+  .canvas-el.rect1 .selected-handle.tr { top: -4px; right: -4px; }
+  .canvas-el.rect1 .selected-handle.bl { bottom: -4px; left: -4px; }
+  .canvas-el.rect1 .selected-handle.br { bottom: -4px; right: -4px; }
+  .canvas-el.rect1 { outline: 2px solid #0c8ce9; }
 
-  /* Body sections on white */
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: 18px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.54px;
+  /* Product Tabs */
+  .products-section {
+    padding: 80px 40px;
     text-align: center;
-    margin-bottom: 32px;
-    color: var(--black);
+  }
+  .products-section h2 {
+    font-size: 52px; font-weight: 400;
+    letter-spacing: -0.96px; line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .products-section .sub {
+    font-size: 20px; font-weight: 300;
+    letter-spacing: -0.14px; line-height: 1.4;
+    color: rgba(0,0,0,0.6); max-width: 600px;
+    margin: 0 auto 40px;
+  }
+  .product-tabs {
+    display: flex; gap: 8px; justify-content: center;
+    margin-bottom: 48px;
+  }
+  .product-tab {
+    padding: 10px 24px; border-radius: 50px; border: none;
+    font-family: var(--font); font-size: 16px; font-weight: 400;
+    cursor: pointer; letter-spacing: -0.14px;
+    background: transparent; color: var(--black);
+    transition: background 0.2s;
+  }
+  .product-tab:hover { background: var(--glass-dark); }
+  .product-tab.active { background: var(--black); color: var(--white); }
+
+  .product-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .product-card {
+    background: var(--white); border-radius: 28px;
+    padding: 40px 32px; text-align: left;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+  .product-card-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; font-size: 22px;
+  }
+  .product-card h3 {
+    font-size: 24px; font-weight: 700;
+    line-height: 1.3; margin-bottom: 12px;
+    letter-spacing: -0.2px;
+  }
+  .product-card p {
+    font-size: 16px; font-weight: 300;
+    line-height: 1.5; letter-spacing: -0.14px;
+    color: rgba(0,0,0,0.6);
+  }
+  .product-card .card-gradient {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
   }
 
-  /* Features */
-  .features {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 32px;
+  /* Trusted By */
+  .trusted {
+    padding: 60px 40px 80px;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .trusted .label {
+    font-family: var(--font-mono); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: rgba(0,0,0,0.35); margin-bottom: 32px;
+  }
+  .trusted-logos {
+    display: flex; gap: 48px; justify-content: center;
+    align-items: center; flex-wrap: wrap;
+    max-width: 900px; margin: 0 auto;
+  }
+  .trusted-logo {
+    font-size: 18px; font-weight: 600; color: rgba(0,0,0,0.2);
+    letter-spacing: -0.2px;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 100px 40px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(10, 207, 131, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 50%, rgba(162, 89, 255, 0.12) 0%, transparent 50%),
+      var(--white);
+  }
+  .cta-section h2 {
+    font-size: 56px; font-weight: 400;
+    letter-spacing: -1.2px; line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .cta-section p {
+    font-size: 20px; font-weight: 300;
+    letter-spacing: -0.14px; line-height: 1.4;
+    color: rgba(0,0,0,0.55); max-width: 520px;
+    margin: 0 auto 36px;
+  }
+
+  /* Features Grid */
+  .features-section {
+    padding: 80px 40px; max-width: 1100px; margin: 0 auto;
+  }
+  .features-section .section-title {
+    font-family: var(--font-mono); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: rgba(0,0,0,0.35); text-align: center;
+    margin-bottom: 48px;
   }
   .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  .feature-card {
-    background: var(--white);
-    border-radius: 8px;
-    padding: 28px;
-    border: 1px solid rgba(0,0,0,0.08);
+  .feature-item {
+    display: flex; gap: 20px;
+    padding: 28px; border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: background 0.2s;
   }
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    background: var(--glass-dark);
-    color: var(--black);
+  .feature-item:hover { background: rgba(0,0,0,0.02); }
+  .feature-num {
+    font-family: var(--font-mono); font-size: 14px;
+    font-weight: 700; color: rgba(0,0,0,0.2);
+    flex-shrink: 0; padding-top: 2px;
   }
-  .feature-card h3 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.45;
-    margin-bottom: 8px;
-    color: var(--black);
+  .feature-item h4 {
+    font-size: 18px; font-weight: 500;
+    letter-spacing: -0.14px; margin-bottom: 6px;
   }
-  .feature-card p {
-    font-size: 16px;
-    font-weight: 330;
-    line-height: 1.45;
-    color: var(--black);
-    letter-spacing: -0.14px;
+  .feature-item p {
+    font-size: 15px; font-weight: 300;
+    letter-spacing: -0.14px; line-height: 1.5;
+    color: rgba(0,0,0,0.55);
   }
 
-  /* Form */
-  .form-section {
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 0 32px 80px;
+  /* Footer */
+  .footer {
+    background: var(--black); color: var(--white);
+    padding: 48px 40px; margin-top: 40px;
   }
-  .form-section h2 {
-    font-size: 26px;
-    font-weight: 540;
-    letter-spacing: -0.26px;
-    line-height: 1.35;
-    margin-bottom: 24px;
-    text-align: center;
-    color: var(--black);
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between;
+    align-items: start;
   }
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
-    display: block;
-    font-size: 16px;
-    font-weight: 400;
-    margin-bottom: 6px;
-    color: var(--black);
-    letter-spacing: -0.14px;
+  .footer-brand { font-size: 16px; font-weight: 500; letter-spacing: -0.14px; }
+  .footer-links { display: flex; gap: 48px; }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.4); margin-bottom: 12px;
   }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 6px;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 340;
-    color: var(--black);
-    background: var(--white);
-    outline: none;
-    letter-spacing: -0.14px;
+  .footer-col a {
+    display: block; color: rgba(255,255,255,0.7);
+    text-decoration: none; font-size: 14px;
+    line-height: 2; letter-spacing: -0.14px;
   }
-  .form-group input:focus,
-  .form-group textarea:focus { outline: dashed 2px var(--black); outline-offset: 1px; }
-  .form-group textarea { min-height: 100px; resize: vertical; }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(0,0,0,0.35); }
-  .form-submit { text-align: center; margin-top: 24px; }
-  .btn-black {
-    background: var(--black);
-    color: var(--white);
-    padding: 8px 18px 10px;
-    border-radius: 50px;
-    border: none;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-  .btn-black:focus { outline: dashed 2px var(--black); outline-offset: 2px; }
+  .footer-col a:hover { color: var(--white); }
 
-  /* Showcase */
-  .showcase {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 32px;
-    border-top: 1px solid rgba(0,0,0,0.08);
+  /* DesignHub Badge */
+  .designhub-badge {
+    position: fixed; bottom: 16px; right: 16px;
+    background: var(--black); color: var(--white);
+    padding: 6px 14px; border-radius: 50px;
+    font-size: 12px; font-weight: 500;
+    text-decoration: none; letter-spacing: -0.14px;
+    z-index: 200; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
   }
-  .showcase h2 {
-    font-size: 26px;
-    font-weight: 540;
-    letter-spacing: -0.26px;
-    line-height: 1.35;
-    margin-bottom: 48px;
-    text-align: center;
-  }
-  .showcase-section { margin-bottom: 48px; }
-  .showcase-section h3 {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    margin-bottom: 16px;
-    color: var(--black);
-  }
-
-  /* Colors */
-  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .color-swatch .swatch { width: 64px; height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
-  .color-swatch .label { font-size: 11px; color: rgba(0,0,0,0.4); }
-  .color-swatch .name { font-size: 11px; font-weight: 500; color: var(--black); }
-
-  /* Type */
-  .type-scale { display: flex; flex-direction: column; gap: 8px; }
-  .type-row {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-  }
-  .type-row .meta { font-size: 11px; color: rgba(0,0,0,0.4); min-width: 130px; flex-shrink: 0; }
-
-  /* Buttons */
-  .button-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .btn-glass-dark {
-    background: var(--glass-dark);
-    color: var(--black);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .btn-ghost-figma {
-    background: transparent;
-    color: var(--black);
-    padding: 6px 12px;
-    border: none;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    letter-spacing: -0.14px;
-  }
-  .btn-danger {
-    background: #f24e1e;
-    color: #ffffff;
-    padding: 8px 18px 10px;
-    border-radius: 50px;
-    border: none;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-
-  /* Cards */
-  .card-variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .card-v { padding: 24px; }
-  .card-v.white-card { background: var(--white); border-radius: 8px; border: 1px solid rgba(0,0,0,0.08); }
-  .card-v.glass-card { background: var(--glass-dark); border-radius: 8px; }
-  .card-v.gradient-card {
-    background: linear-gradient(135deg, #0acf83, #a259ff);
-    border-radius: 8px;
-    color: white;
-  }
-  .card-v h4 { font-size: 16px; font-weight: 540; margin-bottom: 4px; letter-spacing: -0.14px; }
-  .card-v p { font-size: 14px; font-weight: 330; letter-spacing: -0.14px; }
-  .card-v.gradient-card p { color: rgba(255,255,255,0.8); }
-
-  /* Input States */
-  .input-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .input-state label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(0,0,0,0.4);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-  }
-  .input-state input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 6px;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 340;
-    color: var(--black);
-    background: var(--white);
-    outline: none;
-    letter-spacing: -0.14px;
-  }
-  .input-state.focused input { outline: dashed 2px var(--black); outline-offset: 1px; }
-  .input-state.disabled input { color: rgba(0,0,0,0.3); background: rgba(0,0,0,0.03); }
-
-  /* Shadows */
-  .shadow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .shadow-box {
-    height: 80px;
-    border-radius: 8px;
-    background: var(--white);
-    border: 1px solid rgba(0,0,0,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: rgba(0,0,0,0.4);
-  }
-
-  /* Radius */
-  .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
-  .radius-item { text-align: center; }
-  .radius-box { width: 64px; height: 64px; background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); margin-bottom: 6px; }
-  .radius-label { font-size: 11px; color: rgba(0,0,0,0.4); }
+  .designhub-badge:hover { transform: scale(1.05); }
 
   @media (max-width: 768px) {
-    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 42px; letter-spacing: -0.64px; }
+    .hero h1 { font-size: 42px; }
+    .product-cards, .features-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .footer-inner { flex-direction: column; gap: 32px; }
+    .footer-links { flex-direction: column; gap: 24px; }
+    .figma-canvas { height: 320px; }
   }
 </style>
 </head>
 <body>
 
-<div class="sticky-header">
-  <div class="brand">
-    <div class="figma-icon">
-      <span></span><span></span><span></span><span></span>
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <div class="logo">
+      <div class="figma-logo">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      Figma
     </div>
-    Figma Design System
+    <nav class="nav-links">
+      <a href="#">Products</a>
+      <a href="#">Solutions</a>
+      <a href="#">Community</a>
+      <a href="#">Resources</a>
+      <a href="#">Pricing</a>
+    </nav>
   </div>
-</div>
+  <div class="header-right">
+    <button class="btn-ghost-nav">Log in</button>
+    <button class="btn-black">Get started for free</button>
+  </div>
+</header>
 
-<!-- Hero - Gradient -->
+<!-- Hero -->
 <section class="hero">
-  <h1>Build beautiful products faster</h1>
-  <p>The design tool that designed itself. Variable font precision meets pure black-and-white interface chrome.</p>
+  <h1>How you design, align,<br>and build matters</h1>
+  <p>Figma helps design and development teams build great products, together. From brainstorming with FigJam to design, prototyping, and development.</p>
   <div class="hero-buttons">
     <button class="btn-white">Get started for free</button>
-    <button class="btn-glass">Watch demo</button>
+    <button class="btn-glass">Watch a demo</button>
+  </div>
+</section>
+
+<!-- Figma Canvas Mockup -->
+<section class="canvas-section">
+  <div class="section-label">The collaborative design tool</div>
+  <div class="figma-canvas">
+    <div class="canvas-topbar">
+      <span class="canvas-dot red"></span>
+      <span class="canvas-dot yellow"></span>
+      <span class="canvas-dot green"></span>
+      <span class="canvas-filename">DesignHub-Components.fig</span>
+    </div>
+    <div class="canvas-toolbar">
+      <div class="tool-btn active">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5"><path d="M3 2l5 12 2-5 5-2L3 2z"/></svg>
+      </div>
+      <div class="tool-btn">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#999" stroke-width="1.5"><rect x="3" y="3" width="10" height="10" rx="1"/></svg>
+      </div>
+      <div class="tool-btn">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#999" stroke-width="1.5"><circle cx="8" cy="8" r="5"/></svg>
+      </div>
+      <div class="tool-btn">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#999" stroke-width="1.5"><path d="M4 12V4h2l2 3 2-3h2v8"/></svg>
+      </div>
+      <div class="tool-btn">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#999" stroke-width="1.5"><path d="M3 13L13 3M13 3H7M13 3v6"/></svg>
+      </div>
+    </div>
+    <div class="canvas-layers">
+      <div class="layers-title">Layers</div>
+      <div class="layer-item selected">
+        <div class="layer-icon" style="background: #a259ff;"></div>
+        Hero Card
+      </div>
+      <div class="layer-item">
+        <div class="layer-icon" style="background: #f24e1e; border-radius: 50%;"></div>
+        Accent Circle
+      </div>
+      <div class="layer-item">
+        <div class="layer-icon" style="background: #0acf83;"></div>
+        Feature Block
+      </div>
+      <div class="layer-item">
+        <div class="layer-icon" style="background: #1abcfe; border-radius: 50px;"></div>
+        CTA Button
+      </div>
+      <div class="layer-item">
+        <div class="layer-icon" style="background: linear-gradient(135deg, #ffbe0b, #ff7262); border-radius: 50%;"></div>
+        Gradient Orb
+      </div>
+      <div class="layer-item">
+        <div class="layer-icon" style="background: #1a1a2e; border: 1px dashed #555;"></div>
+        Frame Container
+      </div>
+      <div class="layer-item">
+        <div class="layer-icon" style="background: transparent; border: 1px solid #666;"></div>
+        Heading Text
+      </div>
+    </div>
+    <div class="canvas-area">
+      <div class="canvas-el rect1">
+        <span class="selected-handle tl"></span>
+        <span class="selected-handle tr"></span>
+        <span class="selected-handle bl"></span>
+        <span class="selected-handle br"></span>
+      </div>
+      <div class="canvas-el circle1"></div>
+      <div class="canvas-el rect2"></div>
+      <div class="canvas-el rect3">Get Started</div>
+      <div class="canvas-el circle2"></div>
+      <div class="canvas-el rect4"></div>
+      <div class="canvas-el text-el">Nothing great is made alone.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Product Tabs -->
+<section class="products-section">
+  <h2>Everything you need to design</h2>
+  <p class="sub">From first idea to final handoff, Figma is the only platform that brings everyone together to deliver better products, faster.</p>
+  <div class="product-tabs">
+    <button class="product-tab active">Design</button>
+    <button class="product-tab">Prototype</button>
+    <button class="product-tab">Dev Mode</button>
+    <button class="product-tab">FigJam</button>
+  </div>
+  <div class="product-cards">
+    <div class="product-card">
+      <div class="product-card-icon" style="background: linear-gradient(135deg, #0acf83, #1abcfe);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Design</h3>
+      <p>Create, iterate, and explore designs with powerful vector editing, auto layout, and collaborative multiplayer editing in real-time.</p>
+      <div class="card-gradient" style="background: linear-gradient(90deg, #0acf83, #1abcfe);"></div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-icon" style="background: linear-gradient(135deg, #a259ff, #f24e1e);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <h3>Prototype</h3>
+      <p>Build interactive prototypes with smooth transitions, advanced animations, and smart animate to test user flows before writing code.</p>
+      <div class="card-gradient" style="background: linear-gradient(90deg, #a259ff, #f24e1e);"></div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-icon" style="background: linear-gradient(135deg, #f24e1e, #ff7262);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+      </div>
+      <h3>Dev Mode</h3>
+      <p>Inspect designs, export assets, and copy code snippets. Dev Mode translates design intent into developer-ready specifications.</p>
+      <div class="card-gradient" style="background: linear-gradient(90deg, #f24e1e, #ff7262);"></div>
+    </div>
   </div>
 </section>
 
 <!-- Features -->
-<section class="features">
-  <div class="section-label">Features</div>
+<section class="features-section">
+  <div class="section-title">Why teams choose Figma</div>
   <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+    <div class="feature-item">
+      <span class="feature-num">01</span>
+      <div>
+        <h4>Real-time collaboration</h4>
+        <p>Work together in the same file with live cursors, comments, and multiplayer editing that feels instant.</p>
       </div>
-      <h3>Variable Font Precision</h3>
-      <p>Unusual weight stops at 320, 330, 340, 450, 480, 540. Hierarchy through micro-differences, not blunt instruments.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+    <div class="feature-item">
+      <span class="feature-num">02</span>
+      <div>
+        <h4>Design systems at scale</h4>
+        <p>Build and maintain component libraries with variables, auto layout, and shared styles across your entire organization.</p>
       </div>
-      <h3>Pill & Circle Geometry</h3>
-      <p>50px radius pills for buttons, 50% circles for icon actions. Dashed focus outlines echo editor selection handles.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+    <div class="feature-item">
+      <span class="feature-num">03</span>
+      <div>
+        <h4>Browser-based, zero install</h4>
+        <p>Works in any modern browser. No downloads, no plugins, no waiting. Just open a link and start designing.</p>
       </div>
-      <h3>Monochrome Chrome</h3>
-      <p>Pure black #000000 and white #ffffff only. Color exists exclusively in product content and hero gradients.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-num">04</span>
+      <div>
+        <h4>Design to development</h4>
+        <p>Seamless handoff with inspect tools, exportable assets, and code generation that bridges the gap between design and engineering.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Form -->
-<section class="form-section">
-  <h2>Get in Touch</h2>
-  <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
-  <div class="form-group"><label>Email</label><input type="email" placeholder="you@design.team"></div>
-  <div class="form-group"><label>Message</label><textarea placeholder="What are you designing?"></textarea></div>
-  <div class="form-submit"><button class="btn-black">Submit</button></div>
-</section>
-
-<!-- Showcase -->
-<section class="showcase">
-  <h2>Component Showcase</h2>
-
-  <div class="showcase-section">
-    <h3>Color Palette</h3>
-    <div class="color-grid">
-      <div class="color-swatch"><div class="swatch" style="background:#000000"></div><div class="name">Pure Black</div><div class="label">#000000</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">Pure White</div><div class="label">#ffffff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:rgba(0,0,0,0.08)"></div><div class="name">Glass Dark</div><div class="label">rgba(0,0,0,0.08)</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:rgba(255,255,255,0.16);border-color:rgba(0,0,0,0.2);"></div><div class="name">Glass Light</div><div class="label">rgba(255,255,255,0.16)</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#0acf83,#a259ff,#f24e1e,#ff7262)"></div><div class="name">Hero Gradient</div><div class="label">Multi-stop</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#0acf83"></div><div class="name">Electric Green</div><div class="label">#0acf83</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#a259ff"></div><div class="name">Deep Purple</div><div class="label">#a259ff</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#f24e1e"></div><div class="name">Hot Red</div><div class="label">#f24e1e</div></div>
-      <div class="color-swatch"><div class="swatch" style="background:#1abcfe"></div><div class="name">Sky Blue</div><div class="label">#1abcfe</div></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Typography Scale</h3>
-    <div class="type-scale">
-      <div class="type-row"><span class="meta">86px / wt 400</span><span style="font-size:52px;font-weight:400;letter-spacing:-1.72px;line-height:1;">Display Hero</span></div>
-      <div class="type-row"><span class="meta">64px / wt 400</span><span style="font-size:44px;font-weight:400;letter-spacing:-0.96px;line-height:1.1;">Section Heading</span></div>
-      <div class="type-row"><span class="meta">26px / wt 540</span><span style="font-size:26px;font-weight:600;letter-spacing:-0.26px;line-height:1.35;">Sub-heading</span></div>
-      <div class="type-row"><span class="meta">24px / wt 700</span><span style="font-size:24px;font-weight:700;line-height:1.45;">Feature Title</span></div>
-      <div class="type-row"><span class="meta">20px / wt 330</span><span style="font-size:20px;font-weight:300;line-height:1.40;letter-spacing:-0.14px;">Body Large — light and airy</span></div>
-      <div class="type-row"><span class="meta">16px / wt 340</span><span style="font-size:16px;font-weight:300;line-height:1.45;letter-spacing:-0.14px;">Body — standard text, light weight base</span></div>
-      <div class="type-row"><span class="meta">18px Mono ↑</span><span style="font-family:var(--font-mono);font-size:18px;font-weight:400;text-transform:uppercase;letter-spacing:0.54px;line-height:1.3;">SECTION LABEL</span></div>
-      <div class="type-row"><span class="meta">12px Mono ↑</span><span style="font-family:var(--font-mono);font-size:12px;font-weight:400;text-transform:uppercase;letter-spacing:0.6px;">TINY TAG</span></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Button Variants</h3>
-    <div class="button-row">
-      <button class="btn-black">Black Pill</button>
-      <button class="btn-white" style="border:1px solid rgba(0,0,0,0.1);">White Pill</button>
-      <button class="btn-glass-dark">&#9776;</button>
-      <button class="btn-ghost-figma">Underline Link</button>
-      <button class="btn-danger">Accent</button>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Card Variants</h3>
-    <div class="card-variants">
-      <div class="card-v white-card"><h4>White Card</h4><p>8px radius, subtle border</p></div>
-      <div class="card-v glass-card"><h4>Glass Dark Card</h4><p>rgba(0,0,0,0.08) surface</p></div>
-      <div class="card-v gradient-card"><h4>Gradient Card</h4><p>Product content brings color</p></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Input States</h3>
-    <div class="input-states">
-      <div class="input-state"><label>Default</label><input type="text" placeholder="Default"></div>
-      <div class="input-state focused"><label>Focused</label><input type="text" value="Dashed focus"></div>
-      <div class="input-state disabled"><label>Disabled</label><input type="text" value="Disabled" disabled></div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Shadow Levels</h3>
-    <div class="shadow-grid">
-      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
-      <div class="shadow-box" style="box-shadow:0 2px 8px rgba(0,0,0,0.08);">Level 1 — Surface</div>
-      <div class="shadow-box" style="box-shadow:0 4px 16px rgba(0,0,0,0.12);">Level 2 — Elevated</div>
-    </div>
-  </div>
-
-  <div class="showcase-section">
-    <h3>Border Radius</h3>
-    <div class="radius-row">
-      <div class="radius-item"><div class="radius-box" style="border-radius:2px;"></div><div class="radius-label">2px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:50px;"></div><div class="radius-label">50px</div></div>
-      <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-label">50%</div></div>
-    </div>
+<!-- Trusted By -->
+<section class="trusted">
+  <div class="label">Trusted by leading companies worldwide</div>
+  <div class="trusted-logos">
+    <span class="trusted-logo">Microsoft</span>
+    <span class="trusted-logo">Google</span>
+    <span class="trusted-logo">Airbnb</span>
+    <span class="trusted-logo">Spotify</span>
+    <span class="trusted-logo">Netflix</span>
+    <span class="trusted-logo">Uber</span>
+    <span class="trusted-logo">Dropbox</span>
+    <span class="trusted-logo">Twitter</span>
   </div>
 </section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Nothing great<br>is made alone</h2>
+  <p>Join millions of designers, developers, and product teams who use Figma to bring ideas to life.</p>
+  <button class="btn-black" style="padding: 12px 28px; font-size: 16px;">Get started for free</button>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Figma</div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#">Figma Design</a>
+        <a href="#">FigJam</a>
+        <a href="#">Dev Mode</a>
+        <a href="#">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="#">Blog</a>
+        <a href="#">Community</a>
+        <a href="#">Templates</a>
+        <a href="#">Plugins</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Legal</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="/" class="designhub-badge">Built with DesignHub</a>
 
 </body>
 </html>
