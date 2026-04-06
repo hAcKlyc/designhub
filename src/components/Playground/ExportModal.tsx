@@ -30,36 +30,66 @@ export function ExportModal({ style, params, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      style={{
+        position: 'fixed', inset: 0, zIndex: 50,
+        background: 'rgba(0,0,0,0.2)',
+        backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '24px',
+      }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-neutral-900 border border-neutral-700 rounded-xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl">
+      <div style={{
+        background: '#FFFFFF', border: '1px solid #E8E8E5',
+        borderRadius: '16px', width: '100%', maxWidth: '720px',
+        maxHeight: '85vh', display: 'flex', flexDirection: 'column',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
+      }}>
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-neutral-800">
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '16px 20px', borderBottom: '1px solid #F0F0ED',
+        }}>
           <div>
-            <h3 className="text-neutral-100 font-semibold">Export DESIGN.md</h3>
-            <p className="text-neutral-500 text-xs mt-0.5">{style.name} — 9-section format</p>
+            <h3 className="font-serif" style={{ fontSize: '18px', fontWeight: 400, color: '#1A1A1A', margin: 0 }}>
+              Export DESIGN.md
+            </h3>
+            <p style={{ fontSize: '12px', color: '#7A7A7A', marginTop: '2px' }}>
+              {style.name} — 9-section format
+            </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <button
               onClick={copyToClipboard}
-              className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                copied
-                  ? 'bg-green-600/20 text-green-400 border border-green-600/30'
-                  : 'bg-brand hover:bg-brand-hover text-white'
-              }`}
+              style={{
+                padding: '8px 16px', borderRadius: '10px', fontSize: '13px', fontWeight: 500,
+                border: 'none', cursor: 'pointer', transition: 'all 200ms',
+                background: copied ? '#F0F7F4' : '#2D6A4F',
+                color: copied ? '#2D6A4F' : '#FFFFFF',
+              }}
             >
-              {copied ? 'Copied!' : 'Copy'}
+              {copied ? '✓ Copied' : 'Copy'}
             </button>
             <button
               onClick={download}
-              className="px-4 py-1.5 rounded-lg text-sm font-medium bg-neutral-800 hover:bg-neutral-700 text-neutral-300 border border-neutral-700 transition-colors"
+              style={{
+                padding: '8px 16px', borderRadius: '10px', fontSize: '13px', fontWeight: 500,
+                border: '1px solid #E8E8E5', cursor: 'pointer', transition: 'all 200ms',
+                background: 'transparent', color: '#4A4A4A',
+              }}
             >
               Download .md
             </button>
             <button
               onClick={onClose}
-              className="w-8 h-8 flex items-center justify-center rounded-lg text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 transition-colors"
+              style={{
+                width: '32px', height: '32px', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', borderRadius: '8px', border: 'none',
+                cursor: 'pointer', color: '#A0A0A0', background: 'transparent',
+                fontSize: '16px', transition: 'all 200ms',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#F4F4F1'; e.currentTarget.style.color = '#1A1A1A'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#A0A0A0'; }}
             >
               ✕
             </button>
@@ -67,16 +97,23 @@ export function ExportModal({ style, params, onClose }: Props) {
         </div>
 
         {/* Preview */}
-        <div className="flex-1 overflow-auto p-4">
-          <pre className="text-neutral-300 text-xs font-mono whitespace-pre-wrap leading-relaxed">
+        <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+          <pre style={{
+            color: '#4A4A4A', fontSize: '12px',
+            fontFamily: "'JetBrains Mono', 'SF Mono', monospace",
+            whiteSpace: 'pre-wrap', lineHeight: 1.7, margin: 0,
+          }}>
             {markdown}
           </pre>
         </div>
 
         {/* Footer */}
-        <div className="p-3 border-t border-neutral-800 text-center">
-          <span className="text-neutral-600 text-xs">
-            {Math.round(markdown.length / 1024)}KB — Drop this file as DESIGN.md in your project root for AI agents to read.
+        <div style={{
+          padding: '12px 20px', borderTop: '1px solid #F0F0ED',
+          textAlign: 'center',
+        }}>
+          <span style={{ color: '#A0A0A0', fontSize: '12px' }}>
+            {Math.round(markdown.length / 1024)}KB — Drop as DESIGN.md in your project root for AI agents.
           </span>
         </div>
       </div>
