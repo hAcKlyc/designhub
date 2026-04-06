@@ -119,7 +119,7 @@ export function PlaygroundPage() {
             />
           ) : (
             <div className="max-w-4xl mx-auto">
-              <PreviewFrame params={params} />
+              <PreviewFrame params={params} cssOverrides={baseStyle?.cssOverrides} />
             </div>
           )}
         </div>

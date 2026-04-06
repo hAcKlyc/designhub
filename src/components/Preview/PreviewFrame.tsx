@@ -1,17 +1,20 @@
-import type { DesignParams } from '../../types';
+import type { DesignParams, CSSVariableSet } from '../../types';
 import { generateCSSVariables } from '../../lib/cssVariables';
 import { MockWebsite } from './MockWebsite';
 import { ComponentShowcase } from './ComponentShowcase';
 
 interface Props {
   params: DesignParams;
-  compact?: boolean; // For gallery thumbnail
+  compact?: boolean;
+  cssOverrides?: CSSVariableSet;
 }
 
-export function PreviewFrame({ params, compact = false }: Props) {
+export function PreviewFrame({ params, compact = false, cssOverrides }: Props) {
   const vars = generateCSSVariables(params);
+  // Merge overrides on top of generated values
+  const merged = cssOverrides ? { ...vars, ...cssOverrides } : vars;
   const style = Object.fromEntries(
-    Object.entries(vars).map(([k, v]) => [k, v])
+    Object.entries(merged).map(([k, v]) => [k, v])
   ) as React.CSSProperties;
 
   if (compact) {

@@ -49,6 +49,8 @@ export interface DesignStyle {
     doList: string[];
     dontList: string[];
   };
+  // Override generated CSS variables with exact values (for reference designs)
+  cssOverrides?: CSSVariableSet;
 }
 
 export interface FontPair {
