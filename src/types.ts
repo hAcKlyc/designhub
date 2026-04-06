@@ -51,6 +51,7 @@ export interface DesignStyle {
   };
   // Override generated CSS variables with exact values (for reference designs)
   cssOverrides?: CSSVariableSet;
+  cssOverridesDark?: CSSVariableSet;
 }
 
 export interface FontPair {

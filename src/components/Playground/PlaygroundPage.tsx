@@ -126,10 +126,9 @@ export function PlaygroundPage() {
             <PreviewFrame
               params={params}
               cssOverrides={
-                // Only apply real-site overrides when mode matches the design's default
-                baseStyle?.cssOverrides && params.mode === baseStyle.params.mode
-                  ? baseStyle.cssOverrides
-                  : undefined
+                params.mode === 'dark'
+                  ? baseStyle?.cssOverridesDark
+                  : baseStyle?.cssOverrides
               }
             />
           )}
