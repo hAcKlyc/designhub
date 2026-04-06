@@ -35,103 +35,97 @@ function MiniPreview() {
   return (
     <div style={{
       background: 'var(--bg)',
-      padding: '16px',
       fontFamily: 'var(--font-body)',
-      minHeight: '200px',
+      height: '100%',
+      minHeight: '220px',
       display: 'flex',
       flexDirection: 'column',
-      gap: '12px',
+      overflow: 'hidden',
+      position: 'relative',
     }}>
-      {/* Mini hero */}
-      <div>
+      {/* Large hero — the visual identity */}
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '24px 20px 16px',
+      }}>
         <div style={{
           fontFamily: 'var(--font-heading)',
-          fontSize: '18px',
-          fontWeight: 600,
+          fontSize: '28px',
+          fontWeight: 700,
           color: 'var(--text)',
           letterSpacing: 'var(--heading-letter-spacing)',
-          lineHeight: 1.2,
-          marginBottom: '4px',
+          lineHeight: 1.1,
+          marginBottom: '8px',
         }}>
-          Design System
+          Aa
         </div>
         <div style={{
-          fontSize: '11px',
-          color: 'var(--text-muted)',
-          lineHeight: 1.4,
-        }}>
-          A beautiful interface built with intention.
-        </div>
-      </div>
-
-      {/* Mini buttons */}
-      <div style={{ display: 'flex', gap: '6px' }}>
-        <div style={{
-          background: 'var(--primary)',
-          color: 'var(--primary-text)',
-          padding: '4px 12px',
-          borderRadius: 'var(--radius-md)',
-          fontSize: '10px',
+          fontFamily: 'var(--font-heading)',
+          fontSize: '13px',
           fontWeight: 500,
-        }}>
-          Primary
-        </div>
-        <div style={{
-          background: 'var(--bg-elevated)',
           color: 'var(--text-secondary)',
-          padding: '4px 12px',
-          borderRadius: 'var(--radius-md)',
-          fontSize: '10px',
-          fontWeight: 500,
-          border: '1px solid var(--border)',
+          letterSpacing: 'var(--heading-letter-spacing)',
+          lineHeight: 1.3,
+          marginBottom: '14px',
         }}>
-          Secondary
+          The quick brown fox jumps
+        </div>
+
+        {/* Button + badge row */}
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <div style={{
+            background: 'var(--primary)',
+            color: 'var(--primary-text)',
+            padding: '6px 16px',
+            borderRadius: 'var(--radius-md)',
+            fontSize: '11px',
+            fontWeight: 600,
+            fontFamily: 'var(--font-body)',
+          }}>
+            Button
+          </div>
+          <div style={{
+            background: 'var(--bg-elevated)',
+            color: 'var(--text-muted)',
+            padding: '6px 16px',
+            borderRadius: 'var(--radius-md)',
+            fontSize: '11px',
+            fontWeight: 500,
+            border: '1px solid var(--border)',
+            fontFamily: 'var(--font-body)',
+          }}>
+            Ghost
+          </div>
         </div>
       </div>
 
-      {/* Mini cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
-        {[0, 1].map(i => (
-          <div key={i} style={{
-            background: 'var(--bg-elevated)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-md)',
-            padding: '8px',
-            boxShadow: 'var(--shadow-xs)',
-          }}>
-            <div style={{
-              width: '100%',
-              height: '24px',
-              background: i === 0 ? 'var(--primary-bg)' : 'var(--color-accent-2)',
-              borderRadius: 'var(--radius-sm)',
-              marginBottom: '6px',
-            }} />
-            <div style={{
-              fontSize: '9px',
-              color: 'var(--text)',
-              fontWeight: 500,
-              marginBottom: '2px',
-            }}>Card Title</div>
-            <div style={{
-              fontSize: '8px',
-              color: 'var(--text-muted)',
-            }}>Description text</div>
-          </div>
-        ))}
+      {/* Bottom color strip — shows palette at a glance */}
+      <div style={{
+        display: 'flex',
+        height: '48px',
+        flexShrink: 0,
+      }}>
+        <div style={{ flex: 2, background: 'var(--primary)' }} />
+        <div style={{ flex: 1, background: 'var(--accent)' }} />
+        <div style={{ flex: 1, background: 'var(--color-primary-3)' }} />
+        <div style={{ flex: 1, background: 'var(--bg-elevated)' }} />
+        <div style={{ flex: 1, background: 'var(--text)' }} />
       </div>
 
-      {/* Color dots */}
-      <div style={{ display: 'flex', gap: '4px', marginTop: 'auto' }}>
-        {['var(--primary)', 'var(--accent)', 'var(--text)', 'var(--border)', 'var(--bg-elevated)'].map((c, i) => (
-          <div key={i} style={{
-            width: '14px',
-            height: '14px',
-            borderRadius: '50%',
-            background: c,
-            border: '1px solid var(--border-subtle)',
-          }} />
-        ))}
-      </div>
+      {/* Floating radius indicator */}
+      <div style={{
+        position: 'absolute',
+        top: '12px',
+        right: '12px',
+        width: '32px',
+        height: '32px',
+        background: 'var(--primary)',
+        borderRadius: 'var(--radius-lg)',
+        opacity: 0.3,
+      }} />
     </div>
   );
 }

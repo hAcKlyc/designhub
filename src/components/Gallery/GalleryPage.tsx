@@ -94,27 +94,25 @@ export function GalleryPage() {
       </div>
 
       {/* Grid */}
-      <div className="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map(style => (
           <div
             key={style.id}
             onClick={() => navigate(`/style/${style.id}`)}
-            className="group cursor-pointer rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-600 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-black/20"
+            className="group cursor-pointer rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-600 transition-all hover:scale-[1.01] hover:shadow-lg hover:shadow-black/30"
           >
             {/* Preview thumbnail */}
-            <div className="h-52 overflow-hidden">
+            <div className="overflow-hidden">
               <PreviewFrame params={style.params} compact />
             </div>
 
             {/* Info */}
-            <div className="p-3.5 bg-neutral-800/50">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-neutral-100 font-medium text-sm truncate">
-                  {style.name}
-                </span>
+            <div className="p-4 bg-neutral-800/50">
+              <div className="text-neutral-100 font-semibold text-[15px] mb-1 truncate">
+                {style.name}
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-neutral-700 text-neutral-400 uppercase tracking-wider font-medium">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-neutral-700/80 text-neutral-400 uppercase tracking-widest font-medium">
                   {style.category}
                 </span>
                 <span className="text-neutral-500 text-xs truncate">
