@@ -35,6 +35,13 @@ export function PlaygroundPage() {
 
   useEffect(() => { if (baseStyle) setParams(baseStyle.params); }, [baseStyle]);
 
+  // Lock body scroll on playground
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    document.body.style.height = '100vh';
+    return () => { document.body.style.overflow = ''; document.body.style.height = ''; };
+  }, []);
+
   useEffect(() => {
     const pair = getFontPair(params.fontPair);
     const url = buildGoogleFontsUrl(pair);
@@ -88,16 +95,17 @@ export function PlaygroundPage() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <Header centerContent={tabSwitcher} />
 
-      <div className="flex flex-1 overflow-hidden" style={{ height: 'calc(100vh - 56px)' }}>
-        {/* Preview Area — full width background */}
-        <div className="flex-1 overflow-auto">
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+        {/* Preview Area — scrolls independently */}
+        <div style={{ flex: 1, overflowY: 'auto' }}>
           {viewMode === 'demo' && referenceDesign ? (
             <iframe
               src={referenceDesign.demoUrl}
-              className="w-full h-full border-0"
+              className="w-full border-0"
+              style={{ height: '100%' }}
               title={`${styleName} Demo`}
             />
           ) : (
@@ -105,8 +113,8 @@ export function PlaygroundPage() {
           )}
         </div>
 
-        {/* Control Panel */}
-        <div className="w-80 flex-shrink-0 border-l border-neutral-800 bg-neutral-900 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 56px)' }}>
+        {/* Control Panel — fixed, scrolls independently */}
+        <div style={{ width: '320px', flexShrink: 0, overflowY: 'auto', borderLeft: '1px solid #2a2a2a', background: '#0a0a0a' }}>
           <div className="p-4 border-b border-neutral-800">
             <button
               onClick={() => navigate('/')}

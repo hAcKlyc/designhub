@@ -78,6 +78,67 @@ export function ComponentShowcase() {
           </div>
         </Section>
 
+        {/* Content Preview — how articles/docs render */}
+        <Section title="Content Preview">
+          <div style={{ maxWidth: '640px', fontFamily: 'var(--font-body)', color: 'var(--text)' }}>
+            <h1 style={{
+              fontFamily: 'var(--font-heading)', fontSize: 'var(--text-3xl)', fontWeight: 700,
+              letterSpacing: 'var(--heading-letter-spacing)', lineHeight: 1.2,
+              marginBottom: '12px',
+            }}>
+              Getting Started with Design Systems
+            </h1>
+            <p style={{ fontSize: 'var(--text-lg)', color: 'var(--text-secondary)', lineHeight: 'var(--body-line-height)', marginBottom: '24px' }}>
+              A practical guide to building consistent, scalable interfaces that your team will actually use.
+            </p>
+
+            <h2 style={{
+              fontFamily: 'var(--font-heading)', fontSize: 'var(--text-xl)', fontWeight: 600,
+              letterSpacing: 'var(--heading-letter-spacing)', lineHeight: 1.3,
+              marginBottom: '8px', marginTop: '24px',
+            }}>
+              Why Design Systems Matter
+            </h2>
+            <p style={{ fontSize: 'var(--text-base)', lineHeight: 'var(--body-line-height)', marginBottom: '16px', color: 'var(--text-secondary)' }}>
+              Design systems aren't just about consistency — they're about velocity. When every button, card, and form input is pre-defined, your team spends less time debating pixels and more time solving problems.
+            </p>
+
+            <h3 style={{
+              fontFamily: 'var(--font-heading)', fontSize: 'var(--text-lg)', fontWeight: 600,
+              lineHeight: 1.3, marginBottom: '8px', marginTop: '20px',
+            }}>
+              Core Principles
+            </h3>
+            <ul style={{ fontSize: 'var(--text-base)', lineHeight: 1.8, color: 'var(--text-secondary)', paddingLeft: '20px', marginBottom: '16px' }}>
+              <li style={{ marginBottom: '4px' }}>Tokens define the visual language — colors, spacing, typography</li>
+              <li style={{ marginBottom: '4px' }}>Components encode interaction patterns and accessibility</li>
+              <li style={{ marginBottom: '4px' }}>Documentation bridges the gap between design and engineering</li>
+            </ul>
+
+            <ol style={{ fontSize: 'var(--text-base)', lineHeight: 1.8, color: 'var(--text-secondary)', paddingLeft: '20px', marginBottom: '16px' }}>
+              <li style={{ marginBottom: '4px' }}>Start with a color palette and type scale</li>
+              <li style={{ marginBottom: '4px' }}>Build atomic components (buttons, inputs, badges)</li>
+              <li style={{ marginBottom: '4px' }}>Compose into patterns (forms, cards, navigation)</li>
+            </ol>
+
+            <blockquote style={{
+              borderLeft: '3px solid var(--primary)', paddingLeft: '16px',
+              margin: '20px 0', fontStyle: 'italic', color: 'var(--text-muted)',
+              fontSize: 'var(--text-base)', lineHeight: 'var(--body-line-height)',
+            }}>
+              "A design system is not a project. It's a product serving products."
+            </blockquote>
+
+            <p style={{ fontSize: 'var(--text-base)', lineHeight: 'var(--body-line-height)', color: 'var(--text-secondary)' }}>
+              Use inline <code style={{
+                fontFamily: 'var(--font-mono)', fontSize: '0.9em',
+                background: 'var(--bg-inset)', padding: '2px 6px',
+                borderRadius: 'var(--radius-sm)', color: 'var(--text)',
+              }}>design tokens</code> to maintain consistency across platforms. Every value in your system should trace back to a token.
+            </p>
+          </div>
+        </Section>
+
         {/* Components — two columns */}
         <Section title="Components">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
