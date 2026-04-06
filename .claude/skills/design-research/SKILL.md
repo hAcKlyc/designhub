@@ -52,11 +52,24 @@ Run this JS in the page via `page.evaluate()`:
 
 Scan up to 500 elements. Collect into a JSON report.
 
-### 1c. What You Get
+### 1c. Dark Mode Extraction
 
-The subagent returns: screenshots + a JSON style report. Read the screenshots yourself
-to understand layout, imagery, color blocks, and overall composition that computed
-styles alone can't capture.
+If the site supports dark mode (check for `prefers-color-scheme` media queries,
+a dark mode toggle, or `[data-theme]` attributes):
+
+1. Trigger dark mode: `await page.emulateMedia({ colorScheme: 'dark' })` or click the toggle
+2. Take dark mode screenshots
+3. Re-run the style extraction to capture dark palette
+4. Record BOTH light and dark color sets in the report
+
+If no dark mode exists, generate an algorithmically derived dark palette using the
+primary colors as reference (invert lightness, maintain hue and saturation).
+
+### 1d. What You Get
+
+The subagent returns: screenshots (light + dark if available) + a JSON style report
+with both palettes. Read the screenshots yourself to understand layout, imagery,
+color blocks, and overall composition that computed styles alone can't capture.
 
 ## Phase 2: Reverse Engineer
 
@@ -142,19 +155,35 @@ Once validation passes, produce these files in the output directory:
 ```
 
 ### cssOverrides.json format:
+Include BOTH light and dark mode overrides:
 ```json
 {
-  "--bg": "#hex",
-  "--bg-elevated": "#hex",
-  "--text": "#hex",
-  "--text-secondary": "#hex",
-  "--text-muted": "#hex",
-  "--border": "#hex",
-  "--primary": "#hex",
-  "--primary-hover": "#hex",
-  "--primary-text": "#hex",
-  "--primary-bg": "#hex",
-  "--accent": "#hex"
+  "light": {
+    "--bg": "#hex",
+    "--bg-elevated": "#hex",
+    "--text": "#hex",
+    "--text-secondary": "#hex",
+    "--text-muted": "#hex",
+    "--border": "#hex",
+    "--primary": "#hex",
+    "--primary-hover": "#hex",
+    "--primary-text": "#hex",
+    "--primary-bg": "#hex",
+    "--accent": "#hex"
+  },
+  "dark": {
+    "--bg": "#hex",
+    "--bg-elevated": "#hex",
+    "--text": "#hex",
+    "--text-secondary": "#hex",
+    "--text-muted": "#hex",
+    "--border": "#hex",
+    "--primary": "#hex",
+    "--primary-hover": "#hex",
+    "--primary-text": "#hex",
+    "--primary-bg": "#hex",
+    "--accent": "#hex"
+  }
 }
 ```
 

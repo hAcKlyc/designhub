@@ -120,21 +120,40 @@ this design distinctive. Reference specific values: "the aggressive
 ### Example Component Prompts
 - {3 ready-to-paste prompts for generating components in this style}
 
-### CSS Variables
+### CSS Variables — Light Mode
 ```css
 :root {
   --bg: {hex};
   --bg-elevated: {hex};
+  --bg-inset: {hex};
   --text: {hex};
   --text-secondary: {hex};
   --text-muted: {hex};
   --border: {hex};
   --primary: {hex};
   --primary-hover: {hex};
+  --primary-text: {hex};
   --accent: {hex};
   --font-heading: {font};
   --font-body: {font};
   --radius-md: {value}px;
+}
+```
+
+### CSS Variables — Dark Mode
+```css
+.dark, [data-theme="dark"] {
+  --bg: {hex};
+  --bg-elevated: {hex};
+  --bg-inset: {hex};
+  --text: {hex};
+  --text-secondary: {hex};
+  --text-muted: {hex};
+  --border: {hex};
+  --primary: {hex};
+  --primary-hover: {hex};
+  --primary-text: {hex};
+  --accent: {hex};
 }
 ```
 ```

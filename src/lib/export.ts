@@ -4,6 +4,8 @@ import { getFontPair } from '../data/fonts';
 
 export function generateDesignMd(style: DesignStyle, params: DesignParams): string {
   const palette = generatePalette(params.primaryHue, params.accentHue, params.saturation, params.mode === 'dark');
+  const paletteLight = generatePalette(params.primaryHue, params.accentHue, params.saturation, false);
+  const paletteDark = generatePalette(params.primaryHue, params.accentHue, params.saturation, true);
   const fontPair = getFontPair(params.fontPair);
   const isDark = params.mode === 'dark';
 
@@ -222,19 +224,21 @@ ${style.meta.dontList.map(d => `- ${d}`).join('\n')}
 - "Design a card: \`${palette.neutral[2]}\` background, 1px \`${palette.neutral[4]}\` border, ${Math.min(radius * 1.5, 24)}px radius. Title at ${scale(2)}px weight 600, \`${palette.neutral[12]}\` color. Body at ${baseSize}px weight 400, \`${palette.neutral[9]}\` color. ${params.depthStyle === 'flat' ? 'No shadow.' : `Shadow: 0 2px 8px rgba(0,0,0,${isDark ? '0.3' : '0.08'}).`}"
 - "Build a form with inputs: ${isDark ? palette.neutral[1] : 'transparent'} background, 1px \`${palette.neutral[6]}\` border, ${radius}px radius, 10px 14px padding. Label at ${scale(-1)}px weight 500, \`${palette.neutral[11]}\` color. Submit button: full-width, \`${palette.primary[8]}\` background."
 
-### CSS Variables
+### CSS Variables — Light Mode
 \`\`\`css
 :root {
-  /* Colors */
-  --bg: ${palette.neutral[1]};
-  --bg-elevated: ${palette.neutral[2]};
-  --text: ${palette.neutral[12]};
-  --text-secondary: ${palette.neutral[11]};
-  --text-muted: ${palette.neutral[9]};
-  --border: ${palette.neutral[6]};
-  --primary: ${palette.primary[8]};
-  --primary-hover: ${palette.primary[9]};
-  --accent: ${palette.accent[8]};
+  /* Colors — Light */
+  --bg: ${paletteLight.neutral[1]};
+  --bg-elevated: ${paletteLight.neutral[2]};
+  --bg-inset: ${paletteLight.neutral[3]};
+  --text: ${paletteLight.neutral[12]};
+  --text-secondary: ${paletteLight.neutral[11]};
+  --text-muted: ${paletteLight.neutral[9]};
+  --border: ${paletteLight.neutral[6]};
+  --primary: ${paletteLight.primary[8]};
+  --primary-hover: ${paletteLight.primary[9]};
+  --primary-text: #ffffff;
+  --accent: ${paletteLight.accent[8]};
 
   /* Typography */
   --font-heading: ${fontPair.heading};
@@ -250,6 +254,24 @@ ${style.meta.dontList.map(d => `- ${d}`).join('\n')}
   --radius-md: ${radius}px;
   --radius-lg: ${Math.min(radius * 1.5, 24)}px;
   --radius-full: 9999px;
+}
+\`\`\`
+
+### CSS Variables — Dark Mode
+\`\`\`css
+.dark, [data-theme="dark"] {
+  /* Colors — Dark */
+  --bg: ${paletteDark.neutral[1]};
+  --bg-elevated: ${paletteDark.neutral[2]};
+  --bg-inset: ${paletteDark.neutral[3]};
+  --text: ${paletteDark.neutral[12]};
+  --text-secondary: ${paletteDark.neutral[11]};
+  --text-muted: ${paletteDark.neutral[9]};
+  --border: ${paletteDark.neutral[6]};
+  --primary: ${paletteDark.primary[8]};
+  --primary-hover: ${paletteDark.primary[9]};
+  --primary-text: ${paletteDark.neutral[1]};
+  --accent: ${paletteDark.accent[8]};
 }
 \`\`\`
 `;

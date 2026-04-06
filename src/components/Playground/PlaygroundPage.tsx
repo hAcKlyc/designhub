@@ -70,26 +70,40 @@ export function PlaygroundPage() {
     );
   }
 
-  // Tab switcher component for header center
+  const isDark = params.mode === 'dark';
+  const toggleTheme = () => updateParam('mode', isDark ? 'light' : 'dark');
+
+  // Tab switcher + theme toggle for header center
   const tabSwitcher = (
-    <div className="flex items-center gap-1 bg-neutral-800 rounded-lg p-0.5">
-      {hasDemo && (
+    <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1 bg-neutral-800 rounded-lg p-0.5">
+        {hasDemo && (
+          <button
+            onClick={() => setViewMode('demo')}
+            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
+              viewMode === 'demo' ? 'bg-neutral-700 text-neutral-100 shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
+            }`}
+          >
+            Demo Preview
+          </button>
+        )}
         <button
-          onClick={() => setViewMode('demo')}
+          onClick={() => setViewMode('system')}
           className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
-            viewMode === 'demo' ? 'bg-neutral-700 text-neutral-100 shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
+            viewMode === 'system' ? 'bg-neutral-700 text-neutral-100 shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
           }`}
         >
-          Demo Preview
+          Design System
         </button>
-      )}
+      </div>
+
+      {/* Theme toggle */}
       <button
-        onClick={() => setViewMode('system')}
-        className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
-          viewMode === 'system' ? 'bg-neutral-700 text-neutral-100 shadow-sm' : 'text-neutral-500 hover:text-neutral-300'
-        }`}
+        onClick={toggleTheme}
+        className="w-8 h-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-100 hover:bg-neutral-700 transition-all"
+        title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
       >
-        Design System
+        {isDark ? '☀️' : '🌙'}
       </button>
     </div>
   );
