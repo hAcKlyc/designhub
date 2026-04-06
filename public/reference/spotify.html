@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignHub — Spotify Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #121212;
+    --surface: #181818;
+    --surface-mid: #1f1f1f;
+    --surface-elevated: #252525;
+    --green: #1ed760;
+    --green-border: #1db954;
+    --text: #ffffff;
+    --text-silver: #b3b3b3;
+    --text-near-white: #cbcbcb;
+    --text-light: #fdfdfd;
+    --negative: #f3727f;
+    --warning: #ffa42b;
+    --announce: #539df5;
+    --border: #4d4d4d;
+    --border-light: #7c7c7c;
+    --light-surface: #eeeeee;
+    --shadow-heavy: rgba(0,0,0,0.5) 0px 8px 24px;
+    --shadow-medium: rgba(0,0,0,0.3) 0px 8px 8px;
+    --font: 'Nunito Sans', 'Helvetica Neue', helvetica, arial, sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    padding: 0 32px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sticky-header .brand {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .spotify-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 100px 32px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.00;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.50;
+    color: var(--text-silver);
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+  .hero-buttons { display: flex; gap: 12px; justify-content: center; }
+  .btn-primary {
+    background: var(--green);
+    color: #000000;
+    padding: 8px 32px;
+    border-radius: 9999px;
+    border: none;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    cursor: pointer;
+  }
+  .btn-secondary {
+    background: var(--surface-mid);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 9999px;
+    border: none;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-silver);
+    text-align: center;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+  }
+
+  /* Features */
+  .features {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .feature-card:hover {
+    background: var(--surface-mid);
+  }
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background: var(--surface-mid);
+    color: var(--green);
+  }
+  .feature-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.30;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .feature-card p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.50;
+    color: var(--text-silver);
+  }
+
+  /* Form */
+  .form-section {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+  .form-section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.00;
+    margin-bottom: 24px;
+    text-align: center;
+    color: var(--text);
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 500px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--surface-mid);
+    outline: none;
+    box-shadow: rgb(18,18,18) 0px 1px 0px, rgb(124,124,124) 0px 0px 0px 1px inset;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    box-shadow: #000000 0px 0px 0px 1px;
+    outline: 1px solid var(--text);
+  }
+  .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+    border-radius: 8px;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--text-silver); }
+  .form-submit { text-align: center; margin-top: 24px; }
+
+  /* Showcase */
+  .showcase {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+  .showcase h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.00;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .showcase-section { margin-bottom: 48px; }
+  .showcase-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+  }
+
+  /* Colors */
+  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .color-swatch .swatch { width: 64px; height: 64px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
+  .color-swatch .label { font-size: 10px; color: var(--text-silver); }
+  .color-swatch .name { font-size: 10px; font-weight: 700; color: var(--text); }
+
+  /* Type */
+  .type-scale { display: flex; flex-direction: column; gap: 8px; }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .type-row .meta { font-size: 10px; color: var(--text-silver); min-width: 120px; flex-shrink: 0; }
+
+  /* Buttons */
+  .button-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn-dark-pill {
+    background: var(--surface-mid);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 9999px;
+    border: none;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-outlined-pill {
+    background: transparent;
+    color: var(--text);
+    padding: 4px 16px;
+    border-radius: 9999px;
+    border: 1px solid var(--border-light);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-circular {
+    background: var(--green);
+    color: #000000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-danger {
+    background: var(--negative);
+    color: #000000;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    border: none;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    cursor: pointer;
+  }
+
+  /* Cards */
+  .card-variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card-v { padding: 20px; border-radius: 8px; }
+  .card-v.dark { background: var(--surface); }
+  .card-v.mid { background: var(--surface-mid); }
+  .card-v.elevated { background: var(--surface-elevated); box-shadow: var(--shadow-medium); }
+  .card-v h4 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .card-v p { font-size: 14px; color: var(--text-silver); font-weight: 400; }
+
+  /* Input States */
+  .input-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .input-state label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-silver);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+  }
+  .input-state input {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 500px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--surface-mid);
+    outline: none;
+    box-shadow: rgb(18,18,18) 0px 1px 0px, rgb(124,124,124) 0px 0px 0px 1px inset;
+  }
+  .input-state.focused input { outline: 1px solid var(--text); box-shadow: #000000 0px 0px 0px 1px; }
+  .input-state.disabled input { color: var(--border); background: var(--bg); }
+
+  /* Shadows */
+  .shadow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .shadow-box {
+    height: 80px;
+    border-radius: 8px;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-silver);
+  }
+
+  /* Radius */
+  .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+  .radius-item { text-align: center; }
+  .radius-box { width: 64px; height: 64px; background: var(--surface-mid); margin-bottom: 6px; }
+  .radius-label { font-size: 10px; color: var(--text-silver); }
+
+  @media (max-width: 768px) {
+    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="brand">
+    <div class="spotify-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    </div>
+    Spotify Design System
+  </div>
+</div>
+
+<section class="hero">
+  <h1>Build beautiful products faster</h1>
+  <p>Dark, immersive, content-first. The UI recedes into shadow so that music and art can glow.</p>
+  <div class="hero-buttons">
+    <button class="btn-primary">Get Started</button>
+    <button class="btn-secondary">Explore</button>
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-label">Features</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+      <h3>Pill & Circle Geometry</h3>
+      <p>500-9999px pill buttons, 50% circles for play controls. Rounded, touch-optimized, device-like.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </div>
+      <h3>Content-First Dark</h3>
+      <p>Near-black cocoon where album art provides the color. The UI itself is achromatic by design.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+      </div>
+      <h3>Uppercase System</h3>
+      <p>Button labels in uppercase + 1.4-2px letter-spacing. A systematic label voice distinct from content.</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2>Get in Touch</h2>
+  <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
+  <div class="form-group"><label>Email</label><input type="email" placeholder="you@music.com"></div>
+  <div class="form-group"><label>Message</label><textarea placeholder="What song describes your mood?"></textarea></div>
+  <div class="form-submit"><button class="btn-primary">Submit</button></div>
+</section>
+
+<section class="showcase">
+  <h2>Component Showcase</h2>
+
+  <div class="showcase-section">
+    <h3>Color Palette</h3>
+    <div class="color-grid">
+      <div class="color-swatch"><div class="swatch" style="background:#121212"></div><div class="name">Near Black</div><div class="label">#121212</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#181818"></div><div class="name">Dark Surface</div><div class="label">#181818</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#1f1f1f"></div><div class="name">Mid Dark</div><div class="label">#1f1f1f</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#252525"></div><div class="name">Elevated</div><div class="label">#252525</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">White</div><div class="label">#ffffff</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#b3b3b3"></div><div class="name">Silver</div><div class="label">#b3b3b3</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#1ed760"></div><div class="name">Spotify Green</div><div class="label">#1ed760</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#f3727f"></div><div class="name">Negative Red</div><div class="label">#f3727f</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#ffa42b"></div><div class="name">Warning</div><div class="label">#ffa42b</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#539df5"></div><div class="name">Announce Blue</div><div class="label">#539df5</div></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Typography Scale</h3>
+    <div class="type-scale">
+      <div class="type-row"><span class="meta">24px / 700</span><span style="font-size:24px;font-weight:700;">Section Title</span></div>
+      <div class="type-row"><span class="meta">18px / 600</span><span style="font-size:18px;font-weight:600;line-height:1.3;">Feature Heading</span></div>
+      <div class="type-row"><span class="meta">16px / 700</span><span style="font-size:16px;font-weight:700;">Body Bold</span></div>
+      <div class="type-row"><span class="meta">16px / 400</span><span style="font-size:16px;font-weight:400;color:var(--text-silver);">Body — standard text</span></div>
+      <div class="type-row"><span class="meta">14px / 700 ↑</span><span style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;">Button Uppercase</span></div>
+      <div class="type-row"><span class="meta">14px / 400</span><span style="font-size:14px;font-weight:400;color:var(--text-silver);">Caption</span></div>
+      <div class="type-row"><span class="meta">12px / 700</span><span style="font-size:12px;font-weight:700;line-height:1.5;">Small Bold</span></div>
+      <div class="type-row"><span class="meta">10.5px / 600</span><span style="font-size:10.5px;font-weight:600;line-height:1.33;text-transform:capitalize;">Badge Text</span></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Button Variants</h3>
+    <div class="button-row">
+      <button class="btn-primary">Primary Green</button>
+      <button class="btn-dark-pill">Dark Pill</button>
+      <button class="btn-outlined-pill">Outlined</button>
+      <button class="btn-circular">&#9654;</button>
+      <button class="btn-danger">Error</button>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Card Variants</h3>
+    <div class="card-variants">
+      <div class="card-v dark"><h4>Dark Card</h4><p>#181818 surface</p></div>
+      <div class="card-v mid"><h4>Mid Card</h4><p>#1f1f1f interactive</p></div>
+      <div class="card-v elevated"><h4>Elevated Card</h4><p>Shadow + #252525</p></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Input States</h3>
+    <div class="input-states">
+      <div class="input-state"><label>Default</label><input type="text" placeholder="Search"></div>
+      <div class="input-state focused"><label>Focused</label><input type="text" value="Active"></div>
+      <div class="input-state disabled"><label>Disabled</label><input type="text" value="Disabled" disabled></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Shadow Levels</h3>
+    <div class="shadow-grid">
+      <div class="shadow-box" style="box-shadow:none;">Level 0 — Base</div>
+      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.3) 0px 8px 8px;">Level 2 — Medium</div>
+      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.5) 0px 8px 24px;">Level 3 — Heavy</div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Border Radius</h3>
+    <div class="radius-row">
+      <div class="radius-item"><div class="radius-box" style="border-radius:2px;"></div><div class="radius-label">2px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:500px;"></div><div class="radius-label">500px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:9999px;"></div><div class="radius-label">9999px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-label">50%</div></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

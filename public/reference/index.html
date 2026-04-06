@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignHub — Reference Design Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #e5e5e5;
+    min-height: 100vh;
+  }
+  .header {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .header span {
+    font-size: 13px;
+    color: #888;
+    font-weight: 400;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 32px;
+  }
+  .intro {
+    margin-bottom: 48px;
+  }
+  .intro h2 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .intro p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #999;
+    max-width: 640px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.15);
+  }
+  .card-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.4px;
+  }
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #888;
+  }
+  .card-colors {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .card-meta {
+    font-size: 12px;
+    color: #666;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>DesignHub</h1>
+  <span>Reference Design Systems</span>
+</div>
+<div class="container">
+  <div class="intro">
+    <h2>9 Real Design Systems, Rendered</h2>
+    <p>Each page below is a standalone preview built from the actual DESIGN.md specification of a real product. Colors, fonts, spacing, shadows, and border-radius are all extracted from production CSS.</p>
+  </div>
+  <div class="grid">
+    <a class="card" href="vercel.html">
+      <div class="card-name">Vercel</div>
+      <div class="card-desc">Shadow-as-border philosophy. Geist font with extreme negative letter-spacing. Pure white canvas, near-black text, workflow accent colors.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#171717"></div>
+        <div class="swatch" style="background:#ffffff;border-color:rgba(0,0,0,0.15)"></div>
+        <div class="swatch" style="background:#ff5b4f"></div>
+        <div class="swatch" style="background:#de1d8d"></div>
+        <div class="swatch" style="background:#0a72ef"></div>
+      </div>
+      <div class="card-meta">Geist Sans / Geist Mono &middot; 6px radius &middot; Multi-layer shadow stacks</div>
+    </a>
+    <a class="card" href="stripe.html">
+      <div class="card-name">Stripe</div>
+      <div class="card-desc">Fintech elegance with blue-tinted shadows. sohne-var at weight 300 for whisper-authority headlines. Deep navy headings, signature purple CTAs.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#533afd"></div>
+        <div class="swatch" style="background:#061b31"></div>
+        <div class="swatch" style="background:#ea2261"></div>
+        <div class="swatch" style="background:#f96bee"></div>
+        <div class="swatch" style="background:#ffffff;border-color:rgba(0,0,0,0.15)"></div>
+      </div>
+      <div class="card-meta">sohne-var (ss01) &middot; 4px radius &middot; Blue-tinted shadows</div>
+    </a>
+    <a class="card" href="linear.app.html">
+      <div class="card-name">Linear</div>
+      <div class="card-desc">Dark-mode-native product design. Inter Variable with signature 510 weight. Semi-transparent white borders on near-black surfaces, brand indigo accent.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#08090a"></div>
+        <div class="swatch" style="background:#5e6ad2"></div>
+        <div class="swatch" style="background:#7170ff"></div>
+        <div class="swatch" style="background:#f7f8f8"></div>
+        <div class="swatch" style="background:#191a1b"></div>
+      </div>
+      <div class="card-meta">Inter Variable (cv01, ss03) &middot; 6px radius &middot; Luminance stacking</div>
+    </a>
+    <a class="card" href="notion.html">
+      <div class="card-name">Notion</div>
+      <div class="card-desc">Warm minimalism on a canvas that feels like quality paper. NotionInter with warm neutral grays. Whisper-weight borders and multi-layer barely-there shadows.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#ffffff;border-color:rgba(0,0,0,0.15)"></div>
+        <div class="swatch" style="background:#f6f5f4"></div>
+        <div class="swatch" style="background:#0075de"></div>
+        <div class="swatch" style="background:#615d59"></div>
+        <div class="swatch" style="background:#31302e"></div>
+      </div>
+      <div class="card-meta">NotionInter &middot; 12px radius &middot; Warm neutrals</div>
+    </a>
+    <a class="card" href="spotify.html">
+      <div class="card-name">Spotify</div>
+      <div class="card-desc">Dark immersive music player. Pill-and-circle geometry, uppercase button labels with wide tracking. Near-black cocoon where album art is the color source.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#121212"></div>
+        <div class="swatch" style="background:#1ed760"></div>
+        <div class="swatch" style="background:#181818"></div>
+        <div class="swatch" style="background:#b3b3b3"></div>
+        <div class="swatch" style="background:#1f1f1f"></div>
+      </div>
+      <div class="card-meta">SpotifyMixUI / CircularSp &middot; pill 9999px &middot; Heavy dark shadows</div>
+    </a>
+    <a class="card" href="apple.html">
+      <div class="card-name">Apple</div>
+      <div class="card-desc">Controlled drama with cinematic light/dark alternation. SF Pro with optical sizing. Single blue accent on binary black/white canvas. Product as sculpture.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#000000"></div>
+        <div class="swatch" style="background:#f5f5f7"></div>
+        <div class="swatch" style="background:#0071e3"></div>
+        <div class="swatch" style="background:#1d1d1f"></div>
+        <div class="swatch" style="background:#2997ff"></div>
+      </div>
+      <div class="card-meta">SF Pro Display / Text &middot; 8px radius &middot; 980px pill CTAs</div>
+    </a>
+    <a class="card" href="figma.html">
+      <div class="card-name">Figma</div>
+      <div class="card-desc">Pure black-and-white interface with variable font precision. Unusual weight stops (320-540), pill/circle geometry, dashed focus indicators. Color only in product content.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#000000"></div>
+        <div class="swatch" style="background:#ffffff;border-color:rgba(0,0,0,0.15)"></div>
+        <div class="swatch" style="background:linear-gradient(135deg,#0acf83,#a259ff,#f24e1e,#ff7262)"></div>
+      </div>
+      <div class="card-meta">figmaSans / figmaMono &middot; 50px pill &middot; Dashed focus outlines</div>
+    </a>
+    <a class="card" href="claude.html">
+      <div class="card-name">Claude</div>
+      <div class="card-desc">Literary salon as product page. Warm parchment canvas, serif headlines, terracotta accent. Every gray has a yellow-brown undertone. Editorial, not clinical.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#f5f4ed"></div>
+        <div class="swatch" style="background:#c96442"></div>
+        <div class="swatch" style="background:#141413"></div>
+        <div class="swatch" style="background:#5e5d59"></div>
+        <div class="swatch" style="background:#faf9f5"></div>
+      </div>
+      <div class="card-meta">Anthropic Serif / Sans &middot; 12px radius &middot; Warm ring shadows</div>
+    </a>
+    <a class="card" href="spacex.html">
+      <div class="card-name">SpaceX</div>
+      <div class="card-desc">Aerospace cinema. Full-viewport photography, universal uppercase, D-DIN industrial typeface. Zero shadows, zero cards, zero decoration. Photography + type + one ghost button.</div>
+      <div class="card-colors">
+        <div class="swatch" style="background:#000000"></div>
+        <div class="swatch" style="background:#f0f0fa"></div>
+      </div>
+      <div class="card-meta">D-DIN / D-DIN-Bold &middot; 32px radius &middot; Zero shadows</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>

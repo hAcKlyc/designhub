@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignHub — Stripe Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #533afd;
+    --purple-hover: #4434d4;
+    --navy: #061b31;
+    --bg: #ffffff;
+    --body: #64748d;
+    --label: #273951;
+    --border: #e5edf5;
+    --border-purple: #b9b9f9;
+    --brand-dark: #1c1e54;
+    --ruby: #ea2261;
+    --magenta: #f96bee;
+    --success: #15be53;
+    --success-text: #108c3d;
+    --shadow-blue: rgba(50,50,93,0.25);
+    --shadow-black: rgba(0,0,0,0.1);
+    --font: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+    --font-mono: 'Source Code Pro', 'SFMono-Regular', monospace;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--navy);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Sticky Header */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+  }
+  .sticky-header .brand {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stripe-logo { font-weight: 600; color: var(--purple); font-size: 18px; letter-spacing: -0.5px; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 100px 32px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.96px;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.40;
+    color: var(--body);
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  .btn-primary {
+    background: var(--purple);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--purple-hover); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--purple);
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--border-purple);
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--body);
+    text-align: center;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Features */
+  .features {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px;
+    box-shadow: rgba(23,23,23,0.08) 0px 15px 35px 0px;
+  }
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    background: rgba(83,58,253,0.08);
+    color: var(--purple);
+  }
+  .feature-card h3 {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: -0.22px;
+    line-height: 1.10;
+    margin-bottom: 10px;
+    color: var(--navy);
+  }
+  .feature-card p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.40;
+    color: var(--body);
+  }
+
+  /* Form */
+  .form-section {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+  .form-section h2 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: -0.64px;
+    line-height: 1.10;
+    margin-bottom: 24px;
+    text-align: center;
+    color: var(--navy);
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--label);
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--navy);
+    background: var(--bg);
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--purple);
+  }
+  .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--body); }
+  .form-submit { text-align: center; margin-top: 24px; }
+
+  /* Dark Brand Section */
+  .dark-section {
+    background: var(--brand-dark);
+    padding: 80px 32px;
+  }
+
+  /* Showcase */
+  .showcase {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+  .showcase h2 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: -0.64px;
+    line-height: 1.10;
+    margin-bottom: 48px;
+    text-align: center;
+    color: var(--navy);
+  }
+  .showcase-section {
+    margin-bottom: 48px;
+  }
+  .showcase-section h3 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--label);
+  }
+
+  /* Colors */
+  .color-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .color-swatch .swatch {
+    width: 64px;
+    height: 64px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .color-swatch .label {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--body);
+  }
+  .color-swatch .name {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--navy);
+  }
+
+  /* Type */
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(229,237,245,0.5);
+  }
+  .type-row .meta {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--body);
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+
+  /* Buttons */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--purple);
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--border-purple);
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .btn-neutral {
+    background: transparent;
+    color: rgba(16,16,16,0.3);
+    padding: 8px 16px;
+    border-radius: 4px;
+    outline: 1px solid rgb(212,222,233);
+    border: none;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .btn-danger {
+    background: var(--ruby);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .btn-success-badge {
+    background: rgba(21,190,83,0.2);
+    color: var(--success-text);
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(21,190,83,0.4);
+    font-family: var(--font);
+    font-size: 10px;
+    font-weight: 300;
+    cursor: default;
+  }
+
+  /* Cards */
+  .card-variants {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .card-v {
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+  }
+  .card-v.standard { border-radius: 5px; box-shadow: rgba(23,23,23,0.08) 0px 15px 35px 0px; }
+  .card-v.elevated { border-radius: 6px; box-shadow: rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px; }
+  .card-v.deep { border-radius: 8px; box-shadow: rgba(3,3,39,0.25) 0px 14px 21px -14px, rgba(0,0,0,0.1) 0px 8px 17px -8px; }
+  .card-v h4 {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .card-v p { font-size: 13px; color: var(--body); font-weight: 300; }
+
+  /* Input States */
+  .input-states {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .input-state label {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: var(--font-mono);
+    color: var(--body);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .input-state input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--navy);
+    background: var(--bg);
+    outline: none;
+  }
+  .input-state.focused input { border-color: var(--purple); }
+  .input-state.disabled input { color: var(--body); background: #f8fafc; }
+
+  /* Shadows */
+  .shadow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .shadow-box {
+    height: 80px;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--body);
+  }
+
+  /* Radius */
+  .radius-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: end;
+  }
+  .radius-item { text-align: center; }
+  .radius-box {
+    width: 64px;
+    height: 64px;
+    background: #f6f9fc;
+    border: 1px solid var(--border);
+    margin-bottom: 6px;
+  }
+  .radius-label {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--body);
+  }
+
+  @media (max-width: 768px) {
+    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; letter-spacing: -0.64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="brand">
+    <span class="stripe-logo">stripe</span>
+    <span style="color:var(--body);font-size:13px;">Design System</span>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Build beautiful products faster</h1>
+  <p>Financial infrastructure meets world-class design. Every component engineered for precision, every shadow tinted with brand atmosphere.</p>
+  <div class="hero-buttons">
+    <button class="btn-primary">Start now</button>
+    <button class="btn-secondary">Contact sales</button>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <div class="section-label">Features</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Blue-Tinted Shadows</h3>
+      <p>Signature rgba(50,50,93,0.25) creates shadows with atmospheric depth, like elements floating in twilight.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+      </div>
+      <h3>Whisper-Weight Type</h3>
+      <p>Weight 300 headlines — extraordinarily light, creating ethereal authority. The opposite of bold convention.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3>Conservative Rounding</h3>
+      <p>4px-8px radius range throughout. Nothing pill-shaped, nothing harsh. Precise, financial-grade corners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Form -->
+<section class="form-section">
+  <h2>Get in Touch</h2>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" placeholder="Full name">
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" placeholder="you@company.com">
+  </div>
+  <div class="form-group">
+    <label>Message</label>
+    <textarea placeholder="How can we help?"></textarea>
+  </div>
+  <div class="form-submit">
+    <button class="btn-primary">Submit</button>
+  </div>
+</section>
+
+<!-- Showcase -->
+<section class="showcase">
+  <h2>Component Showcase</h2>
+
+  <div class="showcase-section">
+    <h3>Color Palette</h3>
+    <div class="color-grid">
+      <div class="color-swatch"><div class="swatch" style="background:#533afd"></div><div class="name">Stripe Purple</div><div class="label">#533afd</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#061b31"></div><div class="name">Deep Navy</div><div class="label">#061b31</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">White</div><div class="label">#ffffff</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#1c1e54"></div><div class="name">Brand Dark</div><div class="label">#1c1e54</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#64748d"></div><div class="name">Slate</div><div class="label">#64748d</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#273951"></div><div class="name">Label</div><div class="label">#273951</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#e5edf5"></div><div class="name">Border</div><div class="label">#e5edf5</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#ea2261"></div><div class="name">Ruby</div><div class="label">#ea2261</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#f96bee"></div><div class="name">Magenta</div><div class="label">#f96bee</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#15be53"></div><div class="name">Success</div><div class="label">#15be53</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#b9b9f9"></div><div class="name">Purple Light</div><div class="label">#b9b9f9</div></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Typography Scale</h3>
+    <div class="type-scale">
+      <div class="type-row"><span class="meta">56px / 300</span><span style="font-size:48px;font-weight:300;letter-spacing:-0.96px;line-height:1.15;color:var(--navy);">Display Hero</span></div>
+      <div class="type-row"><span class="meta">48px / 300</span><span style="font-size:40px;font-weight:300;letter-spacing:-0.96px;line-height:1.15;color:var(--navy);">Display Large</span></div>
+      <div class="type-row"><span class="meta">32px / 300</span><span style="font-size:32px;font-weight:300;letter-spacing:-0.64px;line-height:1.10;color:var(--navy);">Section Heading</span></div>
+      <div class="type-row"><span class="meta">22px / 300</span><span style="font-size:22px;font-weight:300;letter-spacing:-0.22px;line-height:1.10;color:var(--navy);">Sub-heading</span></div>
+      <div class="type-row"><span class="meta">18px / 300</span><span style="font-size:18px;font-weight:300;line-height:1.40;color:var(--body);">Body Large — feature descriptions</span></div>
+      <div class="type-row"><span class="meta">16px / 300</span><span style="font-size:16px;font-weight:300;line-height:1.40;">Body — standard reading text</span></div>
+      <div class="type-row"><span class="meta">14px / 400</span><span style="font-size:14px;font-weight:400;line-height:1;">Navigation link</span></div>
+      <div class="type-row"><span class="meta">12px Code</span><span style="font-size:12px;font-family:var(--font-mono);font-weight:500;line-height:2;">const payment = stripe.create()</span></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Button Variants</h3>
+    <div class="button-row">
+      <button class="btn-primary">Primary Purple</button>
+      <button class="btn-ghost">Ghost Outlined</button>
+      <button class="btn-neutral">Neutral Ghost</button>
+      <button class="btn-danger">Ruby Accent</button>
+      <span class="btn-success-badge">Active</span>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Card Variants</h3>
+    <div class="card-variants">
+      <div class="card-v standard">
+        <h4>Standard</h4>
+        <p>Ambient shadow, 5px radius</p>
+      </div>
+      <div class="card-v elevated">
+        <h4>Elevated</h4>
+        <p>Blue-tinted dual-layer shadow</p>
+      </div>
+      <div class="card-v deep">
+        <h4>Deep</h4>
+        <p>Deep blue shadow, 8px radius</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Input States</h3>
+    <div class="input-states">
+      <div class="input-state">
+        <label>Default</label>
+        <input type="text" placeholder="Default">
+      </div>
+      <div class="input-state focused">
+        <label>Focused</label>
+        <input type="text" value="Purple focus ring">
+      </div>
+      <div class="input-state disabled">
+        <label>Disabled</label>
+        <input type="text" value="Disabled" disabled>
+      </div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Shadow Levels</h3>
+    <div class="shadow-grid">
+      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
+      <div class="shadow-box" style="box-shadow:rgba(23,23,23,0.06) 0px 3px 6px;">Level 1 — Ambient</div>
+      <div class="shadow-box" style="box-shadow:rgba(23,23,23,0.08) 0px 15px 35px;">Level 2 — Standard</div>
+      <div class="shadow-box" style="box-shadow:rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;">Level 3 — Elevated</div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Border Radius</h3>
+    <div class="radius-row">
+      <div class="radius-item"><div class="radius-box" style="border-radius:1px;"></div><div class="radius-label">1px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">4px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:5px;"></div><div class="radius-label">5px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

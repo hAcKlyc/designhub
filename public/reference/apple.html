@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignHub — Apple Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --light-gray: #f5f5f7;
+    --near-black: #1d1d1f;
+    --blue: #0071e3;
+    --link-light: #0066cc;
+    --link-dark: #2997ff;
+    --text-80: rgba(0, 0, 0, 0.8);
+    --text-48: rgba(0, 0, 0, 0.48);
+    --dark-surface: #272729;
+    --white-32: rgba(255, 255, 255, 0.32);
+    --shadow-card: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
+    --font-display: 'Inter', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-text: 'Inter', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-text);
+    background: var(--black);
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav Glass */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    padding: 0 32px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sticky-header .brand {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .apple-logo { font-size: 18px; }
+
+  /* Hero - Dark */
+  .hero {
+    text-align: center;
+    padding: 120px 32px 100px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--black);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.28px;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.19;
+    letter-spacing: 0.231px;
+    color: rgba(255,255,255,0.8);
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; }
+  .btn-primary {
+    background: var(--blue);
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .btn-pill-link {
+    background: transparent;
+    color: var(--link-dark);
+    padding: 8px 20px;
+    border-radius: 980px;
+    border: 1px solid var(--link-dark);
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  /* Light Section */
+  .light-section {
+    background: var(--light-gray);
+    color: var(--near-black);
+    padding: 80px 32px;
+  }
+  .light-section .section-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-80);
+    text-align: center;
+    margin-bottom: 32px;
+    letter-spacing: -0.224px;
+  }
+
+  /* Features */
+  .features {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+    text-align: center;
+  }
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    background: var(--light-gray);
+    color: var(--blue);
+  }
+  .feature-card h3 {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.231px;
+    line-height: 1.19;
+    margin-bottom: 8px;
+    color: var(--near-black);
+  }
+  .feature-card p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: -0.224px;
+    color: var(--text-80);
+  }
+
+  /* Form - Dark */
+  .form-section {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    background: var(--black);
+  }
+  .form-section h2 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.10;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: -0.224px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    color: #ffffff;
+    background: var(--dark-surface);
+    outline: none;
+    letter-spacing: -0.374px;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.48); }
+  .form-submit { text-align: center; margin-top: 24px; }
+
+  /* Showcase - Light */
+  .showcase {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    background: var(--light-gray);
+    color: var(--near-black);
+  }
+  .showcase h2 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.10;
+    margin-bottom: 48px;
+    text-align: center;
+    color: var(--near-black);
+  }
+  .showcase-section { margin-bottom: 48px; }
+  .showcase-section h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--near-black);
+    letter-spacing: -0.224px;
+  }
+
+  /* Colors */
+  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .color-swatch .swatch { width: 64px; height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
+  .color-swatch .label { font-size: 10px; color: var(--text-48); letter-spacing: -0.08px; }
+  .color-swatch .name { font-size: 10px; font-weight: 600; color: var(--near-black); }
+
+  /* Type */
+  .type-scale { display: flex; flex-direction: column; gap: 8px; }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .type-row .meta { font-size: 10px; color: var(--text-48); min-width: 130px; flex-shrink: 0; }
+
+  /* Buttons */
+  .button-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn-dark {
+    background: var(--near-black);
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .btn-pill-learn {
+    background: transparent;
+    color: var(--link-light);
+    padding: 6px 16px;
+    border-radius: 980px;
+    border: 1px solid var(--link-light);
+    font-family: var(--font-text);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    letter-spacing: -0.224px;
+  }
+  .btn-ghost-apple {
+    background: transparent;
+    color: var(--link-light);
+    padding: 6px 0;
+    border: none;
+    font-family: var(--font-text);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: -0.224px;
+  }
+  .btn-ghost-apple:hover { text-decoration: underline; }
+  .btn-danger {
+    background: #ff3b30;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  /* Cards */
+  .card-variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card-v { padding: 24px; border-radius: 8px; text-align: center; }
+  .card-v.light-card { background: #ffffff; box-shadow: var(--shadow-card); }
+  .card-v.dark-card { background: var(--dark-surface); color: #ffffff; }
+  .card-v.gray-card { background: var(--light-gray); }
+  .card-v h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .card-v p { font-size: 14px; color: var(--text-80); font-weight: 400; letter-spacing: -0.224px; }
+  .card-v.dark-card p { color: rgba(255,255,255,0.7); }
+
+  /* Input States */
+  .input-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .input-state label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-48);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: -0.08px;
+  }
+  .input-state input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    font-family: var(--font-text);
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--near-black);
+    background: #ffffff;
+    outline: none;
+    letter-spacing: -0.374px;
+  }
+  .input-state.focused input { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .input-state.disabled input { color: var(--text-48); background: var(--light-gray); }
+
+  /* Shadows */
+  .shadow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .shadow-box {
+    height: 80px;
+    border-radius: 8px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-48);
+  }
+
+  /* Radius */
+  .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+  .radius-item { text-align: center; }
+  .radius-box { width: 64px; height: 64px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); margin-bottom: 6px; }
+  .radius-label { font-size: 10px; color: var(--text-48); }
+
+  @media (max-width: 768px) {
+    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="brand">
+    <span class="apple-logo">&#63743;</span>
+    Apple Design System
+  </div>
+</div>
+
+<!-- Hero (Dark) -->
+<section class="hero">
+  <h1>Build beautiful products faster</h1>
+  <p>Controlled drama. Cinematic pacing. Every pixel exists in service of the product.</p>
+  <div class="hero-buttons">
+    <button class="btn-primary">Buy</button>
+    <button class="btn-pill-link">Learn more</button>
+  </div>
+</section>
+
+<!-- Features (Light) -->
+<div class="light-section">
+  <div class="features">
+    <div class="section-label">Features</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/></svg>
+        </div>
+        <h3>Optical Sizing</h3>
+        <p>SF Pro Display above 20px, SF Pro Text below. Letterforms adapt their DNA based on context.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        </div>
+        <h3>Binary Canvas</h3>
+        <p>Pure black and #f5f5f7 light gray alternate like scenes in a film. No gradients, no textures.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>Single Accent</h3>
+        <p>Apple Blue #0071e3 is the only chromatic color. Every interactive element shares this one hue.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form (Dark) -->
+<section class="form-section">
+  <h2>Get in Touch</h2>
+  <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
+  <div class="form-group"><label>Email</label><input type="email" placeholder="you@icloud.com"></div>
+  <div class="form-group"><label>Message</label><textarea placeholder="What are you building?"></textarea></div>
+  <div class="form-submit"><button class="btn-primary">Submit</button></div>
+</section>
+
+<!-- Showcase (Light) -->
+<div class="light-section" style="padding:0;">
+<section class="showcase">
+  <h2>Component Showcase</h2>
+
+  <div class="showcase-section">
+    <h3>Color Palette</h3>
+    <div class="color-grid">
+      <div class="color-swatch"><div class="swatch" style="background:#000000"></div><div class="name">Pure Black</div><div class="label">#000000</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#f5f5f7"></div><div class="name">Light Gray</div><div class="label">#f5f5f7</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#1d1d1f"></div><div class="name">Near Black</div><div class="label">#1d1d1f</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">White</div><div class="label">#ffffff</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#0071e3"></div><div class="name">Apple Blue</div><div class="label">#0071e3</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#0066cc"></div><div class="name">Link Blue</div><div class="label">#0066cc</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#2997ff"></div><div class="name">Bright Blue</div><div class="label">#2997ff</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#272729"></div><div class="name">Dark Surface</div><div class="label">#272729</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:rgba(0,0,0,0.8)"></div><div class="name">Text 80%</div><div class="label">rgba(0,0,0,0.8)</div></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Typography Scale</h3>
+    <div class="type-scale">
+      <div class="type-row"><span class="meta">56px Display / 600</span><span style="font-size:46px;font-weight:600;line-height:1.07;letter-spacing:-0.28px;color:var(--near-black);">Display Hero</span></div>
+      <div class="type-row"><span class="meta">40px Display / 600</span><span style="font-size:36px;font-weight:600;line-height:1.10;color:var(--near-black);">Section Heading</span></div>
+      <div class="type-row"><span class="meta">28px Display / 400</span><span style="font-size:28px;font-weight:400;line-height:1.14;letter-spacing:0.196px;color:var(--near-black);">Tile Heading</span></div>
+      <div class="type-row"><span class="meta">21px Display / 700</span><span style="font-size:21px;font-weight:700;line-height:1.19;letter-spacing:0.231px;color:var(--near-black);">Card Title Bold</span></div>
+      <div class="type-row"><span class="meta">17px Text / 400</span><span style="font-size:17px;font-weight:400;line-height:1.47;letter-spacing:-0.374px;color:var(--text-80);">Body — standard reading text</span></div>
+      <div class="type-row"><span class="meta">14px Text / 400</span><span style="font-size:14px;font-weight:400;line-height:1.43;letter-spacing:-0.224px;color:var(--link-light);">Learn more &#8250;</span></div>
+      <div class="type-row"><span class="meta">12px Text / 400</span><span style="font-size:12px;font-weight:400;line-height:1.33;letter-spacing:-0.12px;color:var(--text-48);">Micro — fine print, footnotes</span></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Button Variants</h3>
+    <div class="button-row">
+      <button class="btn-primary">Primary Blue</button>
+      <button class="btn-dark">Primary Dark</button>
+      <button class="btn-pill-learn">Learn more</button>
+      <button class="btn-ghost-apple">Shop &#8250;</button>
+      <button class="btn-danger">Danger</button>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Card Variants</h3>
+    <div class="card-variants">
+      <div class="card-v light-card"><h4>Light Card</h4><p>White + shadow, 8px radius</p></div>
+      <div class="card-v dark-card"><h4>Dark Card</h4><p>#272729 surface</p></div>
+      <div class="card-v gray-card"><h4>Gray Card</h4><p>#f5f5f7 background, no shadow</p></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Input States</h3>
+    <div class="input-states">
+      <div class="input-state"><label>Default</label><input type="text" placeholder="Default"></div>
+      <div class="input-state focused"><label>Focused</label><input type="text" value="Blue focus ring"></div>
+      <div class="input-state disabled"><label>Disabled</label><input type="text" value="Disabled" disabled></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Shadow Levels</h3>
+    <div class="shadow-grid">
+      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
+      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.22) 3px 5px 30px 0px;">Level 1 — Subtle Lift</div>
+      <div class="shadow-box" style="box-shadow:rgba(0,0,0,0.22) 3px 5px 30px 0px;outline:2px solid var(--blue);outline-offset:2px;">Focus Ring</div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Border Radius</h3>
+    <div class="radius-row">
+      <div class="radius-item"><div class="radius-box" style="border-radius:5px;"></div><div class="radius-label">5px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:11px;"></div><div class="radius-label">11px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:12px;"></div><div class="radius-label">12px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:980px;"></div><div class="radius-label">980px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-label">50%</div></div>
+    </div>
+  </div>
+</section>
+</div>
+
+</body>
+</html>

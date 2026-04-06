@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignHub — Figma Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --glass-dark: rgba(0, 0, 0, 0.08);
+    --glass-light: rgba(255, 255, 255, 0.16);
+    --font: 'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
+    --font-mono: 'Space Mono', 'SF Mono', menlo, monospace;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--black);
+    font-feature-settings: "kern";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 0 32px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sticky-header .brand {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.14px;
+  }
+  .figma-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+  .figma-icon span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  .figma-icon span:nth-child(1) { background: #f24e1e; border-radius: 50% 0 0 50%; }
+  .figma-icon span:nth-child(2) { background: #ff7262; border-radius: 0 50% 50% 0; }
+  .figma-icon span:nth-child(3) { background: #a259ff; border-radius: 50% 0 0 50%; }
+  .figma-icon span:nth-child(4) { background: #1abcfe; border-radius: 0 50% 50% 0; }
+
+  /* Hero - Gradient */
+  .hero {
+    text-align: center;
+    padding: 100px 32px 80px;
+    background: linear-gradient(135deg, #0acf83 0%, #a259ff 35%, #f24e1e 65%, #ff7262 100%);
+    color: var(--white);
+  }
+  .hero h1 {
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.00;
+    letter-spacing: -0.96px;
+    margin-bottom: 16px;
+    font-feature-settings: "kern";
+  }
+  .hero p {
+    font-size: 20px;
+    font-weight: 330;
+    line-height: 1.40;
+    letter-spacing: -0.14px;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    opacity: 0.9;
+  }
+  .hero-buttons { display: flex; gap: 12px; justify-content: center; }
+  .btn-white {
+    background: var(--white);
+    color: var(--black);
+    padding: 8px 18px 10px;
+    border-radius: 50px;
+    border: none;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    letter-spacing: -0.14px;
+  }
+  .btn-white:focus { outline: dashed 2px var(--black); outline-offset: 2px; }
+  .btn-glass {
+    background: var(--glass-light);
+    color: var(--white);
+    padding: 8px 18px 10px;
+    border-radius: 50px;
+    border: none;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    letter-spacing: -0.14px;
+  }
+  .btn-glass:focus { outline: dashed 2px var(--white); outline-offset: 2px; }
+
+  /* Body sections on white */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.54px;
+    text-align: center;
+    margin-bottom: 32px;
+    color: var(--black);
+  }
+
+  /* Features */
+  .features {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 28px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background: var(--glass-dark);
+    color: var(--black);
+  }
+  .feature-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+  .feature-card p {
+    font-size: 16px;
+    font-weight: 330;
+    line-height: 1.45;
+    color: var(--black);
+    letter-spacing: -0.14px;
+  }
+
+  /* Form */
+  .form-section {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+  .form-section h2 {
+    font-size: 26px;
+    font-weight: 540;
+    letter-spacing: -0.26px;
+    line-height: 1.35;
+    margin-bottom: 24px;
+    text-align: center;
+    color: var(--black);
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--black);
+    letter-spacing: -0.14px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 340;
+    color: var(--black);
+    background: var(--white);
+    outline: none;
+    letter-spacing: -0.14px;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { outline: dashed 2px var(--black); outline-offset: 1px; }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(0,0,0,0.35); }
+  .form-submit { text-align: center; margin-top: 24px; }
+  .btn-black {
+    background: var(--black);
+    color: var(--white);
+    padding: 8px 18px 10px;
+    border-radius: 50px;
+    border: none;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .btn-black:focus { outline: dashed 2px var(--black); outline-offset: 2px; }
+
+  /* Showcase */
+  .showcase {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .showcase h2 {
+    font-size: 26px;
+    font-weight: 540;
+    letter-spacing: -0.26px;
+    line-height: 1.35;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .showcase-section { margin-bottom: 48px; }
+  .showcase-section h3 {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  /* Colors */
+  .color-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  .color-swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .color-swatch .swatch { width: 64px; height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
+  .color-swatch .label { font-size: 11px; color: rgba(0,0,0,0.4); }
+  .color-swatch .name { font-size: 11px; font-weight: 500; color: var(--black); }
+
+  /* Type */
+  .type-scale { display: flex; flex-direction: column; gap: 8px; }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .type-row .meta { font-size: 11px; color: rgba(0,0,0,0.4); min-width: 130px; flex-shrink: 0; }
+
+  /* Buttons */
+  .button-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn-glass-dark {
+    background: var(--glass-dark);
+    color: var(--black);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-ghost-figma {
+    background: transparent;
+    color: var(--black);
+    padding: 6px 12px;
+    border: none;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    letter-spacing: -0.14px;
+  }
+  .btn-danger {
+    background: #f24e1e;
+    color: #ffffff;
+    padding: 8px 18px 10px;
+    border-radius: 50px;
+    border: none;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  /* Cards */
+  .card-variants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card-v { padding: 24px; }
+  .card-v.white-card { background: var(--white); border-radius: 8px; border: 1px solid rgba(0,0,0,0.08); }
+  .card-v.glass-card { background: var(--glass-dark); border-radius: 8px; }
+  .card-v.gradient-card {
+    background: linear-gradient(135deg, #0acf83, #a259ff);
+    border-radius: 8px;
+    color: white;
+  }
+  .card-v h4 { font-size: 16px; font-weight: 540; margin-bottom: 4px; letter-spacing: -0.14px; }
+  .card-v p { font-size: 14px; font-weight: 330; letter-spacing: -0.14px; }
+  .card-v.gradient-card p { color: rgba(255,255,255,0.8); }
+
+  /* Input States */
+  .input-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .input-state label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  .input-state input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 340;
+    color: var(--black);
+    background: var(--white);
+    outline: none;
+    letter-spacing: -0.14px;
+  }
+  .input-state.focused input { outline: dashed 2px var(--black); outline-offset: 1px; }
+  .input-state.disabled input { color: rgba(0,0,0,0.3); background: rgba(0,0,0,0.03); }
+
+  /* Shadows */
+  .shadow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .shadow-box {
+    height: 80px;
+    border-radius: 8px;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: rgba(0,0,0,0.4);
+  }
+
+  /* Radius */
+  .radius-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+  .radius-item { text-align: center; }
+  .radius-box { width: 64px; height: 64px; background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); margin-bottom: 6px; }
+  .radius-label { font-size: 11px; color: rgba(0,0,0,0.4); }
+
+  @media (max-width: 768px) {
+    .features-grid, .card-variants, .input-states, .shadow-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 42px; letter-spacing: -0.64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="brand">
+    <div class="figma-icon">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    Figma Design System
+  </div>
+</div>
+
+<!-- Hero - Gradient -->
+<section class="hero">
+  <h1>Build beautiful products faster</h1>
+  <p>The design tool that designed itself. Variable font precision meets pure black-and-white interface chrome.</p>
+  <div class="hero-buttons">
+    <button class="btn-white">Get started for free</button>
+    <button class="btn-glass">Watch demo</button>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <div class="section-label">Features</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+      </div>
+      <h3>Variable Font Precision</h3>
+      <p>Unusual weight stops at 320, 330, 340, 450, 480, 540. Hierarchy through micro-differences, not blunt instruments.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <h3>Pill & Circle Geometry</h3>
+      <p>50px radius pills for buttons, 50% circles for icon actions. Dashed focus outlines echo editor selection handles.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      </div>
+      <h3>Monochrome Chrome</h3>
+      <p>Pure black #000000 and white #ffffff only. Color exists exclusively in product content and hero gradients.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Form -->
+<section class="form-section">
+  <h2>Get in Touch</h2>
+  <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
+  <div class="form-group"><label>Email</label><input type="email" placeholder="you@design.team"></div>
+  <div class="form-group"><label>Message</label><textarea placeholder="What are you designing?"></textarea></div>
+  <div class="form-submit"><button class="btn-black">Submit</button></div>
+</section>
+
+<!-- Showcase -->
+<section class="showcase">
+  <h2>Component Showcase</h2>
+
+  <div class="showcase-section">
+    <h3>Color Palette</h3>
+    <div class="color-grid">
+      <div class="color-swatch"><div class="swatch" style="background:#000000"></div><div class="name">Pure Black</div><div class="label">#000000</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#ffffff"></div><div class="name">Pure White</div><div class="label">#ffffff</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:rgba(0,0,0,0.08)"></div><div class="name">Glass Dark</div><div class="label">rgba(0,0,0,0.08)</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:rgba(255,255,255,0.16);border-color:rgba(0,0,0,0.2);"></div><div class="name">Glass Light</div><div class="label">rgba(255,255,255,0.16)</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:linear-gradient(135deg,#0acf83,#a259ff,#f24e1e,#ff7262)"></div><div class="name">Hero Gradient</div><div class="label">Multi-stop</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#0acf83"></div><div class="name">Electric Green</div><div class="label">#0acf83</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#a259ff"></div><div class="name">Deep Purple</div><div class="label">#a259ff</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#f24e1e"></div><div class="name">Hot Red</div><div class="label">#f24e1e</div></div>
+      <div class="color-swatch"><div class="swatch" style="background:#1abcfe"></div><div class="name">Sky Blue</div><div class="label">#1abcfe</div></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Typography Scale</h3>
+    <div class="type-scale">
+      <div class="type-row"><span class="meta">86px / wt 400</span><span style="font-size:52px;font-weight:400;letter-spacing:-1.72px;line-height:1;">Display Hero</span></div>
+      <div class="type-row"><span class="meta">64px / wt 400</span><span style="font-size:44px;font-weight:400;letter-spacing:-0.96px;line-height:1.1;">Section Heading</span></div>
+      <div class="type-row"><span class="meta">26px / wt 540</span><span style="font-size:26px;font-weight:600;letter-spacing:-0.26px;line-height:1.35;">Sub-heading</span></div>
+      <div class="type-row"><span class="meta">24px / wt 700</span><span style="font-size:24px;font-weight:700;line-height:1.45;">Feature Title</span></div>
+      <div class="type-row"><span class="meta">20px / wt 330</span><span style="font-size:20px;font-weight:300;line-height:1.40;letter-spacing:-0.14px;">Body Large — light and airy</span></div>
+      <div class="type-row"><span class="meta">16px / wt 340</span><span style="font-size:16px;font-weight:300;line-height:1.45;letter-spacing:-0.14px;">Body — standard text, light weight base</span></div>
+      <div class="type-row"><span class="meta">18px Mono ↑</span><span style="font-family:var(--font-mono);font-size:18px;font-weight:400;text-transform:uppercase;letter-spacing:0.54px;line-height:1.3;">SECTION LABEL</span></div>
+      <div class="type-row"><span class="meta">12px Mono ↑</span><span style="font-family:var(--font-mono);font-size:12px;font-weight:400;text-transform:uppercase;letter-spacing:0.6px;">TINY TAG</span></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Button Variants</h3>
+    <div class="button-row">
+      <button class="btn-black">Black Pill</button>
+      <button class="btn-white" style="border:1px solid rgba(0,0,0,0.1);">White Pill</button>
+      <button class="btn-glass-dark">&#9776;</button>
+      <button class="btn-ghost-figma">Underline Link</button>
+      <button class="btn-danger">Accent</button>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Card Variants</h3>
+    <div class="card-variants">
+      <div class="card-v white-card"><h4>White Card</h4><p>8px radius, subtle border</p></div>
+      <div class="card-v glass-card"><h4>Glass Dark Card</h4><p>rgba(0,0,0,0.08) surface</p></div>
+      <div class="card-v gradient-card"><h4>Gradient Card</h4><p>Product content brings color</p></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Input States</h3>
+    <div class="input-states">
+      <div class="input-state"><label>Default</label><input type="text" placeholder="Default"></div>
+      <div class="input-state focused"><label>Focused</label><input type="text" value="Dashed focus"></div>
+      <div class="input-state disabled"><label>Disabled</label><input type="text" value="Disabled" disabled></div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Shadow Levels</h3>
+    <div class="shadow-grid">
+      <div class="shadow-box" style="box-shadow:none;">Level 0 — Flat</div>
+      <div class="shadow-box" style="box-shadow:0 2px 8px rgba(0,0,0,0.08);">Level 1 — Surface</div>
+      <div class="shadow-box" style="box-shadow:0 4px 16px rgba(0,0,0,0.12);">Level 2 — Elevated</div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Border Radius</h3>
+    <div class="radius-row">
+      <div class="radius-item"><div class="radius-box" style="border-radius:2px;"></div><div class="radius-label">2px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">6px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-label">8px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:50px;"></div><div class="radius-label">50px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-label">50%</div></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
