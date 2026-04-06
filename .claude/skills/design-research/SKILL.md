@@ -162,12 +162,65 @@ Once validation passes, produce these files in the output directory:
 
 All output goes to: `public/reference/{site-id}/`
 - `{site-id}` = lowercase domain without TLD (e.g., "stripe", "linear", "notion")
+- The demo page should be at `public/reference/{site-id}.html` (flat, not nested)
 
-After packaging, tell the user:
+## Phase 5: Integrate & Deploy
+
+After packaging, you MUST integrate into the live site so it appears immediately.
+
+### 5a. Add to references.ts
+
+Read `src/data/references.ts`, then append a new entry to the `REFERENCE_DESIGNS` array:
+
+```typescript
+{
+  id: '{site-id}',
+  name: '{Site Name}',
+  description: '{one-line from metadata.json}',
+  demoUrl: '/reference/{site-id}.html',
+  accentColor: '{from metadata}',
+  bgColor: '{from metadata}',
+  textColor: '{from metadata}',
+  fontPreview: '{primary Google Font name}',
+},
+```
+
+### 5b. Add to styles/index.ts
+
+Read `src/data/styles/index.ts`, then add a new DesignStyle entry in the
+"Reference Designs" section (search for `// ── Reference Designs`). The entry needs:
+
+- `id`, `name`, `category: 'mood'`, `description`, `philosophy` (from DESIGN.md section 1)
+- `params` with best-match values for the algorithmic system
+- `meta` with `keyCharacteristics`, `doList`, `dontList` (from DESIGN.md sections 7)
+- `cssOverrides` with exact colors (from cssOverrides.json)
+
+### 5c. Build & Deploy
+
+```bash
+npm run build
+npx wrangler pages deploy dist --project-name designhub
+```
+
+### 5d. Verify
+
+Take a screenshot of the live site's Gallery page to confirm the new design
+appears in the Featured section, then navigate to it and verify both
+Demo Preview and Design System tabs work.
+
+### 5e. Commit & Push
+
+```bash
+git add -A
+git commit -m "feat: add {Site Name} design system case study"
+git push origin main
+```
+
+After all steps, tell the user:
 1. What was produced and where
 2. Key design insights discovered
 3. Any compromises made (e.g., font substitution, missing imagery)
-4. How to integrate into the Gallery (add to references.ts + styles data)
+4. The live URL where they can see it
 
 ## Quality Standards
 
@@ -176,3 +229,4 @@ After packaging, tell the user:
 - Color extraction should capture the full palette (primary, secondary, accent, neutrals, semantic)
 - Typography hierarchy must include at least 8 levels with exact sizes/weights/spacing
 - Every Do/Don't must be specific enough for an AI agent to follow mechanically
+- The new design MUST appear on the live site after skill execution completes
